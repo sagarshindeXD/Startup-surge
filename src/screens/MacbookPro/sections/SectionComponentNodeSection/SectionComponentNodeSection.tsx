@@ -20,7 +20,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
         <img
           className="w-[120px] h-[60px] object-cover" // larger logo
           alt="StartupSurge logo"
-          src="/src/assets/StartupSurge Logo-05.png"
+          src="/logo.png"
         />
         <div className="ml-6 relative">
           <NavigationMenu>
