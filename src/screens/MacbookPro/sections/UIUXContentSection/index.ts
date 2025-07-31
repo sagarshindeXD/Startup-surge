@@ -1,0 +1,1 @@
+export { UIUXContentSection } from "./UIUXContentSection"; 
