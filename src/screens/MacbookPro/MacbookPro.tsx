@@ -19,7 +19,7 @@ import { UIUXContentSection } from "./sections/UIUXContentSection";
 
 export const MacbookPro = (): JSX.Element => {
   const [isScrollLocked, setIsScrollLocked] = useState(true);
-  const [selectedSection, setSelectedSection] = useState("social-media");
+  const [selectedSection, setSelectedSection] = useState("seo");
   const [isCapsuleSticky, setIsCapsuleSticky] = useState(false);
   const capsuleRef = useRef<HTMLDivElement>(null);
   const socialMediaRef = useRef<HTMLDivElement>(null);
@@ -79,11 +79,11 @@ export const MacbookPro = (): JSX.Element => {
 
   return (
     <div
-      className="bg-[#1e1e1e] flex flex-row justify-center w-full"
+      className="bg-[#1e1e1e] flex flex-row justify-center w-full min-h-screen"
       data-model-id="1:5"
     >
       <AnimatedWaves />
-      <div className="bg-[#1e1e1e] w-full max-w-[1728px] relative">
+      <div className="bg-[#1e1e1e] w-full relative">
         {/* Fixed nav bar at the very top, only when capsule is sticky */}
         {isCapsuleSticky && (
           <div className="fixed top-0 left-0 w-full h-24 bg-[#1e1e1e] z-[60]" />
@@ -161,28 +161,28 @@ export const MacbookPro = (): JSX.Element => {
               </div>
             )}
             {/* About Section */}
-            <div className="w-full max-w-[1377px] mx-auto my-16">
+            <div id="about" className="w-full px-4 md:px-8 lg:px-16 mx-auto my-16">
               <div className="text-center">
-                <h2 className="[font-family:'League_Spartan',Helvetica] text-6xl leading-[80px] tracking-[0]">
+                <h2 className="[font-family:'League_Spartan',Helvetica] text-4xl md:text-5xl lg:text-6xl leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
                   <span className="text-white">About </span>
                   <span className="font-bold text-[#ffa500]">StartupSurge</span>
                   <span className="text-white">!</span>
                 </h2>
               </div>
-              <div className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-xl text-center leading-[28px] tracking-[0] mt-8">
+              <div className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl text-center leading-[28px] tracking-[0] mt-8 px-4">
                 Think of us as your personal creative cavalry, charging into the
                 digital battlefield with a riot of ideas and
-                <br />a relentless pursuit of results. We&#39;re not just
+                <br className="hidden md:block" />a relentless pursuit of results. We&#39;re not just
                 designers, we&#39;re storytellers, strategists, and a touch of
                 mischievous magicians,
-                <br />
+                <br className="hidden md:block" />
                 weaving narratives that captivate your audience and leave them
                 begging for more.
               </div>
               <div className="relative mt-8 flex flex-row items-center">
                 <ScrollArea className="h-[350px] w-full">
                   <PointSection />
-                  <div className="w-full max-w-[1254px] mx-auto mt-8">
+                  <div className="w-full px-4 md:px-8 lg:px-16 mx-auto mt-8">
                     <PointWrapperSection />
                     <MarketingSection />
                   </div>
@@ -206,10 +206,10 @@ export const MacbookPro = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            {/* Hero and CTA Section */}
-            <div className="w-full max-w-[1476px] mx-auto mt-16">
+            {/* Services Section */}
+            <div id="services" className="w-full px-4 md:px-8 lg:px-16 mx-auto mt-16">
               <div className="text-center mb-16">
-                <h2 className="[font-family:'League_Spartan',Helvetica] font-normal text-[64px] tracking-[0] leading-normal whitespace-nowrap">
+                <h2 className="[font-family:'League_Spartan',Helvetica] font-normal text-4xl md:text-5xl lg:text-[64px] tracking-[0] leading-normal">
                   <span className="font-bold text-[#ffa500]">StartupSurge </span>
                   <span className="font-medium text-white">Knows</span>
                   <span className="text-white">!</span>
@@ -223,6 +223,22 @@ export const MacbookPro = (): JSX.Element => {
             </div>
             {/* Support Form Section */}
             <SupportFormSection />
+            {/* Blogs Section */}
+            <div id="blogs" className="w-full px-4 md:px-8 lg:px-16 mx-auto mt-16">
+              <div className="text-center mb-16">
+                <h2 className="[font-family:'League_Spartan',Helvetica] font-normal text-4xl md:text-5xl lg:text-[64px] tracking-[0] leading-normal">
+                  <span className="font-bold text-[#ffa500]">Latest </span>
+                  <span className="font-medium text-white">Blogs</span>
+                  <span className="text-white">!</span>
+                </h2>
+              </div>
+              <div className="w-full">
+                {/* Blog content can be added here */}
+                <div className="text-center text-white text-lg">
+                  Stay tuned for our latest insights and updates!
+                </div>
+              </div>
+            </div>
             {/* Footer Section */}
             <FooterSection />
           </div>

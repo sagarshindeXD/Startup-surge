@@ -24,37 +24,31 @@ export const CallToActionSection = (): JSX.Element => {
     },
   ];
 
-  // Position offsets for the cards
-  const positions = [
-    { top: "mt-[79px]", left: "ml-0" },
-    { top: "mt-0", left: "ml-[500px]" },
-    { top: "mt-[79px]", left: "ml-[1000px]" },
-  ];
-
   return (
-    <section className="relative w-full h-[479px] flex">
-      {blogCards.map((card, index) => (
-        <div
-          key={card.id}
-          className={`absolute w-[463px] h-[400px] ${positions[index].top} ${positions[index].left}`}
-        >
-          <Card className="border-0 bg-transparent">
-            <CardContent className="p-0">
-              <img
-                className="w-[459px] h-[306px]"
-                alt="Layer"
-                src={card.image}
-              />
-              <h2 className="w-[459px] mt-[25px] [font-family:'League_Spartan',Helvetica] font-normal text-white text-[40px] tracking-[0] leading-[normal]">
-                {card.title}
-              </h2>
-              <p className="w-[459px] mt-[7px] [font-family:'League_Spartan',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[normal]">
-                {card.category}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      ))}
+    <section className="relative w-full py-16 md:py-20 px-4 md:px-8 lg:px-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 max-w-[1752px] mx-auto">
+        {blogCards.map((card) => (
+          <div key={card.id} className="w-full">
+            <Card className="border-0 bg-transparent h-full">
+              <CardContent className="p-0 h-full">
+                <div className="relative h-[300px] md:h-[350px] lg:h-[400px] w-full">
+                  <img
+                    className="w-full h-auto max-h-[60%] object-cover rounded-lg"
+                    alt="Digital Marketing Background"
+                    src={card.image}
+                  />
+                  <div className="mt-4 md:mt-6 w-full text-left [font-family:'League_Spartan',Helvetica] font-normal text-white text-2xl md:text-3xl lg:text-[40px] tracking-[0] leading-normal">
+                    {card.title}
+                  </div>
+                  <div className="mt-2 w-full [font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl lg:text-2xl tracking-[0] leading-normal">
+                    {card.category}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

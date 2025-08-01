@@ -11,37 +11,40 @@ export const HeroSection = (): JSX.Element => {
   const carouselItems = [
     {
       image: "https://c.animaapp.com/mdfqwuc1Jgo71g/img/layer-1-1.svg",
-      position: "top-[79px] left-0",
+      title: "Digital Marketing Trends",
+      category: "Blog",
     },
     {
       image: "https://c.animaapp.com/mdfqwuc1Jgo71g/img/layer-1-5.svg",
-      position: "top-0 left-[500px]",
+      title: "Digital Marketing Trends",
+      category: "Blog",
     },
     {
       image: "https://c.animaapp.com/mdfqwuc1Jgo71g/img/layer-1.svg",
-      position: "top-[79px] left-[1000px]",
+      title: "Digital Marketing Trends",
+      category: "Blog",
     },
   ];
 
   return (
-    <section className="relative w-full py-20">
+    <section className="relative w-full py-16 md:py-20 px-4 md:px-8 lg:px-16">
       <Carousel className="w-full">
-        <CarouselContent className="flex gap-10">
+        <CarouselContent className="flex gap-4 md:gap-6 lg:gap-10">
           {carouselItems.map((item, index) => (
-            <CarouselItem key={index} className="basis-1/3 pl-0">
-              <Card className="border-0 bg-transparent">
-                <CardContent className="p-0">
-                  <div className="relative h-[400px] w-[463px]">
+            <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/3 pl-0">
+              <Card className="border-0 bg-transparent h-full">
+                <CardContent className="p-0 h-full">
+                  <div className="relative h-[300px] md:h-[350px] lg:h-[400px] w-full">
                     <img
-                      className="w-[459px] h-[306px]"
+                      className="w-full h-auto max-h-[60%] object-cover rounded-lg"
                       alt="Digital Marketing Background"
                       src={item.image}
                     />
-                    <div className="mt-6 w-[459px] text-left [font-family:'League_Spartan',Helvetica] font-normal text-white text-[40px] tracking-[0] leading-normal">
-                      Digital Marketing Trends
+                    <div className="mt-4 md:mt-6 w-full text-left [font-family:'League_Spartan',Helvetica] font-normal text-white text-2xl md:text-3xl lg:text-[40px] tracking-[0] leading-normal">
+                      {item.title}
                     </div>
-                    <div className="mt-2 w-[459px] [font-family:'League_Spartan',Helvetica] font-normal text-white text-2xl tracking-[0] leading-normal">
-                      Blog
+                    <div className="mt-2 w-full [font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl lg:text-2xl tracking-[0] leading-normal">
+                      {item.category}
                     </div>
                   </div>
                 </CardContent>
