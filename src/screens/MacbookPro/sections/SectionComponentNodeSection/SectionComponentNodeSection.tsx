@@ -54,7 +54,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
         <img
           className="w-[80px] h-[40px] dark:w-[120px] dark:h-[60px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
           alt="StartupSurge logo"
-          src={theme === 'light' ? "/src/assets/Asset 1.png" : "/src/assets/StartupSurge Logo-05.png"}
+          src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
           onClick={handleLogoClick}
         />
         <div className="ml-6 relative">
@@ -88,7 +88,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
         <img
           className="w-[48px] h-[24px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
           alt="StartupSurge logo"
-          src={theme === 'light' ? "/src/assets/Asset 1.png" : "/src/assets/StartupSurge Logo-05.png"}
+          src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
           onClick={handleLogoClick}
         />
         <button
