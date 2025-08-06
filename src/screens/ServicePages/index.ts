@@ -1,0 +1,9 @@
+export { SEOPage } from './SEOPage';
+export { SocialMediaMarketingPage } from './SocialMediaMarketingPage';
+export { PerformanceMarketingPage } from './PerformanceMarketingPage';
+export { UIUXDesignerPage } from './UIUXDesignerPage';
+export { GraphicDesignerPage } from './GraphicDesignerPage';
+export { EcommerceMarketingPage } from './EcommerceMarketingPage';
+export { WhatsAppMarketingPage } from './WhatsAppMarketingPage';
+export { EmailMarketingPage } from './EmailMarketingPage';
+export { InfluencerMarketingPage } from './InfluencerMarketingPage'; 
