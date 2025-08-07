@@ -1,9 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { scrollToTop } from "../../../../lib/utils";
+import { useLoadingAnimation } from "../../../../lib/useLoadingAnimation";
+import { LoadingOverlay } from "../../../../components/LoadingOverlay";
 
 export const CallToActionSection = (): JSX.Element => {
   const navigate = useNavigate();
+  const { isLoading, handleNavigation } = useLoadingAnimation();
 
   // Data for blog cards
   const blogCards = [
@@ -28,11 +32,16 @@ export const CallToActionSection = (): JSX.Element => {
   ];
 
   const handleCardClick = () => {
-    navigate('/blogs');
+    handleNavigation(() => {
+      scrollToTop();
+      navigate('/blogs');
+    });
   };
 
   return (
-    <section className="relative w-full py-8 sm:py-16 md:py-20 px-2 sm:px-4 md:px-8 lg:px-16">
+    <>
+      <LoadingOverlay isLoading={isLoading} />
+      <section className="relative w-full py-8 sm:py-16 md:py-20 px-2 sm:px-4 md:px-8 lg:px-16">
       <div className="text-center mb-6 sm:mb-12">
         <h2 className="[font-family:'League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
           <span className="text-gray-800 dark:text-white">Latest </span>
@@ -49,7 +58,7 @@ export const CallToActionSection = (): JSX.Element => {
         {blogCards.map((card) => (
           <div key={card.id} className="w-full">
             <Card 
-              className="border-0 bg-transparent h-full cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="border-0 bg-transparent h-full cursor-pointer hover:scale-105 transition-all duration-500 ease-out card-hover"
               onClick={handleCardClick}
             >
               <CardContent className="p-0 h-full">
@@ -74,12 +83,18 @@ export const CallToActionSection = (): JSX.Element => {
       
       <div className="text-center mt-6 sm:mt-12">
         <button
-          onClick={() => navigate('/blogs')}
-          className="px-6 sm:px-8 py-3 sm:py-4 bg-[#ffa500] text-black rounded-lg hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] text-base sm:text-lg font-medium"
+          onClick={() => {
+            handleNavigation(() => {
+              scrollToTop();
+              navigate('/blogs');
+            });
+          }}
+          className="px-6 sm:px-8 py-3 sm:py-4 bg-[#ffa500] text-black rounded-lg hover:bg-[#ffa500]/90 transition-all duration-300 hover:scale-105 hover:shadow-lg font-['League_Spartan',Helvetica] text-base sm:text-lg font-medium btn-smooth"
         >
           View All Articles
         </button>
       </div>
-    </section>
+      </section>
+    </>
   );
 };

@@ -217,6 +217,43 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
                         <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                       </svg>
                     );
+                  // Graphic Design specific icons
+                  case 'logo & brand identity':
+                    return (
+                      <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                      </svg>
+                    );
+                  case 'marketing collateral':
+                    return (
+                      <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                      </svg>
+                    );
+                  case 'digital graphics':
+                    return (
+                      <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                      </svg>
+                    );
+                  case 'social media assets':
+                    return (
+                      <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                      </svg>
+                    );
+                  case 'print materials':
+                    return (
+                      <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                      </svg>
+                    );
+                  case 'illustration & icons':
+                    return (
+                      <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    );
                   default:
                     return (
                       <svg className="w-16 h-16 text-[#ffa500]" fill="currentColor" viewBox="0 0 24 24">
@@ -241,6 +278,19 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
                     return "Design stunning visuals that capture attention and communicate your message.";
                   case 'social media management':
                     return "Manage and grow your social media presence with strategic content and engagement.";
+                  // Graphic Design specific descriptions
+                  case 'logo & brand identity':
+                    return "Create memorable logos and comprehensive brand identity systems that represent your business values.";
+                  case 'marketing collateral':
+                    return "Design professional marketing materials including brochures, flyers, and business cards.";
+                  case 'digital graphics':
+                    return "Create stunning digital graphics for websites, apps, and online marketing campaigns.";
+                  case 'social media assets':
+                    return "Design engaging graphics optimized for social media platforms and digital marketing.";
+                  case 'print materials':
+                    return "Create high-quality print-ready designs for banners, posters, and physical marketing materials.";
+                  case 'illustration & icons':
+                    return "Design custom illustrations and icon sets that enhance your brand's visual communication.";
                   default:
                     return "Comprehensive solution for your digital marketing needs.";
                 }

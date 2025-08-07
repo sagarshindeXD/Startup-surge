@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
+import { scrollToTop } from "../../lib/utils";
+import { useLoadingAnimation } from "../../lib/useLoadingAnimation";
+import { LoadingOverlay } from "../../components/LoadingOverlay";
 
 export const ServicesPage = (): JSX.Element => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const { isLoading, handleNavigation } = useLoadingAnimation();
 
   useEffect(() => {
     // Trigger animations after component mounts
@@ -90,7 +94,9 @@ export const ServicesPage = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-hidden transition-colors duration-300">
+    <>
+      <LoadingOverlay isLoading={isLoading} />
+      <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-hidden transition-colors duration-300">
       {/* Navigation */}
       <div className="z-50 w-full">
         <SectionComponentNodeSection />
@@ -122,15 +128,21 @@ export const ServicesPage = (): JSX.Element => {
                     hoveredCard === service.id 
                       ? 'shadow-2xl scale-105 rotate-1' 
                       : 'hover:shadow-xl hover:scale-102 hover:-rotate-1'
-                  } cursor-pointer relative overflow-hidden group`}
+                  } cursor-pointer relative overflow-hidden group card-hover`}
                   style={{ 
                     transitionDelay: `${service.delay}ms`,
                     transitionProperty: 'all',
-                    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                    willChange: 'transform'
                   }}
                   onMouseEnter={() => setHoveredCard(service.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => navigate(service.path)}
+                  onClick={() => {
+                    handleNavigation(() => {
+                      scrollToTop();
+                      navigate(service.path);
+                    });
+                  }}
                 >
                   {/* Hover Background Effect */}
                   <div className={`absolute inset-0 transition-all duration-500 ease-out ${
@@ -191,6 +203,7 @@ export const ServicesPage = (): JSX.Element => {
           50% { opacity: 0.3; }
         }
       `}</style>
-    </div>
+      </div>
+    </>
   );
 }; 
