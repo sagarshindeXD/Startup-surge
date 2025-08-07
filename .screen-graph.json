@@ -59,13 +59,6 @@
       ]
     },
     {
-      "id": "src/screens/ServicePages/GraphicDesignerPage.tsx",
-      "label": "GraphicDesignerPage",
-      "routes": [
-        "/services/graphic-designer"
-      ]
-    },
-    {
       "id": "src/screens/ServicePages/EcommerceMarketingPage.tsx",
       "label": "EcommerceMarketingPage",
       "routes": [
@@ -96,113 +89,113 @@
   ],
   "edges": [
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:27:4-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
+          "line": 27,
+          "endLine": 27,
+          "column": 4,
+          "endColumn": 17,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:34:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
+          "line": 34,
+          "endLine": 34,
+          "column": 8,
+          "endColumn": 21,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:37:8-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
       "data": {
         "viaRoute": "/services",
         "trigger": {
           "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
+          "line": 37,
+          "endLine": 37,
+          "column": 8,
+          "endColumn": 29,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:40:8-to-src\\screens\\AboutPage\\AboutPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\AboutPage\\AboutPage.tsx",
       "data": {
         "viaRoute": "/about",
         "trigger": {
           "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
+          "line": 40,
+          "endLine": 40,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:8-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
       "data": {
         "viaRoute": "/blogs",
         "trigger": {
           "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
+          "line": 43,
+          "endLine": 43,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:46:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
+          "line": 46,
+          "endLine": 46,
+          "column": 8,
+          "endColumn": 21,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\OverlapSection\\OverlapSection.tsx:64:14-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\OverlapSection\\OverlapSection.tsx:55:25-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
       "data": {
         "viaRoute": "/services",
         "trigger": {
           "element": "navigate('/services')",
-          "line": 64,
-          "endLine": 64,
-          "column": 14,
-          "endColumn": 35,
+          "line": 55,
+          "endLine": 55,
+          "column": 25,
+          "endColumn": 46,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\OverlapSection\\OverlapSection.tsx"
         }
       }
@@ -288,1185 +281,321 @@
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx:37:6-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx:31:4-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
       "data": {
         "viaRoute": "/blogs",
         "trigger": {
           "element": "navigate('/blogs')",
+          "line": 31,
+          "endLine": 31,
+          "column": 4,
+          "endColumn": 22,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx:77:25-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "data": {
+        "viaRoute": "/blogs",
+        "trigger": {
+          "element": "navigate('/blogs')",
+          "line": 77,
+          "endLine": 77,
+          "column": 25,
+          "endColumn": 43,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:27:4-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 27,
+          "endLine": 27,
+          "column": 4,
+          "endColumn": 17,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:34:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 34,
+          "endLine": 34,
+          "column": 8,
+          "endColumn": 21,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:37:8-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
+      "data": {
+        "viaRoute": "/services",
+        "trigger": {
+          "element": "navigate('/services')",
           "line": 37,
           "endLine": 37,
-          "column": 6,
-          "endColumn": 24,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx:89:14-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 89,
-          "endLine": 89,
-          "column": 14,
-          "endColumn": 32,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\CallToActionSection\\CallToActionSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
+          "column": 8,
+          "endColumn": 29,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:40:8-to-src\\screens\\AboutPage\\AboutPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\AboutPage\\AboutPage.tsx",
       "data": {
         "viaRoute": "/about",
         "trigger": {
           "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
+          "line": 40,
+          "endLine": 40,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:8-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
       "data": {
         "viaRoute": "/blogs",
         "trigger": {
           "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
           "line": 43,
           "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:46:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 46,
+          "endLine": 46,
+          "column": 8,
+          "endColumn": 21,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:27:4-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 27,
+          "endLine": 27,
+          "column": 4,
+          "endColumn": 17,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:34:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 34,
+          "endLine": 34,
+          "column": 8,
+          "endColumn": 21,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:37:8-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
       "data": {
         "viaRoute": "/services",
         "trigger": {
           "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
+          "line": 37,
+          "endLine": 37,
+          "column": 8,
+          "endColumn": 29,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:40:8-to-src\\screens\\AboutPage\\AboutPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\AboutPage\\AboutPage.tsx",
       "data": {
         "viaRoute": "/about",
         "trigger": {
           "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
+          "line": 40,
+          "endLine": 40,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:8-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
       "data": {
         "viaRoute": "/blogs",
         "trigger": {
           "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
           "line": 43,
           "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:46:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 46,
+          "endLine": 46,
+          "column": 8,
+          "endColumn": 21,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:27:4-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 27,
+          "endLine": 27,
+          "column": 4,
+          "endColumn": 17,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:34:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate('/')",
+          "line": 34,
+          "endLine": 34,
+          "column": 8,
+          "endColumn": 21,
+          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:37:8-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
       "data": {
         "viaRoute": "/services",
         "trigger": {
           "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
+          "line": 37,
+          "endLine": 37,
+          "column": 8,
+          "endColumn": 29,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:40:8-to-src\\screens\\AboutPage\\AboutPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\AboutPage\\AboutPage.tsx",
       "data": {
         "viaRoute": "/about",
         "trigger": {
           "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
+          "line": 40,
+          "endLine": 40,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:8-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
       "data": {
         "viaRoute": "/blogs",
         "trigger": {
           "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
           "line": 43,
           "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
+          "column": 8,
+          "endColumn": 26,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }
     },
     {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
+      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:46:8-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
       "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:33:6-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 33,
-          "endLine": 33,
-          "column": 6,
-          "endColumn": 19,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:43:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 43,
-          "endLine": 43,
-          "column": 10,
-          "endColumn": 23,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:49:10-to-src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\ServicesPage\\ServicesPage.tsx",
-      "data": {
-        "viaRoute": "/services",
-        "trigger": {
-          "element": "navigate('/services')",
-          "line": 49,
-          "endLine": 49,
-          "column": 10,
-          "endColumn": 31,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:55:10-to-src\\screens\\AboutPage\\AboutPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\AboutPage\\AboutPage.tsx",
-      "data": {
-        "viaRoute": "/about",
-        "trigger": {
-          "element": "navigate('/about')",
-          "line": 55,
-          "endLine": 55,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:61:10-to-src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\BlogsPage\\BlogsPage.tsx",
-      "data": {
-        "viaRoute": "/blogs",
-        "trigger": {
-          "element": "navigate('/blogs')",
-          "line": 61,
-          "endLine": 61,
-          "column": 10,
-          "endColumn": 28,
-          "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
-        }
-      }
-    },
-    {
-      "id": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx:67:10-to-src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "source": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "target": "src\\screens\\MacbookPro\\MacbookPro.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate('/')",
-          "line": 67,
-          "endLine": 67,
-          "column": 10,
-          "endColumn": 23,
+          "line": 46,
+          "endLine": 46,
+          "column": 8,
+          "endColumn": 21,
           "sourceFile": "src\\screens\\MacbookPro\\sections\\SectionComponentNodeSection\\SectionComponentNodeSection.tsx"
         }
       }

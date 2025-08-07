@@ -2,9 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Separator } from "../../../../components/ui/separator";
 import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
-import { scrollToTop } from "../../../../lib/utils";
-import { useLoadingAnimation } from "../../../../lib/useLoadingAnimation";
-import { LoadingOverlay } from "../../../../components/LoadingOverlay";
 
 interface OverlapSectionProps {
   onCapsuleClick?: (section: string) => void;
@@ -14,7 +11,6 @@ interface OverlapSectionProps {
 
 export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: OverlapSectionProps): JSX.Element => {
   const navigate = useNavigate();
-  const { isLoading, handleNavigation } = useLoadingAnimation();
   
   // Define the service categories
   const serviceCategories = [
@@ -26,9 +22,7 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
   ];
 
   return (
-    <>
-      <LoadingOverlay isLoading={isLoading} />
-      <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center">
       <div className="max-w-full sm:max-w-[600px] w-full h-[40px] sm:h-[48px] flex justify-center overflow-x-auto sm:overflow-x-visible scrollbar-hide">
         <Tabs
           value={value}
@@ -58,12 +52,7 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
         </Tabs>
         {/* Plus button next to capsule */}
         <button 
-          onClick={() => {
-            handleNavigation(() => {
-              scrollToTop();
-              navigate('/services');
-            });
-          }}
+          onClick={() => navigate('/services')}
           className="flex items-center justify-center w-[32px] h-[40px] sm:w-[22px] sm:h-[48px] ml-2 sm:ml-4 cursor-pointer hover:opacity-80 transition-opacity duration-200 flex-shrink-0"
           aria-label="View all services"
         >
@@ -73,7 +62,6 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
           </div>
         </button>
       </div>
-      </div>
-    </>
+    </div>
   );
 };

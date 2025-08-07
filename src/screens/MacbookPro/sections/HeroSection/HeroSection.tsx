@@ -5,11 +5,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from "../../../../components/ui/carousel";
-import { useSmoothAnimations } from "../../../../lib/useSmoothAnimations";
 
 export const HeroSection = (): JSX.Element => {
-  const { isLoaded, getStaggerDelay } = useSmoothAnimations();
-  
   // Data for the carousel cards with social media focused images
   const carouselItems = [
     {
@@ -35,10 +32,7 @@ export const HeroSection = (): JSX.Element => {
         <CarouselContent className="flex flex-col sm:flex-row gap-4 md:gap-6 lg:gap-10">
           {carouselItems.map((item, index) => (
             <CarouselItem key={index} className="basis-full sm:basis-1/2 lg:basis-1/3 pl-0">
-              <Card 
-                className="border-0 bg-transparent h-full card-hover"
-                style={getStaggerDelay(index)}
-              >
+              <Card className="border-0 bg-transparent h-full">
                 <CardContent className="p-0 h-full">
                   <div className="relative h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-full">
                     <img

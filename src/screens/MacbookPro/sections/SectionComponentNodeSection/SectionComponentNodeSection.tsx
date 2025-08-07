@@ -9,16 +9,12 @@ import {
   NavigationMenuList,
 } from "../../../../components/ui/navigation-menu";
 import { Menu } from "lucide-react";
-import { scrollToTop } from "../../../../lib/utils";
-import { useLoadingAnimation } from "../../../../lib/useLoadingAnimation";
-import { LoadingOverlay } from "../../../../components/LoadingOverlay";
 
 export const SectionComponentNodeSection = (): JSX.Element => {
   const location = useLocation();
   const navigate = useNavigate();
   const { theme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const { isLoading, handleNavigation } = useLoadingAnimation();
 
   const navItems = [
     { text: "Home", href: "/", isActive: location.pathname === "/" },
@@ -28,55 +24,35 @@ export const SectionComponentNodeSection = (): JSX.Element => {
   ];
 
   const handleLogoClick = () => {
-    handleNavigation(() => {
-      scrollToTop();
-      navigate('/');
-    });
+    navigate('/');
   };
 
   const handleNavItemClick = (href: string, text: string) => {
     // Handle navigation based on the item clicked
     switch (text.toLowerCase()) {
       case 'home':
-        handleNavigation(() => {
-          scrollToTop();
-          navigate('/');
-        });
+        navigate('/');
         break;
       case 'services':
-        handleNavigation(() => {
-          scrollToTop();
-          navigate('/services');
-        });
+        navigate('/services');
         break;
       case 'about':
-        handleNavigation(() => {
-          scrollToTop();
-          navigate('/about');
-        });
+        navigate('/about');
         break;
       case 'blogs':
-        handleNavigation(() => {
-          scrollToTop();
-          navigate('/blogs');
-        });
+        navigate('/blogs');
         break;
       default:
-        handleNavigation(() => {
-          scrollToTop();
-          navigate('/');
-        });
+        navigate('/');
     }
   };
 
   return (
-    <>
-      <LoadingOverlay isLoading={isLoading} />
-      <header className="w-full flex items-center justify-between p-4 bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
+    <header className="w-full flex items-center justify-between p-4 bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center w-full">
         <img
-          className="w-[80px] h-[40px] dark:w-[120px] dark:h-[60px] object-cover cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
+          className="w-[80px] h-[40px] dark:w-[120px] dark:h-[60px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
           alt="StartupSurge logo"
           src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
           onClick={handleLogoClick}
@@ -87,7 +63,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
               {navItems.map((item, index) => (
                 <NavigationMenuItem key={index}>
                   <NavigationMenuLink
-                    className={`[font-family:'League_Spartan',Helvetica] font-normal text-lg tracking-[0] leading-[normal] whitespace-nowrap cursor-pointer transition-all duration-300 no-underline text-decoration-none hover:no-underline hover:scale-105 ${
+                    className={`[font-family:'League_Spartan',Helvetica] font-normal text-lg tracking-[0] leading-[normal] whitespace-nowrap cursor-pointer transition-colors duration-200 no-underline text-decoration-none hover:no-underline ${
                       item.isActive 
                         ? "text-[#ffa500]" 
                         : "text-gray-800 dark:text-white hover:text-[#ffa500]"
@@ -154,7 +130,6 @@ export const SectionComponentNodeSection = (): JSX.Element => {
           <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
         </div>
       )}
-      </header>
-    </>
+    </header>
   );
 };

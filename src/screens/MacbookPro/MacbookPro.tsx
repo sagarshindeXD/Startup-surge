@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import { AnimatedWaves } from "../../components/AnimatedWaves";
-import { useSmoothAnimations } from "../../lib/useSmoothAnimations";
 import { CallToActionSection } from "./sections/CallToActionSection";
 import { FooterSection } from "./sections/FooterSection";
 import { HeroSection } from "./sections/HeroSection";
@@ -19,7 +18,6 @@ import { WebDesigningContentSection } from "./sections/WebDesigningContentSectio
 import { UIUXContentSection } from "./sections/UIUXContentSection";
 
 export const MacbookPro = (): JSX.Element => {
-  const { isLoaded, getFadeInStyle } = useSmoothAnimations();
   const [selectedSection, setSelectedSection] = useState("seo");
   const socialMediaRef = useRef<HTMLDivElement>(null);
   const seoRef = useRef<HTMLDivElement>(null);
@@ -63,10 +61,7 @@ export const MacbookPro = (): JSX.Element => {
               />
               {/* Overlayed Welcome to the StartupSurge era */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-12 sm:-mt-48 px-2">
-                <div 
-                  className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-2xl sm:text-5xl md:text-[100px] text-center tracking-[0] leading-[36px] sm:leading-[60px] md:leading-[100px] drop-shadow-xl transition-colors duration-300"
-                  style={getFadeInStyle(200)}
-                >
+                <div className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-2xl sm:text-5xl md:text-[100px] text-center tracking-[0] leading-[36px] sm:leading-[60px] md:leading-[100px] drop-shadow-xl transition-colors duration-300">
                   <span>Welcome to the</span>
                   <br />
                   <span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">StartupSurge</span>
