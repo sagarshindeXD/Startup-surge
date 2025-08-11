@@ -1,7 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./lib/theme";
+import PageTransition from "./components/PageTransition";
+import { AnimatePresence } from "framer-motion";
 import { MacbookPro } from "./screens/MacbookPro";
 import { ServicesPage } from "./screens/ServicesPage";
 import { AboutPage } from "./screens/AboutPage/AboutPage";
@@ -18,11 +20,14 @@ import {
   InfluencerMarketingPage,
 } from "./screens/ServicePages";
 
-createRoot(document.getElementById("app") as HTMLElement).render(
-  <StrictMode>
-    <ThemeProvider>
-      <Router>
-        <Routes>
+// AnimatedRoutes component to handle route transitions
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <PageTransition location={location.pathname} key={location.pathname}>
+        <Routes location={location}>
           <Route path="/" element={<MacbookPro />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
@@ -36,6 +41,16 @@ createRoot(document.getElementById("app") as HTMLElement).render(
           <Route path="/services/email-marketing" element={<EmailMarketingPage />} />
           <Route path="/services/influencer-marketing" element={<InfluencerMarketingPage />} />
         </Routes>
+      </PageTransition>
+    </AnimatePresence>
+  );
+};
+
+createRoot(document.getElementById("app") as HTMLElement).render(
+  <StrictMode>
+    <ThemeProvider>
+      <Router>
+        <AnimatedRoutes />
       </Router>
     </ThemeProvider>
   </StrictMode>,

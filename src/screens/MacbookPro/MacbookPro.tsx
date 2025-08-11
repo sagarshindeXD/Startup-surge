@@ -16,6 +16,8 @@ import { SeoContentSection } from "./sections/SeoContentSection";
 import { PerformanceMarketingContentSection } from "./sections/PerformanceMarketingContentSection";
 import { WebDesigningContentSection } from "./sections/WebDesigningContentSection";
 import { UIUXContentSection } from "./sections/UIUXContentSection";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSwipeable } from "react-swipeable";
 
 export const MacbookPro = (): JSX.Element => {
   const [selectedSection, setSelectedSection] = useState("seo");
@@ -24,6 +26,18 @@ export const MacbookPro = (): JSX.Element => {
   const performanceMarketingRef = useRef<HTMLDivElement>(null);
   const webDesigningRef = useRef<HTMLDivElement>(null);
   const uiuxRef = useRef<HTMLDivElement>(null);
+
+  // Define service categories for reuse
+  const serviceCategories = [
+    { id: "seo", label: "SEO", component: SeoContentSection },
+    { id: "social-media", label: "Social Media", component: SocialMediaContentSection },
+    { id: "performance-marketing", label: "Performance Marketing", component: PerformanceMarketingContentSection },
+    { id: "web-designing", label: "Web Designing", component: WebDesigningContentSection },
+    { id: "ui-ux", label: "UI/UX", component: UIUXContentSection },
+  ];
+
+  // Find the current section index
+  const currentSectionIndex = serviceCategories.findIndex(category => category.id === selectedSection);
 
   const handleCapsuleClick = (section: string) => {
     setSelectedSection(section);
@@ -40,6 +54,25 @@ export const MacbookPro = (): JSX.Element => {
       ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  // Handle swipe navigation
+  const handlePrevSection = () => {
+    const prevIndex = (currentSectionIndex - 1 + serviceCategories.length) % serviceCategories.length;
+    setSelectedSection(serviceCategories[prevIndex].id);
+  };
+
+  const handleNextSection = () => {
+    const nextIndex = (currentSectionIndex + 1) % serviceCategories.length;
+    setSelectedSection(serviceCategories[nextIndex].id);
+  };
+
+  // Set up swipe handlers
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleNextSection,
+    onSwipedRight: handlePrevSection,
+    touchEventOptions: { passive: false },
+    trackMouse: false
+  });
 
   return (
     <div
@@ -64,15 +97,15 @@ export const MacbookPro = (): JSX.Element => {
                 <div className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-2xl sm:text-5xl md:text-[100px] text-center tracking-[0] leading-[36px] sm:leading-[60px] md:leading-[100px] drop-shadow-xl transition-colors duration-300">
                   <span>Welcome to the</span>
                   <br />
-                  <span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">StartupSurge</span>
+                  <span className="font-bold text-gray-800 dark:text-white text-3xl sm:text-6xl md:text-[120px]">Startup</span><span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">Surge</span>
                   <br />
                   <span className="text-gray-800 dark:text-white">era</span>
                 </div>
               </div>
             </div>
           </div>
-          {/* Section 2: Capsule styled as nav bar with spacing */}
-          <div className="relative w-full bg-white dark:bg-[#1e1e1e] py-4 sm:py-6 shadow-lg transition-colors duration-300">
+          {/* Section 2: Capsule styled as nav bar with spacing - HIDDEN ON MOBILE */}
+          <div className="relative w-full bg-white dark:bg-[#1e1e1e] py-4 sm:py-6 shadow-lg transition-colors duration-300 hidden sm:block">
             <div className="flex justify-center px-2 sm:px-0">
               <OverlapSection
                 onCapsuleClick={handleCapsuleClick}
@@ -81,45 +114,80 @@ export const MacbookPro = (): JSX.Element => {
               />
             </div>
           </div>
-          {/* Section 3: Content sections in ScrollArea - same logic as About section */}
-          <div className="relative w-full">
+
+          {/* Mobile Navigation Indicators */}
+          <div className="sm:hidden w-full py-4 flex justify-center space-x-2">
+            {serviceCategories.map((category, index) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedSection(category.id)}
+                className={`w-2 h-2 rounded-full ${selectedSection === category.id ? 'bg-[#ffa500]' : 'bg-gray-300 dark:bg-gray-600'}`}
+                aria-label={`Go to ${category.label} section`}
+              />
+            ))}
+          </div>
+
+          {/* Section 3: Content sections - SWIPEABLE ON MOBILE */}
+          <div className="relative w-full" {...swipeHandlers}>
             <ScrollArea className="h-auto sm:h-[calc(100vh-85px)] w-full">
-              {/* Social Media Content Section */}
-              {selectedSection === "social-media" && (
-                <div ref={socialMediaRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                  <SocialMediaContentSection />
-                </div>
-              )}
-              {/* SEO Content Section */}
-              {selectedSection === "seo" && (
-                <div ref={seoRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                  <SeoContentSection />
-                </div>
-              )}
-              {/* Performance Marketing Content Section */}
-              {selectedSection === "performance-marketing" && (
-                <div ref={performanceMarketingRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                  <PerformanceMarketingContentSection />
-                </div>
-              )}
-              {/* Web Designing Content Section */}
-              {selectedSection === "web-designing" && (
-                <div ref={webDesigningRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                  <WebDesigningContentSection />
-                </div>
-              )}
-              {/* UI/UX Content Section */}
-              {selectedSection === "ui-ux" && (
-                <div ref={uiuxRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                  <UIUXContentSection />
-                </div>
-              )}
+              {/* Mobile Swipeable Content */}
+              <div className="sm:hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedSection}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.3 }}
+                    className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0"
+                  >
+                    {/* Dynamically render the selected component */}
+                    {serviceCategories.find(cat => cat.id === selectedSection)?.component && 
+                      React.createElement(serviceCategories.find(cat => cat.id === selectedSection)?.component as React.ComponentType)}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Desktop Content */}
+              <div className="hidden sm:block">
+                {/* Social Media Content Section */}
+                {selectedSection === "social-media" && (
+                  <div ref={socialMediaRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
+                    <SocialMediaContentSection />
+                  </div>
+                )}
+                {/* SEO Content Section */}
+                {selectedSection === "seo" && (
+                  <div ref={seoRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
+                    <SeoContentSection />
+                  </div>
+                )}
+                {/* Performance Marketing Content Section */}
+                {selectedSection === "performance-marketing" && (
+                  <div ref={performanceMarketingRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
+                    <PerformanceMarketingContentSection />
+                  </div>
+                )}
+                {/* Web Designing Content Section */}
+                {selectedSection === "web-designing" && (
+                  <div ref={webDesigningRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
+                    <WebDesigningContentSection />
+                  </div>
+                )}
+                {/* UI/UX Content Section */}
+                {selectedSection === "ui-ux" && (
+                  <div ref={uiuxRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
+                    <UIUXContentSection />
+                  </div>
+                )}
+              </div>
+
               {/* About Section */}
               <div id="about" className="w-full px-2 sm:px-4 md:px-8 lg:px-16 mx-auto my-4 sm:my-16">
                 <div className="text-center">
                   <h2 className="[font-family:'League_Spartan',Helvetica] text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-[28px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
                     <span className="text-gray-800 dark:text-white">About </span>
-                    <span className="font-bold text-[#ffa500]">StartupSurge</span>
+                    <span className="font-bold text-gray-800 dark:text-white">Startup</span><span className="font-bold text-[#ffa500]">Surge</span>
                     <span className="text-gray-800 dark:text-white">!</span>
                   </h2>
                 </div>

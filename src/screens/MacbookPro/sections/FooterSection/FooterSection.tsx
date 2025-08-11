@@ -63,54 +63,52 @@ export const FooterSection = (): JSX.Element => {
       <div className="hidden sm:block">
         <Separator className="bg-gray-300 dark:bg-[#d9d9d91a] h-1 transition-colors duration-300" />
 
-        <div className="flex justify-between items-center mt-4 px-6">
-          <nav className="flex gap-6">
-            {footerLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="font-normal text-gray-800 dark:text-white text-base tracking-[0] leading-normal whitespace-nowrap font-['League_Spartan',Helvetica] hover:underline transition-colors duration-300"
-              >
-                {link.text}
-              </a>
-            ))}
-          </nav>
-
-          <div className="text-center">
-            <p className="text-gray-800 dark:text-white text-sm font-['League_Spartan',Helvetica] transition-colors duration-300">
-              © 2024 <span className="text-gray-800 dark:text-white">Startup</span><span className="text-[#ffa500]">Surge</span>. All rights reserved.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-800 dark:text-white hover:text-[#ffa500] transition-colors duration-300 text-2xl"
-                title={social.name}
-              >
-                {social.icon}
-              </a>
-            ))}
+        <div className="flex flex-col py-8 px-6">
+          <div className="flex flex-col items-center">
+            <h3 className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-xl mb-4 transition-colors duration-300">Connect with us</h3>
+            <div className="flex items-center justify-center gap-6 mb-8">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-800 dark:text-white hover:text-[#ffa500] transition-colors duration-300 text-2xl"
+                  title={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+            
+            {/* Copyright moved below social media buttons */}
+            <div className="text-center mt-4">
+              <p className="text-gray-800 dark:text-white text-sm font-['League_Spartan',Helvetica] transition-colors duration-300">
+                © 2024 <span className="text-gray-800 dark:text-white">Startup</span><span className="text-[#ffa500]">Surge</span>. All rights reserved.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+      
       {/* Mobile Sticky Footer */}
-      <div className="fixed sm:hidden bottom-0 left-0 w-full bg-white dark:bg-[#1e1e1e] border-t border-gray-200 dark:border-gray-700 flex items-center justify-between px-6 py-2 z-40 shadow-lg">
-        {footerLinks.map((link, idx) => (
-          <a key={idx} href={link.href} className="text-gray-800 dark:text-white hover:text-[#ffa500] text-base font-medium transition-colors duration-200">
-            {link.text}
-          </a>
-        ))}
-        <div className="flex gap-4">
-          {socialLinks.map((link, idx) => (
-            <a key={idx} href={link.url} className="text-gray-800 dark:text-white hover:text-[#ffa500]" aria-label={link.name}>
-              {link.icon}
-            </a>
-          ))}
+      <div className="fixed sm:hidden bottom-0 left-0 w-full bg-white dark:bg-[#1e1e1e] border-t border-gray-200 dark:border-gray-700 flex flex-col px-6 py-3 z-40 shadow-lg">
+        <div className="flex flex-col items-center">
+          <h3 className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-sm mb-1 transition-colors duration-300">Connect with us</h3>
+          <div className="flex justify-center gap-4 mb-2">
+            {socialLinks.map((link, idx) => (
+              <a key={idx} href={link.url} className="text-gray-800 dark:text-white hover:text-[#ffa500]" aria-label={link.name}>
+                {link.icon}
+              </a>
+            ))}
+          </div>
+          
+          {/* Copyright moved below social media buttons */}
+          <div className="text-center mt-1">
+            <p className="text-gray-800 dark:text-white text-xs font-['League_Spartan',Helvetica] transition-colors duration-300">
+              © 2024 <span className="text-gray-800 dark:text-white">Startup</span><span className="text-[#ffa500]">Surge</span>. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

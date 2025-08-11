@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "../../components/ui/card";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
@@ -6,6 +6,8 @@ import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSectio
 
 export const BlogsPage: React.FC = () => {
   const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [email, setEmail] = useState("");
 
   // Sample blog data with social media and digital marketing themes
   const blogPosts = [
@@ -28,16 +30,6 @@ export const BlogsPage: React.FC = () => {
       date: "March 12, 2024",
       readTime: "7 min read",
       author: "Digital Marketing Experts"
-    },
-    {
-      id: 3,
-      title: "TikTok Advertising: A Complete Strategy Guide",
-      excerpt: "Master the art of TikTok advertising with our comprehensive guide to creating viral content and maximizing ROI.",
-      category: "TikTok Marketing",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
-      date: "March 10, 2024",
-      readTime: "8 min read",
-      author: "Content Creators"
     },
     {
       id: 4,
@@ -71,7 +63,35 @@ export const BlogsPage: React.FC = () => {
     }
   ];
 
-  const categories = ["All", "Social Media", "Instagram Marketing", "TikTok Marketing", "SEO & Social Media", "Facebook Marketing", "LinkedIn Marketing"];
+  const categories = ["All", "Social Media", "Instagram Marketing", "SEO & Social Media", "Facebook Marketing", "LinkedIn Marketing"];
+
+  // Filter blog posts based on selected category
+  const filteredPosts = activeCategory === "All" 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === activeCategory);
+
+  // Handle email subscription
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create mailto link with subscription data
+    const subject = encodeURIComponent("Subscribed to StartupSurge Official Site");
+    const body = encodeURIComponent(
+      `Email: ${email}\n\n` +
+      `Message: I would like to subscribe to future updates from StartupSurge.`
+    );
+    
+    // Open email client with pre-filled data
+    window.location.href = `mailto:info@startupsurge.in?subject=${subject}&body=${body}`;
+    
+    // Log subscription
+    console.log("Subscription submitted to info@startupsurge.in:", email);
+    
+    // Reset form after submission
+    setEmail("");
+    
+    alert("Thank you for subscribing! Your email client will open with your subscription message to info@startupsurge.in");
+  };
 
   return (
     <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col transition-colors duration-300">
@@ -97,7 +117,8 @@ export const BlogsPage: React.FC = () => {
             {categories.map((category) => (
               <button
                 key={category}
-                className="px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-[#ffa500] text-gray-800 dark:text-white hover:bg-[#ffa500] hover:text-black transition-all duration-300 font-['League_Spartan',Helvetica] text-xs sm:text-sm md:text-base"
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-[#ffa500] ${activeCategory === category ? 'bg-[#ffa500] text-black' : 'text-gray-800 dark:text-white'} hover:bg-[#ffa500] hover:text-black transition-all duration-300 font-['League_Spartan',Helvetica] text-xs sm:text-sm md:text-base`}
+                onClick={() => setActiveCategory(category)}
               >
                 {category}
               </button>
@@ -109,7 +130,7 @@ export const BlogsPage: React.FC = () => {
       <section className="w-full py-8 sm:py-16 px-2 sm:px-4 md:px-8 lg:px-16">
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {blogPosts.map((post) => (
+            {filteredPosts.map((post) => (
               <Card key={post.id} className="border-0 bg-orange-50 dark:bg-[#2a2a2a] hover:bg-orange-100 dark:hover:bg-[#333] transition-all duration-300 cursor-pointer group">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
@@ -160,20 +181,26 @@ export const BlogsPage: React.FC = () => {
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto transition-colors duration-300">
             Get the latest digital marketing insights, social media tips, and industry trends delivered directly to your inbox.
           </p>
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center max-w-xs sm:max-w-md mx-auto">
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center max-w-xs sm:max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-white dark:bg-[#1e1e1e] border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-[#ffa500] font-['League_Spartan',Helvetica] transition-colors duration-300"
             />
-            <button className="px-4 sm:px-8 py-2 sm:py-3 bg-[#ffa500] text-black rounded-lg hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] font-medium">
+            <button 
+              type="submit"
+              className="px-4 sm:px-8 py-2 sm:py-3 bg-[#ffa500] text-black rounded-lg hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] font-medium"
+            >
               Subscribe
             </button>
-          </div>
+          </form>
         </div>
       </section>
       {/* Footer */}
       <FooterSection />
     </div>
   );
-}; 
+};

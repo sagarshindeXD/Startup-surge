@@ -59,4 +59,4 @@ export const SeoContentSection = (): JSX.Element => {
       </div>
     </section>
   );
-}; 
+};

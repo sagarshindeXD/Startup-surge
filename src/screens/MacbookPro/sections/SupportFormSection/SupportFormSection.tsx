@@ -1,29 +1,143 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { Input } from "../../../../components/ui/input";
+import { Textarea } from "../../../../components/ui/textarea";
+import { Button } from "../../../../components/ui/button";
 
 export const SupportFormSection = (): JSX.Element => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Website Inquiry: ${formData.subject}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message: ${formData.message}`
+    );
+    
+    // Open email client with pre-filled data
+    window.location.href = `mailto:info@startupsurge.in?subject=${subject}&body=${body}`;
+    
+    // Log form submission
+    console.log("Form submitted to info@startupsurge.in:", formData);
+    
+    // Reset form after submission
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
+    
+    alert("Thank you for your message! Your email client will open with your message to info@startupsurge.in");
+  };
+
   return (
-    <section className="w-full px-4 md:px-8 lg:px-16 my-8 md:my-12">
+    <section className="w-full px-4 md:px-8 lg:px-16 my-12 md:my-20 pb-16 sm:pb-12">  {/* Added pb-16 sm:pb-12 for extra bottom padding on mobile */}
       <div className="max-w-[1451px] mx-auto">
-        <Card className="relative h-20 md:h-24 rounded-[18px] bg-transparent">
+        <Card className="relative rounded-[18px] bg-transparent overflow-hidden shadow-lg">
           <div className="absolute w-full h-full top-0 left-0 bg-gray-300 dark:bg-[#d9d9d9] rounded-[18px] opacity-10 transition-colors duration-300" />
-          <CardContent className="relative p-0 h-full">
-            <div className="flex items-center justify-center h-full w-full">
-              <div className="flex items-center justify-center flex-1 h-full px-4">
-                <span className="font-['League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-lg md:text-2xl transition-colors duration-300">
+          <CardContent className="relative p-6 md:p-8">
+            <div className="flex flex-col items-center mb-8">
+              <div className="flex items-center justify-center mb-6">
+                <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl transition-colors duration-300">
                   Need our
                 </span>
-                <span className="font-['League_Spartan',Helvetica] font-normal text-[#ffa500] text-lg md:text-2xl ml-2">
+                <span className="font-['League_Spartan',Helvetica] font-semibold text-[#ffa500] text-2xl md:text-4xl ml-2">
                   support
                 </span>
-                <span className="font-['League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-lg md:text-2xl ml-1 transition-colors duration-300">
+                <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl ml-1 transition-colors duration-300">
                   ?
                 </span>
               </div>
+              <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl mb-8 transition-colors duration-300">
+                Have questions or need assistance? Fill out the form below and our team will get back to you as soon as possible.
+              </p>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
+              
+              <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-300">Name</label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      required
+                      className="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 transition-colors duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-300">Email</label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Your email address"
+                      required
+                      className="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 transition-colors duration-300"
+                    />
+                  </div>
+                </div>
+                
+                <div className="mb-4">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-300">Subject</label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="What is this regarding?"
+                    required
+                    className="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 transition-colors duration-300"
+                  />
+                </div>
+                
+                <div className="mb-6">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-300">Message</label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="How can we help you?"
+                    required
+                    className="w-full min-h-[150px] bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 transition-colors duration-300"
+                  />
+                </div>
+                
+                <div className="flex justify-center">
+                  <Button 
+                    type="submit" 
+                    className="bg-[#ffa500] hover:bg-[#e69500] text-white font-semibold py-2 px-8 rounded-md transition-colors duration-300"
+                  >
+                    Send Message
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    );
 };
