@@ -26,7 +26,7 @@ export const AboutPage: React.FC = () => {
       id: "go-beyond-imagination",
       title: "Go Beyond ",
       titleHighlight: "Imagination",
-      content: "We don't just meet expectations—we shatter them. Our creative team pushes the boundaries of what's possible, exploring uncharted territories in digital innovation to deliver experiences that are not just memorable, but truly extraordinary and beyond what anyone could have imagined."
+      content: "We don't just meet expectations—we shatter them. Our creative team pushes forward the boundaries of what's possible, exploring uncharted territories in digital innovation to deliver experiences that are not just memorable, but truly extraordinary and beyond what anyone could have imagined."
     }
   ];
   
