@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "../../components/ui/card";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
 
 export const BlogsPage: React.FC = () => {
-  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("All");
   const [email, setEmail] = useState("");
 
@@ -100,9 +98,8 @@ export const BlogsPage: React.FC = () => {
       {/* Hero Section */}
       <section className="w-full py-8 sm:py-16 md:py-20 lg:py-28 relative px-2 sm:px-4 md:px-8 lg:px-16">
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto text-center">
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-8">
-            <span className="font-semibold text-[#ffa500]">Digital Marketing</span>
-            <br />
+          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-8 whitespace-nowrap">
+            <span className="font-semibold text-[#ffa500]">Digital Marketing </span>
             <span className="text-gray-800 dark:text-white">Insights & Trends</span>
           </h1>
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white max-w-xl sm:max-w-3xl mx-auto leading-relaxed opacity-90 transition-colors duration-300">
@@ -192,7 +189,7 @@ export const BlogsPage: React.FC = () => {
             />
             <button 
               type="submit"
-              className="px-4 sm:px-8 py-2 sm:py-3 bg-[#ffa500] text-black rounded-lg hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] font-medium"
+              className="px-4 sm:px-8 py-2 sm:py-3 bg-[#ffa500] text-white rounded-full hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] font-medium"
             >
               Subscribe
             </button>

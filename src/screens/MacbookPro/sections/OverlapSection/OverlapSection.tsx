@@ -35,7 +35,7 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
               <React.Fragment key={category.id}>
                 <TabsTrigger
                   value={category.id}
-                  className={`h-[22px] font-['League_Spartan',Helvetica] font-normal text-base sm:text-lg tracking-[0] leading-normal whitespace-nowrap px-2 sm:px-0 data-[state=active]:text-[#ffa500] data-[state=inactive]:text-gray-800 dark:text-white data-[state=active]:shadow-none ${index === 0 ? 'pl-2 sm:pl-4' : ''} ${index === serviceCategories.length - 1 ? 'pr-2 sm:pr-4' : ''} !bg-transparent transition-colors duration-300`}
+                  className={`h-[22px] font-['League_Spartan',Helvetica] font-normal text-base sm:text-lg tracking-[0] leading-normal whitespace-nowrap px-2 sm:px-0 data-[state=active]:text-[#ffa500] data-[state=inactive]:text-gray-800 data-[state=inactive]:dark:text-white data-[state=active]:shadow-none ${index === 0 ? 'pl-2 sm:pl-4' : ''} ${index === serviceCategories.length - 1 ? 'pr-2 sm:pr-4' : ''} !bg-transparent transition-colors duration-300`}
                   onClick={() => onCapsuleClick && onCapsuleClick(category.id)}
                 >
                   {category.label}

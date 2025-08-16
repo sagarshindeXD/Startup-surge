@@ -75,7 +75,7 @@ export const CallToActionSection = (): JSX.Element => {
       <div className="text-center mt-6 sm:mt-12">
         <button
           onClick={() => navigate('/blogs')}
-          className="px-6 sm:px-8 py-3 sm:py-4 bg-[#ffa500] text-black rounded-lg hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] text-base sm:text-lg font-medium"
+          className="px-6 sm:px-8 py-3 sm:py-4 bg-[#ffa500] text-white rounded-full hover:bg-[#ffa500]/90 transition-colors duration-300 font-['League_Spartan',Helvetica] text-base sm:text-lg font-medium"
         >
           View All Articles
         </button>

@@ -50,30 +50,35 @@ export const AboutPage: React.FC = () => {
       name: "Dr.Siddhesh Surve",
       role: "Founder",
       image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Alex+Chen",
-      description: "Passionate Strategist & problem solver, fueled by curiosity."
+      description: "Passionate Strategist & problem solver, fueled by curiosity.",
+      linkedin: "https://www.linkedin.com/in/siddhesh-anil-surve/"
     },
     {
       name: "Mr.Rohit Bagdi",
       role: "Co-Founder",
       image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Sarah+Johnson",
-      description: "Crafting stories through creativity."
+      description: "Crafting stories through creativity.",
+      linkedin: "https://www.linkedin.com/in/rohit-bagdi-93a30b7b/"
     },
     {
       name: "Ms.Safana Shaikh",
       role: "Marketing head",
       image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Mike+Rodriguez",
-      description: "Digital storyteller with a knack for bold ideas and real results."
+      description: "Digital storyteller with a knack for bold ideas and real results.",
+      linkedin: "https://www.linkedin.com/in/safana-shaikh-630861246/"
     },
     {
       name: "Ms.Simran Kochhar",
       role: "Marketing Specialist",
       image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=David+Kim",
-      description: "Strategic thinker who drives brand growth and customer engagement through targeted marketing campaigns."
+      description: "Strategic thinker who drives brand growth and customer engagement through targeted marketing campaigns.",
+      linkedin: "https://www.linkedin.com/in/simran-kochhar-40b0651b0/"
     },{
       name: "Mr.Sagar Shinde",
       role: "Web Developer",
       image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Emily+Watson",
-      description: "Creative problem-solver who builds dynamic, user-friendly websites and web applications with modern technologies."
+      description: "Creative problem-solver who builds dynamic, user-friendly websites and web applications with modern technologies.",
+      linkedin: "https://www.linkedin.com/in/sagar-shinde-69a2a2291/"
     }
   ];
 
@@ -204,11 +209,8 @@ export const AboutPage: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-['League_Spartan',Helvetica] text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-[28px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-6">
-              <span className="font-semibold text-[#ffa500]">
-                Meet the
-                <br className="hidden sm:block" />
-              </span>
-              <span className="text-gray-800 dark:text-white">Team</span>
+              <span className="text-gray-800 dark:text-white">Meet the </span>
+              <span className="font-semibold text-[#ffa500]">Team</span>
             </h2>
             <motion.div 
               className="w-16 sm:w-24 h-1 bg-[#ffa500] mx-auto mb-4 sm:mb-8"
@@ -221,11 +223,12 @@ export const AboutPage: React.FC = () => {
               Our exceptional team of digital experts who bring creativity, innovation, and expertise to every project we undertake.
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {teamMembers.map((member, index) => (
+          {/* Row 1: Exactly 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 items-stretch">
+            {teamMembers.slice(0, 3).map((member, index) => (
               <motion.div 
-                key={index} 
-                className="bg-orange-50 dark:bg-[#1e1e1e] rounded-xl p-4 sm:p-8 shadow-2xl text-center group transition-colors duration-300"
+                key={`row1-${index}`}
+                className="bg-orange-50 dark:bg-[#1e1e1e] rounded-xl p-4 sm:p-8 shadow-2xl text-center group transition-colors duration-300 h-full min-h-[360px] flex flex-col"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -248,15 +251,84 @@ export const AboutPage: React.FC = () => {
                 <p className="font-['League_Spartan',Helvetica] font-medium text-[#ffa500] text-base sm:text-lg mb-2 sm:mb-4">
                   {member.role}
                 </p>
-                <p className="font-['League_Spartan',Helvetica] font-normal text-gray-700 dark:text-white text-xs sm:text-sm md:text-base leading-relaxed opacity-80 transition-colors duration-300">
+                <p className="font-['League_Spartan',Helvetica] font-normal text-gray-700 dark:text-white text-xs sm:text-sm md:text-base leading-relaxed opacity-80 transition-colors duration-300 flex-1">
                   {member.description}
                 </p>
                 <motion.div 
                   className="w-8 sm:w-12 h-0.5 bg-[#ffa500] mx-auto mt-4 sm:mt-6 group-hover:w-16 transition-all duration-300"
                   whileHover={{ width: "4rem" }}
                 ></motion.div>
+                <div className="mt-4 sm:mt-5 flex justify-center">
+                  <a
+                    href={member.linkedin}
+                    aria-label="LinkedIn"
+                    title="LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-800 dark:text-white hover:text-[#ffa500] transition-colors duration-300 text-2xl"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                    </svg>
+                  </a>
+                </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Row 2: Dedicated 2-column centered grid */}
+          <div className="mt-4 sm:mt-8 flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-8 items-stretch w-full max-w-4xl">
+              {teamMembers.slice(3).map((member, i) => (
+                <motion.div 
+                  key={`row2-${i}`}
+                  className="bg-orange-50 dark:bg-[#1e1e1e] rounded-xl p-4 sm:p-8 shadow-2xl text-center group transition-colors duration-300 h-full min-h-[360px] flex flex-col"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 * (i + 3) }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                >
+                  <motion.div 
+                    className="mb-4 sm:mb-6"
+                    whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                  >
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto object-cover border-4 border-[#ffa500] shadow-lg"
+                    />
+                  </motion.div>
+                  <h3 className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2 transition-colors duration-300">
+                    {member.name}
+                  </h3>
+                  <p className="font-['League_Spartan',Helvetica] font-medium text-[#ffa500] text-base sm:text-lg mb-2 sm:mb-4">
+                    {member.role}
+                  </p>
+                  <p className="font-['League_Spartan',Helvetica] font-normal text-gray-700 dark:text-white text-xs sm:text-sm md:text-base leading-relaxed opacity-80 transition-colors duration-300 flex-1">
+                    {member.description}
+                  </p>
+                  <motion.div 
+                    className="w-8 sm:w-12 h-0.5 bg-[#ffa500] mx-auto mt-4 sm:mt-6 group-hover:w-16 transition-all duration-300"
+                    whileHover={{ width: "4rem" }}
+                  ></motion.div>
+                  <div className="mt-4 sm:mt-5 flex justify-center">
+                    <a
+                      href={member.linkedin}
+                      aria-label="LinkedIn"
+                      title="LinkedIn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-800 dark:text-white hover:text-[#ffa500] transition-colors duration-300 text-2xl"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                      </svg>
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>

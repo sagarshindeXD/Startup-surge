@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ScrollArea } from "../../components/ui/scroll-area";
+
 import { AnimatedWaves } from "../../components/AnimatedWaves";
 import { CallToActionSection } from "./sections/CallToActionSection";
 import { FooterSection } from "./sections/FooterSection";
@@ -16,16 +16,19 @@ import { SeoContentSection } from "./sections/SeoContentSection";
 import { PerformanceMarketingContentSection } from "./sections/PerformanceMarketingContentSection";
 import { WebDesigningContentSection } from "./sections/WebDesigningContentSection";
 import { UIUXContentSection } from "./sections/UIUXContentSection";
+import { ClientsSection } from "./sections/ClientsSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 
 export const MacbookPro = (): JSX.Element => {
   const [selectedSection, setSelectedSection] = useState("seo");
+  const [direction, setDirection] = useState<number>(1); // 1: next (right-to-left), -1: prev (left-to-right)
   const socialMediaRef = useRef<HTMLDivElement>(null);
   const seoRef = useRef<HTMLDivElement>(null);
   const performanceMarketingRef = useRef<HTMLDivElement>(null);
   const webDesigningRef = useRef<HTMLDivElement>(null);
   const uiuxRef = useRef<HTMLDivElement>(null);
+  const prevIndexRef = useRef<number>(0);
 
   // Define service categories for reuse
   const serviceCategories = [
@@ -38,6 +41,17 @@ export const MacbookPro = (): JSX.Element => {
 
   // Find the current section index
   const currentSectionIndex = serviceCategories.findIndex(category => category.id === selectedSection);
+
+  // Update slide direction based on index change
+  useEffect(() => {
+    const prev = prevIndexRef.current;
+    if (currentSectionIndex > prev) {
+      setDirection(1);
+    } else if (currentSectionIndex < prev) {
+      setDirection(-1);
+    }
+    prevIndexRef.current = currentSectionIndex;
+  }, [currentSectionIndex]);
 
   const handleCapsuleClick = (section: string) => {
     setSelectedSection(section);
@@ -88,12 +102,12 @@ export const MacbookPro = (): JSX.Element => {
             {/* Capsule container */}
             <div className="relative w-full">
               <img
-                className="w-full h-32 sm:h-auto mt-4 sm:mt-24 object-cover rounded-b-2xl sm:rounded-none shadow-md sm:shadow-none"
+                className="w-full h-32 sm:h-auto mt-8 sm:mt-32 object-cover rounded-b-2xl sm:rounded-none shadow-md sm:shadow-none"
                 alt="Group"
                 src="https://c.animaapp.com/mdhrxz59aeFeBE/img/group.png"
               />
               {/* Overlayed Welcome to the StartupSurge era */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-12 sm:-mt-48 px-2">
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-4 sm:-mt-32 px-2">
                 <div className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-2xl sm:text-5xl md:text-[100px] text-center tracking-[0] leading-[36px] sm:leading-[60px] md:leading-[100px] drop-shadow-xl transition-colors duration-300">
                   <span>Welcome to the</span>
                   <br />
@@ -104,8 +118,8 @@ export const MacbookPro = (): JSX.Element => {
               </div>
             </div>
           </div>
-          {/* Section 2: Capsule styled as nav bar with spacing - HIDDEN ON MOBILE */}
-          <div className="relative w-full bg-white dark:bg-[#1e1e1e] py-4 sm:py-6 shadow-lg transition-colors duration-300 hidden sm:block">
+          {/* Section 2: Capsule Navigation - Positioned below hero, above services */}
+          <div className="sticky top-0 z-50 w-full bg-white dark:bg-[#1e1e1e] pt-4 pb-2 sm:pt-6 sm:pb-3 shadow-lg transition-colors duration-300 hidden sm:block mt-8 sm:mt-16">
             <div className="flex justify-center px-2 sm:px-0">
               <OverlapSection
                 onCapsuleClick={handleCapsuleClick}
@@ -129,7 +143,6 @@ export const MacbookPro = (): JSX.Element => {
 
           {/* Section 3: Content sections - SWIPEABLE ON MOBILE */}
           <div className="relative w-full" {...swipeHandlers}>
-            <ScrollArea className="h-auto sm:h-[calc(100vh-85px)] w-full">
               {/* Mobile Swipeable Content */}
               <div className="sm:hidden">
                 <AnimatePresence mode="wait">
@@ -150,36 +163,78 @@ export const MacbookPro = (): JSX.Element => {
 
               {/* Desktop Content */}
               <div className="hidden sm:block">
-                {/* Social Media Content Section */}
-                {selectedSection === "social-media" && (
-                  <div ref={socialMediaRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                    <SocialMediaContentSection />
-                  </div>
-                )}
-                {/* SEO Content Section */}
-                {selectedSection === "seo" && (
-                  <div ref={seoRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                    <SeoContentSection />
-                  </div>
-                )}
-                {/* Performance Marketing Content Section */}
-                {selectedSection === "performance-marketing" && (
-                  <div ref={performanceMarketingRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                    <PerformanceMarketingContentSection />
-                  </div>
-                )}
-                {/* Web Designing Content Section */}
-                {selectedSection === "web-designing" && (
-                  <div ref={webDesigningRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                    <WebDesigningContentSection />
-                  </div>
-                )}
-                {/* UI/UX Content Section */}
-                {selectedSection === "ui-ux" && (
-                  <div ref={uiuxRef} className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0">
-                    <UIUXContentSection />
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {/* Social Media Content Section */}
+                  {selectedSection === "social-media" && (
+                    <motion.div
+                      key="social-media-desktop"
+                      initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
+                      transition={{ duration: 0.3 }}
+                      ref={socialMediaRef}
+                      className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0"
+                    >
+                      <SocialMediaContentSection />
+                    </motion.div>
+                  )}
+                  {/* SEO Content Section */}
+                  {selectedSection === "seo" && (
+                    <motion.div
+                      key="seo-desktop"
+                      initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
+                      transition={{ duration: 0.3 }}
+                      ref={seoRef}
+                      className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0"
+                    >
+                      <SeoContentSection />
+                    </motion.div>
+                  )}
+                  {/* Performance Marketing Content Section */}
+                  {selectedSection === "performance-marketing" && (
+                    <motion.div
+                      key="performance-marketing-desktop"
+                      initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
+                      transition={{ duration: 0.3 }}
+                      ref={performanceMarketingRef}
+                      className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0"
+                    >
+                      <PerformanceMarketingContentSection />
+                    </motion.div>
+                  )}
+                  {/* Web Designing Content Section */}
+                  {selectedSection === "web-designing" && (
+                    <motion.div
+                      key="web-designing-desktop"
+                      initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
+                      transition={{ duration: 0.3 }}
+                      ref={webDesigningRef}
+                      className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0"
+                    >
+                      <WebDesigningContentSection />
+                    </motion.div>
+                  )}
+                  {/* UI/UX Content Section */}
+                  {selectedSection === "ui-ux" && (
+                    <motion.div
+                      key="ui-ux-desktop"
+                      initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
+                      transition={{ duration: 0.3 }}
+                      ref={uiuxRef}
+                      className="sm:rounded-xl sm:shadow-lg bg-white/90 dark:bg-[#232323]/90 p-2 sm:p-0 my-2 sm:my-0"
+                    >
+                      <UIUXContentSection />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* About Section */}
@@ -203,32 +258,37 @@ export const MacbookPro = (): JSX.Element => {
                 </div>
                 <div className="mt-4 sm:mt-12 max-w-4xl mx-auto">
                   <div className="space-y-2 sm:space-y-8">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-8">
-                      <h3 className="text-[#ffa500] text-base sm:text-xl font-bold whitespace-nowrap w-auto sm:w-48">• Creative Excellence</h3>
+                    <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-8">
+                      <h3 className="font-bold whitespace-nowrap w-auto sm:w-48 text-base sm:text-xl"><span className="text-white dark:text-white">•</span> <span className="text-[#ffa500]">Creative Excellence</span></h3>
                       <div className="text-gray-800 dark:text-white flex-1 transition-colors duration-300">
                         <p className="leading-relaxed">Innovative design solutions that captivate and inspire. We craft visual identities that tell your story and create user experiences that keep your audience engaged and coming back for more.</p>
                       </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-8">
-                      <h3 className="text-[#ffa500] text-base sm:text-xl font-bold whitespace-nowrap w-auto sm:w-48">• Strategic Growth</h3>
+                    <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-8">
+                      <h3 className="font-bold whitespace-nowrap w-auto sm:w-48 text-base sm:text-xl"><span className="text-white dark:text-white">•</span> <span className="text-[#ffa500]">Strategic Growth</span></h3>
                       <div className="text-gray-800 dark:text-white flex-1 transition-colors duration-300">
                         <p className="leading-relaxed">Data-driven marketing strategies that deliver measurable results. We optimize performance, focus on ROI, and provide deep market insights to drive your business growth.</p>
                       </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-8">
-                      <h3 className="text-[#ffa500] text-base sm:text-xl font-bold whitespace-nowrap w-auto sm:w-48">• Digital Innovation</h3>
+                    <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-8">
+                      <h3 className="font-bold whitespace-nowrap w-auto sm:w-48 text-base sm:text-xl"><span className="text-white dark:text-white">•</span> <span className="text-[#ffa500]">Digital Innovation</span></h3>
                       <div className="text-gray-800 dark:text-white flex-1 transition-colors duration-300">
                         <p className="leading-relaxed">Cutting-edge digital solutions including social media mastery, SEO optimization, web development, and seamless technology integration to keep you ahead of the curve.</p>
                       </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-8">
-                      <h3 className="text-[#ffa500] text-base sm:text-xl font-bold whitespace-nowrap w-auto sm:w-48">• Client Success</h3>
+                    <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-8">
+                      <h3 className="font-bold whitespace-nowrap w-auto sm:w-48 text-base sm:text-xl"><span className="text-white dark:text-white">•</span> <span className="text-[#ffa500]">Client Success</span></h3>
                       <div className="text-gray-800 dark:text-white flex-1 transition-colors duration-300">
                         <p className="leading-relaxed">Dedicated support team with transparent communication, delivering measurable results and building long-term partnerships that ensure your success.</p>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              {/* Services Section */}
+              {/* Clients Section - inserted between About and Services */}
+              <div id="clients" className="w-full px-2 sm:px-4 md:px-8 lg:px-16 mx-auto mt-4 sm:mt-16">
+                <ClientsSection />
               </div>
               {/* Services Section */}
               <div id="services" className="w-full px-2 sm:px-4 md:px-8 lg:px-16 mx-auto mt-4 sm:mt-16">
@@ -241,7 +301,6 @@ export const MacbookPro = (): JSX.Element => {
 
               {/* Footer Section */}
               <FooterSection />
-            </ScrollArea>
           </div>
         </div>
       </div>
