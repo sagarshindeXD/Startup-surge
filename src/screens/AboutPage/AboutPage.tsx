@@ -153,7 +153,7 @@ export const AboutPage: React.FC = () => {
       </section>
       
       {/* Mobile Swipeable Section */}
-      <section className="block sm:hidden w-full py-8 relative px-4" {...swipeHandlers}>
+      <section className="block sm:hidden w-full py-8 pt-16 relative px-4 pb-12 [padding-bottom:env(safe-area-inset-bottom)]" {...swipeHandlers}>
         <div className="max-w-xl mx-auto text-center">
           <AnimatePresence mode="wait">
             <motion.div
@@ -186,9 +186,11 @@ export const AboutPage: React.FC = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSection(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentSection ? 'bg-[#ffa500] w-4' : 'bg-gray-400 dark:bg-gray-600'}`}
+                className="rounded-full transition-all duration-300 p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e]"
                 aria-label={`Go to section ${index + 1}`}
-              />
+              >
+                <span className={`block rounded-full ${index === currentSection ? 'bg-[#ffa500]' : 'bg-gray-400 dark:bg-gray-600'} w-2 h-2`} />
+              </button>
             ))}
           </div>
           
@@ -200,7 +202,7 @@ export const AboutPage: React.FC = () => {
       </section>
       {/* Meet the Team Section */}
       <motion.section 
-        className="w-full py-8 sm:py-16 md:py-20 lg:py-28 px-2 sm:px-4 md:px-8 lg:px-16 bg-gray-100 dark:bg-[#2a2a2a] transition-colors duration-300"
+        className="w-full py-8 sm:py-16 md:py-20 lg:py-28 px-3 sm:px-4 md:px-8 lg:px-16 bg-gray-100 dark:bg-[#2a2a2a] transition-colors duration-300"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

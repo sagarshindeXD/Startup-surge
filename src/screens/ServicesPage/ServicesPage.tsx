@@ -9,6 +9,14 @@ export const ServicesPage = (): JSX.Element => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
+  // Keyboard activation support for cards (accessibility)
+  const handleKeyActivate = (e: React.KeyboardEvent<HTMLDivElement>, path: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navigate(path);
+    }
+  };
+
   useEffect(() => {
     // Trigger animations after component mounts
     const timer = setTimeout(() => setIsLoaded(true), 100);
@@ -102,7 +110,7 @@ export const ServicesPage = (): JSX.Element => {
         <SectionComponentNodeSection />
       </div>
       {/* Add padding to main content to prevent overlap on mobile */}
-      <main className="flex-1 px-2 sm:px-4 md:px-8 lg:px-16 py-8 sm:py-16 relative pt-16 sm:pt-0">
+      <main className="flex-1 px-3 sm:px-4 md:px-8 lg:px-16 py-8 sm:py-16 relative pt-16 sm:pt-0 pb-12 sm:pb-0 [padding-bottom:env(safe-area-inset-bottom)]">
         {/* Background Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#ffa500] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
@@ -111,24 +119,29 @@ export const ServicesPage = (): JSX.Element => {
         </div>
         {/* Services Grid */}
         <div className="max-w-2xl sm:max-w-[1400px] mx-auto relative z-10">
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
             {services.map((service, idx) => {
               // Alternate colors for mobile
               const isEven = idx % 2 === 0;
               const mobileBg = isEven ? 'bg-white' : 'bg-[#ffa500]';
               const mobileText = isEven ? 'text-[#ffa500]' : 'text-white';
+              // Explicit desktop classes so Tailwind can see and compile them
+              const desktopBgText =
+                service.bgColor === 'bg-white'
+                  ? 'sm:bg-white sm:text-[#ffa500]'
+                  : 'sm:bg-[#ffa500] sm:text-white';
               return (
                 <div
                   key={service.id}
-                  className={`${mobileBg} ${mobileText} sm:${service.bgColor} sm:${service.textColor} rounded-xl p-3 sm:p-8 h-32 sm:h-[280px] md:h-[320px] flex items-center justify-center shadow-lg transition-all duration-700 ease-out transform ${
+                  className={`${mobileBg} ${mobileText} ${desktopBgText} rounded-2xl p-4 sm:p-8 h-36 sm:h-[280px] md:h-[320px] flex items-center justify-center shadow-lg transition-all duration-700 ease-out transform ${
                     isLoaded 
                       ? 'opacity-100 translate-y-0 scale-100' 
                       : 'opacity-0 translate-y-8 scale-95'
                   } ${
                     hoveredCard === service.id 
                       ? 'shadow-2xl scale-105 rotate-1' 
-                      : 'hover:shadow-xl hover:scale-102 hover:-rotate-1'
-                  } cursor-pointer relative overflow-hidden group`}
+                      : 'hover:shadow-xl sm:hover:scale-102 sm:hover:-rotate-1 active:scale-95'
+                  } cursor-pointer relative overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e]`} 
                   style={{ 
                     transitionDelay: `${service.delay}ms`,
                     transitionProperty: 'all',
@@ -137,6 +150,10 @@ export const ServicesPage = (): JSX.Element => {
                   onMouseEnter={() => setHoveredCard(service.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => navigate(service.path)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={service.title}
+                  onKeyDown={(e) => handleKeyActivate(e, service.path)}
                 >
                   {/* Hover Background Effect */}
                   <div className={`absolute inset-0 transition-all duration-500 ease-out ${
@@ -145,7 +162,7 @@ export const ServicesPage = (): JSX.Element => {
                       : 'opacity-0'
                   } ${
                     isEven ? 'bg-[#ffa500]' : 'bg-white'
-                  } sm:${service.bgColor === 'bg-white' ? 'bg-[#ffa500]' : 'bg-white'}`}></div>
+                  } ${service.bgColor === 'bg-white' ? 'sm:bg-[#ffa500]' : 'sm:bg-white'}`}></div>
                   {/* Card Content */}
                   <div className="relative z-10 text-center">
                     <h3 className={`[font-family:'League_Spartan',Helvetica] font-semibold text-xs sm:text-xl md:text-2xl lg:text-3xl leading-tight transition-all duration-500 ${
@@ -162,7 +179,7 @@ export const ServicesPage = (): JSX.Element => {
                         : 'w-0 opacity-0'
                     } ${
                       isEven ? 'bg-[#ffa500]' : 'bg-white'
-                    } sm:${service.bgColor === 'bg-white' ? 'bg-[#ffa500]' : 'bg-white'}`}></div>
+                    } ${service.bgColor === 'bg-white' ? 'sm:bg-[#ffa500]' : 'sm:bg-white'}`}></div>
                   </div>
                 </div>
               );

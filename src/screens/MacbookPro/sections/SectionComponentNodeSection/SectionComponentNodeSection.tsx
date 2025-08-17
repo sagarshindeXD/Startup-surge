@@ -16,6 +16,18 @@ export const SectionComponentNodeSection = (): JSX.Element => {
   const { theme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
+  // Prevent body scroll when mobile menu is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const navItems = [
     { text: "Home", href: "/", isActive: location.pathname === "/" },
     { text: "Services", href: "/services", isActive: location.pathname === "/services" },
@@ -27,7 +39,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
     navigate('/');
   };
 
-  const handleNavItemClick = (href: string, text: string) => {
+  const handleNavItemClick = (text: string) => {
     // Handle navigation based on the item clicked
     switch (text.toLowerCase()) {
       case 'home':
@@ -68,7 +80,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
                         ? "text-[#ffa500]" 
                         : "text-gray-800 dark:text-white hover:text-[#ffa500]"
                     }`}
-                    onClick={() => handleNavItemClick(item.href, item.text)}
+                    onClick={() => handleNavItemClick(item.text)}
                     style={{ textDecoration: 'none' }}
                   >
                     {item.text}
@@ -86,44 +98,44 @@ export const SectionComponentNodeSection = (): JSX.Element => {
       {/* Mobile Nav */}
       <div className="flex sm:hidden items-center w-full justify-between">
         <img
-          className="w-[48px] h-[24px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
+          className="w-[64px] h-[32px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
           alt="StartupSurge logo"
           src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
           onClick={handleLogoClick}
         />
         <button
-          className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffa500] fixed top-4 right-4 z-[10001] bg-white dark:bg-[#1e1e1e] shadow-md transition-all duration-300"
+          className="p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffa500] fixed top-4 right-4 z-[10001] bg-white dark:bg-[#1e1e1e] shadow-md transition-all duration-300"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         >
           <span className="block">
             {mobileMenuOpen ? (
-              <span className="text-3xl text-gray-800 dark:text-white transition-all duration-300">×</span>
+              <span className="text-3xl leading-none text-gray-800 dark:text-white transition-all duration-300">×</span>
             ) : (
-              <Menu className="w-8 h-8 text-gray-800 dark:text-white transition-all duration-300" />
+              <Menu className="w-7 h-7 text-gray-800 dark:text-white transition-all duration-300" />
             )}
           </span>
         </button>
       </div>
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[10000] bg-black/60 flex justify-end">
-          <div className="w-3/4 max-w-xs bg-white dark:bg-[#1e1e1e] h-full shadow-lg flex flex-col p-6 fixed top-0 right-0">
-            <nav className="flex flex-col gap-6 mt-4">
+        <div className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm flex justify-end">
+          <div className="w-4/5 max-w-xs bg-white dark:bg-[#1e1e1e] h-full shadow-lg flex flex-col p-6 pt-16 fixed top-0 right-0">
+            <nav className="flex flex-col gap-2 mt-2">
               {navItems.map((item, index) => (
                 <button
                   key={index}
-                  className={`text-lg font-medium text-left [font-family:'League_Spartan',Helvetica] px-2 py-2 rounded transition-colors duration-200 ${item.isActive ? 'text-[#ffa500]' : 'text-gray-800 dark:text-white hover:text-[#ffa500]'}`}
+                  className={`text-base font-medium text-left [font-family:'League_Spartan',Helvetica] px-3 py-3 rounded-md transition-colors duration-200 active:opacity-80 ${item.isActive ? 'text-[#ffa500]' : 'text-gray-800 dark:text-white hover:text-[#ffa500]'}`}
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    handleNavItemClick(item.href, item.text);
+                    handleNavItemClick(item.text);
                   }}
                 >
                   {item.text}
                 </button>
               ))}
             </nav>
-            <div className="mt-auto pt-8">
+            <div className="mt-auto pt-6">
               <ThemeToggle />
             </div>
           </div>

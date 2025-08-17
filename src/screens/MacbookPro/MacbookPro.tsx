@@ -4,14 +4,9 @@ import { Helmet } from "react-helmet-async";
 import { AnimatedWaves } from "../../components/AnimatedWaves";
 import { CallToActionSection } from "./sections/CallToActionSection";
 import { FooterSection } from "./sections/FooterSection";
-import { HeroSection } from "./sections/HeroSection";
-import { MarketingSection } from "./sections/MarketingSection";
 import { OverlapSection } from "./sections/OverlapSection";
-import { PointSection } from "./sections/PointSection";
-import { PointWrapperSection } from "./sections/PointWrapperSection";
 import { SectionComponentNodeSection } from "./sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { SocialMediaContentSection } from "./sections/SocialMediaContentSection";
-import { SocialMediaSection } from "./sections/SocialMediaSection";
 import { SupportFormSection } from "./sections/SupportFormSection";
 import { SeoContentSection } from "./sections/SeoContentSection";
 import { PerformanceMarketingContentSection } from "./sections/PerformanceMarketingContentSection";
@@ -91,7 +86,7 @@ export const MacbookPro = (): JSX.Element => {
 
   return (
     <div
-      className="bg-white dark:bg-[#1e1e1e] flex flex-col md:flex-row justify-center w-full min-h-screen transition-colors duration-300"
+      className="bg-white dark:bg-[#1e1e1e] flex flex-col md:flex-row justify-center w-full min-h-screen transition-colors duration-300 pb-12 [padding-bottom:env(safe-area-inset-bottom)]"
       data-model-id="1:5"
     >
       <Helmet>
@@ -138,18 +133,6 @@ export const MacbookPro = (): JSX.Element => {
             </div>
           </div>
 
-          {/* Mobile Navigation Indicators */}
-          <div className="sm:hidden w-full py-4 flex justify-center space-x-2">
-            {serviceCategories.map((category, index) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedSection(category.id)}
-                className={`w-2 h-2 rounded-full ${selectedSection === category.id ? 'bg-[#ffa500]' : 'bg-gray-300 dark:bg-gray-600'}`}
-                aria-label={`Go to ${category.label} section`}
-              />
-            ))}
-          </div>
-
           {/* Section 3: Content sections - SWIPEABLE ON MOBILE */}
           <div className="relative w-full" {...swipeHandlers}>
               {/* Mobile Swipeable Content */}
@@ -168,6 +151,22 @@ export const MacbookPro = (): JSX.Element => {
                       React.createElement(serviceCategories.find(cat => cat.id === selectedSection)?.component as React.ComponentType)}
                   </motion.div>
                 </AnimatePresence>
+
+                {/* Mobile Navigation Indicators (moved below content, visually smaller) */}
+                <div className="w-full py-3 flex justify-center space-x-2">
+                  {serviceCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedSection(category.id)}
+                      className="p-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e]"
+                      aria-label={`Go to ${category.label} section`}
+                    >
+                      <span
+                        className={`block rounded-full ${selectedSection === category.id ? 'bg-[#ffa500]' : 'bg-gray-300 dark:bg-gray-600'} w-2 h-2`}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Desktop Content */}

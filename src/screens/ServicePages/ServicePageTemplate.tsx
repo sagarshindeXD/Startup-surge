@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// Removed useNavigate import as it's unused
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
 
@@ -18,7 +18,6 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
   whereWeComeIn,
   benefits,
 }) => {
-  const navigate = useNavigate();
 
   // Function to get relevant social media images based on service type
   const getServiceImage = (title: string) => {
@@ -73,7 +72,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
     <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col transition-colors duration-300">
       {/* Navigation */}
       <SectionComponentNodeSection />
-      
+      <main className="flex-1">
       {/* Hero Section - Same design as capsule sections */}
       <section className="w-full py-16 md:py-20 lg:py-28 relative px-4 md:px-8 lg:px-16">
         <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-8 lg:gap-12">
@@ -87,14 +86,14 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
               <span className="text-gray-800 dark:text-white">{serviceTitle.split(' ').slice(1).join(' ')}</span>
             </h1>
 
-                          <div className="mt-8 md:mt-10 max-w-[936px]">
-                <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-800 dark:text-white text-justify leading-[28px] mb-6 transition-colors duration-300">
-                  {serviceDescription}
-                </p>
-                <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-700 dark:text-white text-justify leading-[28px] opacity-90 transition-colors duration-300">
-                  Our comprehensive approach combines cutting-edge technology with proven strategies to deliver exceptional results. We understand that every business is unique, which is why we tailor our solutions to meet your specific needs and goals. With years of experience in the digital marketing landscape, we've helped countless businesses achieve remarkable growth and establish strong online presences.
-                </p>
-              </div>
+            <div className="mt-8 md:mt-10 max-w-[936px]">
+              <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-800 dark:text-white text-justify leading-[28px] mb-6 transition-colors duration-300">
+                {serviceDescription}
+              </p>
+              <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-700 dark:text-white text-justify leading-[28px] opacity-90 transition-colors duration-300">
+                Our comprehensive approach combines cutting-edge technology with proven strategies to deliver exceptional results. We understand that every business is unique, which is why we tailor our solutions to meet your specific needs and goals. With years of experience in the digital marketing landscape, we've helped countless businesses achieve remarkable growth and establish strong online presences.
+              </p>
+            </div>
           </div>
 
           {/* Image Section */}
@@ -268,7 +267,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
           </div>
         </div>
       </section>
-
+      </main>
       {/* Footer */}
       <FooterSection />
 

@@ -92,7 +92,7 @@ export const BlogsPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col transition-colors duration-300">
+    <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col transition-colors duration-300 pb-12 [padding-bottom:env(safe-area-inset-bottom)]">
       {/* Navigation */}
       <SectionComponentNodeSection />
       {/* Hero Section */}
@@ -128,13 +128,13 @@ export const BlogsPage: React.FC = () => {
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {filteredPosts.map((post) => (
-              <Card key={post.id} className="border-0 bg-orange-50 dark:bg-[#2a2a2a] hover:bg-orange-100 dark:hover:bg-[#333] transition-all duration-300 cursor-pointer group">
+              <Card key={post.id} className="border-0 bg-orange-50 dark:bg-[#2a2a2a] hover:bg-orange-100 dark:hover:bg-[#333] transition-all duration-300 cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e] active:scale-[0.98]" role="article" tabIndex={0} aria-label={`${post.title} by ${post.author}`}>
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-32 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-36 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
                       <span className="px-2 sm:px-3 py-1 bg-[#ffa500] text-black text-xs font-medium rounded-full">
@@ -158,7 +158,7 @@ export const BlogsPage: React.FC = () => {
                       <span className="font-['League_Spartan',Helvetica] text-xs sm:text-sm text-[#ffa500]">
                         {post.author}
                       </span>
-                      <button className="text-[#ffa500] hover:text-white transition-colors duration-300 font-['League_Spartan',Helvetica] text-xs sm:text-sm font-medium">
+                      <button className="text-[#ffa500] hover:text-white transition-colors duration-300 font-['League_Spartan',Helvetica] text-xs sm:text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e] px-2 py-1 rounded-md" aria-label={`Read more: ${post.title}`}>
                         Read More →
                       </button>
                     </div>
