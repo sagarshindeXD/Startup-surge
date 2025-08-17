@@ -1,5 +1,6 @@
 import React from "react";
 import { ServicePageTemplate } from "./ServicePageTemplate";
+import { Helmet } from "react-helmet-async";
 
 export const SEOPage: React.FC = () => {
   const seoData = {
@@ -17,5 +18,14 @@ export const SEOPage: React.FC = () => {
     ]
   };
 
-  return <ServicePageTemplate {...seoData} />;
-}; 
+  return (
+    <>
+      <Helmet>
+        <title>SEO Services for Startups | StartupSurge®</title>
+        <meta name="description" content="Rank higher and grow organic traffic. Technical SEO, content, and strategy tailored for startups by StartupSurge." />
+        <link rel="canonical" href="https://www.startupsurge.in/services/seo" />
+      </Helmet>
+      <ServicePageTemplate {...seoData} />
+    </>
+  );
+};

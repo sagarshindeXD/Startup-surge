@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
+import { Helmet } from "react-helmet-async";
 
 export const ServicesPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -91,6 +92,11 @@ export const ServicesPage = (): JSX.Element => {
 
   return (
     <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-hidden transition-colors duration-300">
+      <Helmet>
+        <title>Services | StartupSurge® — Startup Marketing, SEO, SMM, Performance</title>
+        <meta name="description" content="Explore StartupSurge services: SEO, social media marketing, performance marketing, UI/UX, web design, email, WhatsApp, influencer marketing and more." />
+        <link rel="canonical" href="https://www.startupsurge.in/services" />
+      </Helmet>
       {/* Navigation */}
       <div className="z-50 w-full">
         <SectionComponentNodeSection />

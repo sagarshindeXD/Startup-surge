@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "./lib/theme";
 import PageTransition from "./components/PageTransition";
 import { AnimatePresence } from "framer-motion";
@@ -48,10 +49,12 @@ const AnimatedRoutes = () => {
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
-    <ThemeProvider>
-      <Router>
-        <AnimatedRoutes />
-      </Router>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <Router>
+          <AnimatedRoutes />
+        </Router>
+      </ThemeProvider>
+    </HelmetProvider>
   </StrictMode>,
 );

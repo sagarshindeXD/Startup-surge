@@ -1,0 +1,4 @@
+# robots.txt for https://www.startupsurge.in/
+User-agent: *
+Allow: /
+Sitemap: https://www.startupsurge.in/sitemap.xml

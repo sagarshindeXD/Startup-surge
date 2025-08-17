@@ -3,5 +3,34 @@
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "devCommand": "npm run dev"
-} 
+  "devCommand": "npm run dev",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "startupsurge.in" }],
+      "destination": "https://www.startupsurge.in/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/(robots.txt|sitemap.xml)", "destination": "/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/:all*.(js|css|png|jpg|jpeg|gif|svg|webp|ico)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+      ]
+    }
+  ]
+}

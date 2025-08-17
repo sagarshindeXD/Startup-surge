@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import { AnimatedWaves } from "../../components/AnimatedWaves";
 import { CallToActionSection } from "./sections/CallToActionSection";
@@ -93,6 +94,14 @@ export const MacbookPro = (): JSX.Element => {
       className="bg-white dark:bg-[#1e1e1e] flex flex-col md:flex-row justify-center w-full min-h-screen transition-colors duration-300"
       data-model-id="1:5"
     >
+      <Helmet>
+        <title>StartupSurge® — Startup Marketing Agency | SEO, Social, Performance</title>
+        <meta name="description" content="Grow your startup with SEO, performance marketing, social media, UI/UX and web design. StartupSurge delivers traffic, leads, and revenue." />
+        <link rel="canonical" href="https://www.startupsurge.in/" />
+        <meta property="og:title" content="StartupSurge® — Startup Marketing Agency" />
+        <meta property="og:description" content="SEO, performance marketing, social media, UI/UX and web design for startups." />
+        <meta property="og:url" content="https://www.startupsurge.in/" />
+      </Helmet>
       <AnimatedWaves />
       <div className="bg-white dark:bg-[#1e1e1e] w-full relative transition-colors duration-300">
         <div className="relative w-full">

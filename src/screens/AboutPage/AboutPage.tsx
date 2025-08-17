@@ -3,6 +3,7 @@ import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionCompo
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
+import { Helmet } from "react-helmet-async";
 
 export const AboutPage: React.FC = () => {
   // State for mobile section navigation
@@ -90,6 +91,11 @@ export const AboutPage: React.FC = () => {
       exit="exit"
       variants={pageTransition}
     >
+      <Helmet>
+        <title>About Us | StartupSurge® — Digital Marketing Agency for Startups</title>
+        <meta name="description" content="Learn about StartupSurge: a startup-focused marketing agency delivering SEO, performance marketing, social media, UI/UX and web design." />
+        <link rel="canonical" href="https://www.startupsurge.in/about" />
+      </Helmet>
       {/* Navigation */}
       <SectionComponentNodeSection />
       
