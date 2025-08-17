@@ -11,6 +11,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 240hz-like smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for sticky nav */
+}
+
+/* Enhanced smooth scrolling for webkit browsers */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar for better visual feedback */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 165, 0, 0.3);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 165, 0, 0.5);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
