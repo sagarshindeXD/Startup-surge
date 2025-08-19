@@ -3,18 +3,18 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "./lib/theme";
-import PageTransition from "./components/PageTransition";
-import { AnimatePresence } from "framer-motion";
 import { MacbookPro } from "./screens/MacbookPro";
 import { ServicesPage } from "./screens/ServicesPage";
 import { AboutPage } from "./screens/AboutPage/AboutPage";
 import { BlogsPage } from "./screens/BlogsPage";
+import { AIPage } from "./screens/AIPage";
+import { ScrollToTop } from "./components/ScrollToTop";
+import PageTransition from "./components/PageTransition";
 import {
   SEOPage,
   SocialMediaMarketingPage,
   PerformanceMarketingPage,
   UIUXDesignerPage,
-  GraphicDesignerPage,
   EcommerceMarketingPage,
   WhatsAppMarketingPage,
   EmailMarketingPage,
@@ -24,26 +24,24 @@ import {
 // AnimatedRoutes component to handle route transitions
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+  const pathname = location.pathname;
+
   return (
-    <AnimatePresence mode="wait">
-      <PageTransition location={location.pathname} key={location.pathname}>
-        <Routes location={location}>
-          <Route path="/" element={<MacbookPro />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/blogs" element={<BlogsPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/seo" element={<SEOPage />} />
-          <Route path="/services/social-media-marketing" element={<SocialMediaMarketingPage />} />
-          <Route path="/services/performance-marketing" element={<PerformanceMarketingPage />} />
-          <Route path="/services/ui-ux-designer" element={<UIUXDesignerPage />} />
-          <Route path="/services/ecommerce-marketing" element={<EcommerceMarketingPage />} />
-          <Route path="/services/whatsapp-marketing" element={<WhatsAppMarketingPage />} />
-          <Route path="/services/email-marketing" element={<EmailMarketingPage />} />
-          <Route path="/services/influencer-marketing" element={<InfluencerMarketingPage />} />
-        </Routes>
-      </PageTransition>
-    </AnimatePresence>
+    <Routes location={location}>
+      <Route path="/" element={<PageTransition pathname={pathname}><MacbookPro /></PageTransition>} />
+      <Route path="/about" element={<PageTransition pathname={pathname}><AboutPage /></PageTransition>} />
+      <Route path="/blogs" element={<PageTransition pathname={pathname}><BlogsPage /></PageTransition>} />
+      <Route path="/ai" element={<PageTransition pathname={pathname}><AIPage /></PageTransition>} />
+      <Route path="/services" element={<PageTransition pathname={pathname}><ServicesPage /></PageTransition>} />
+      <Route path="/services/seo" element={<PageTransition pathname={pathname}><SEOPage /></PageTransition>} />
+      <Route path="/services/social-media-marketing" element={<PageTransition pathname={pathname}><SocialMediaMarketingPage /></PageTransition>} />
+      <Route path="/services/performance-marketing" element={<PageTransition pathname={pathname}><PerformanceMarketingPage /></PageTransition>} />
+      <Route path="/services/ui-ux-designer" element={<PageTransition pathname={pathname}><UIUXDesignerPage /></PageTransition>} />
+      <Route path="/services/ecommerce-marketing" element={<PageTransition pathname={pathname}><EcommerceMarketingPage /></PageTransition>} />
+      <Route path="/services/whatsapp-marketing" element={<PageTransition pathname={pathname}><WhatsAppMarketingPage /></PageTransition>} />
+      <Route path="/services/email-marketing" element={<PageTransition pathname={pathname}><EmailMarketingPage /></PageTransition>} />
+      <Route path="/services/influencer-marketing" element={<PageTransition pathname={pathname}><InfluencerMarketingPage /></PageTransition>} />
+    </Routes>
   );
 };
 
@@ -52,6 +50,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
     <HelmetProvider>
       <ThemeProvider>
         <Router>
+          <ScrollToTop />
           <AnimatedRoutes />
         </Router>
       </ThemeProvider>

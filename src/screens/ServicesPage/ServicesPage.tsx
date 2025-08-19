@@ -99,7 +99,7 @@ export const ServicesPage = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-hidden transition-colors duration-300">
+    <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300">
       <Helmet>
         <title>Services | StartupSurge® — Startup Marketing, SEO, SMM, Performance</title>
         <meta name="description" content="Explore StartupSurge services: SEO, social media marketing, performance marketing, UI/UX, web design, email, WhatsApp, influencer marketing and more." />
@@ -151,7 +151,9 @@ export const ServicesPage = (): JSX.Element => {
                   }}
                   onMouseEnter={() => setHoveredCard(service.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => navigate(service.path)}
+                  onClick={() => {
+                    navigate(service.path);
+                  }}
                   role="button"
                   tabIndex={0}
                   aria-label={service.title}

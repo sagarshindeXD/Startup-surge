@@ -52,7 +52,9 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
         </Tabs>
         {/* Plus button next to capsule */}
         <button 
-          onClick={() => navigate('/services')}
+          onClick={() => {
+            navigate('/services');
+          }}
           className="flex items-center justify-center w-[32px] h-[40px] sm:w-[22px] sm:h-[48px] ml-2 sm:ml-4 cursor-pointer hover:opacity-80 transition-opacity duration-200 flex-shrink-0"
           aria-label="View all services"
         >

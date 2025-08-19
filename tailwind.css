@@ -13,7 +13,7 @@
 
 /* 240hz-like smooth scrolling */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* Programmatic scrolling (ScrollToTop + local logic) manages smoothness */
   scroll-padding-top: 80px; /* Account for sticky nav */
   /* Stabilize layout when scrollbar appears/disappears */
   scrollbar-gutter: stable both-edges;

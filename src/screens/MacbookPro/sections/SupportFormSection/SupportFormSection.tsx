@@ -68,13 +68,14 @@ export const SupportFormSection = (): JSX.Element => {
               </p>
             </div>
               
-              <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
+              <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto" autoComplete="on">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-300">Name</label>
                     <Input
                       id="name"
                       name="name"
+                      autoComplete="name"
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Your name"
@@ -88,6 +89,7 @@ export const SupportFormSection = (): JSX.Element => {
                       id="email"
                       name="email"
                       type="email"
+                      autoComplete="email"
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Your email address"
@@ -102,6 +104,7 @@ export const SupportFormSection = (): JSX.Element => {
                   <Input
                     id="subject"
                     name="subject"
+                    autoComplete="off"
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="What is this regarding?"
@@ -115,6 +118,7 @@ export const SupportFormSection = (): JSX.Element => {
                   <Textarea
                     id="message"
                     name="message"
+                    autoComplete="off"
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="How can we help you?"

@@ -1,47 +1,23 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
-interface PageTransitionProps {
+type PageTransitionProps = {
   children: React.ReactNode;
-  location?: string;
-}
+  pathname: string;
+};
 
-const PageTransition: React.FC<PageTransitionProps> = ({ children, location }) => {
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      y: 20,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: 'easeInOut',
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        duration: 0.3,
-        ease: 'easeInOut',
-      },
-    },
-  };
+// Minimalists-inspired: fast, clean, subtle
+const PageTransition: React.FC<PageTransitionProps> = ({ children, pathname }) => {
+  const prefersReduced = useReducedMotion();
+  const initial = prefersReduced ? { opacity: 1 } : { opacity: 0, y: 8 };
+  const animate = prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0 };
+  const exit = prefersReduced ? { opacity: 1 } : { opacity: 0, y: -8 };
+  const transition = prefersReduced ? { duration: 0 } : { duration: 0.22, ease: "easeOut" };
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        variants={pageVariants}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div key={pathname} initial={initial} animate={animate} exit={exit} transition={transition}>
+      {children}
+    </motion.div>
   );
 };
 

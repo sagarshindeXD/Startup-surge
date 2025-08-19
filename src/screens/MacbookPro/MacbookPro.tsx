@@ -24,6 +24,8 @@ export const MacbookPro = (): JSX.Element => {
   const performanceMarketingRef = useRef<HTMLDivElement>(null);
   const webDesigningRef = useRef<HTMLDivElement>(null);
   const uiuxRef = useRef<HTMLDivElement>(null);
+  const capsuleBarRef = useRef<HTMLDivElement>(null);
+  const capsuleAnchorRef = useRef<HTMLDivElement>(null);
   const prevIndexRef = useRef<number>(0);
 
   // Define service categories for reuse
@@ -50,20 +52,46 @@ export const MacbookPro = (): JSX.Element => {
   }, [currentSectionIndex]);
 
   const handleCapsuleClick = (section: string) => {
-    setSelectedSection(section);
-    
-    // Smooth scroll to the selected section
-    let ref: React.RefObject<HTMLDivElement> | null = null;
-    if (section === "social-media") ref = socialMediaRef;
-    else if (section === "seo") ref = seoRef;
-    else if (section === "performance-marketing") ref = performanceMarketingRef;
-    else if (section === "web-designing") ref = webDesigningRef;
-    else if (section === "ui-ux") ref = uiuxRef;
-    
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Always scroll the page to the sticky capsule bar
+    const anchor = capsuleAnchorRef.current || capsuleBarRef.current;
+    if (anchor) {
+      // Use original document position (not affected by sticky) to avoid snapping to page top
+      const getAbsoluteTop = (el: HTMLElement | null): number => {
+        let top = 0;
+        let node: HTMLElement | null = el;
+        while (node) {
+          top += node.offsetTop || 0;
+          node = node.offsetParent as HTMLElement | null;
+        }
+        return top;
+      };
+      const absoluteTop = getAbsoluteTop(anchor);
+      const targetY = Math.max(0, absoluteTop);
+      // robust scrolling across possible scroll roots
+      const setScrollTop = (y: number) => {
+        try { window.scrollTo({ top: y, left: 0, behavior: "smooth" }); } catch {}
+        try { (document.scrollingElement || document.documentElement).scrollTop = y; } catch {}
+        try { document.documentElement.scrollTop = y; } catch {}
+        try { (document.body as HTMLElement).scrollTop = y; } catch {}
+      };
+      setScrollTop(targetY);
+      // second pass next frame for safety
+      requestAnimationFrame(() => setScrollTop(targetY));
+
+      // Minimal debug (dev only)
+      try {
+        const mode = (import.meta as any)?.env?.MODE || 'development';
+        if (mode !== 'production') {
+          console.debug('[CapsuleScroll]', { winY: window.scrollY, targetY });
+        }
+      } catch {}
     }
+    // Update selection (even if same id, harmless)
+    if (section !== selectedSection) setSelectedSection(section);
   };
+
+  // Removed auto-scroll on selection change to avoid duplicate scrolls;
+  // we now scroll explicitly in handleCapsuleClick()
 
   // Handle swipe navigation
   const handlePrevSection = () => {
@@ -122,7 +150,9 @@ export const MacbookPro = (): JSX.Element => {
             </div>
           </div>
           {/* Section 2: Capsule Navigation - Positioned below hero, above services */}
-          <div className="sticky top-0 z-50 w-full bg-white dark:bg-[#1e1e1e] pt-4 pb-2 sm:pt-6 sm:pb-3 shadow-lg transition-colors duration-300 hidden sm:block mt-8 sm:mt-16">
+          {/* Non-sticky anchor for precise scroll positioning */}
+          <div ref={capsuleAnchorRef} className="h-0" aria-hidden="true" />
+          <div ref={capsuleBarRef} className="sticky top-0 z-50 w-full bg-white dark:bg-[#1e1e1e] pt-4 pb-2 sm:pt-6 sm:pb-3 shadow-lg transition-colors duration-300 hidden sm:block mt-0">
             <div className="flex justify-center px-2 sm:px-0">
               <OverlapSection
                 onCapsuleClick={handleCapsuleClick}

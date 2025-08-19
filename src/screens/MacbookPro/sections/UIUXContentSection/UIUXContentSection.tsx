@@ -20,7 +20,9 @@ export const UIUXContentSection = (): JSX.Element => {
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 
                 className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-white rounded-[35px] h-[41px] px-5 cursor-pointer"
-                onClick={() => navigate('/services/ui-ux-designer')}
+                onClick={() => {
+                  navigate('/services/ui-ux-designer');
+                }}
               >
                 <span className="font-['League_Spartan',Helvetica] text-base sm:text-xl">
                   Explore UI/UX

@@ -15,6 +15,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
   const navigate = useNavigate();
   const { theme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const isHome = location.pathname === "/";
 
   // Prevent body scroll when mobile menu is open
   React.useEffect(() => {
@@ -33,6 +34,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
     { text: "Services", href: "/services", isActive: location.pathname === "/services" },
     { text: "About", href: "/about", isActive: location.pathname === "/about" },
     { text: "Blogs", href: "/blogs", isActive: location.pathname === "/blogs" },
+    { text: "AI", href: "/ai", isActive: location.pathname === "/ai" },
   ];
 
   const handleLogoClick = () => {
@@ -54,13 +56,21 @@ export const SectionComponentNodeSection = (): JSX.Element => {
       case 'blogs':
         navigate('/blogs');
         break;
+      case 'ai':
+        navigate('/ai');
+        break;
       default:
         navigate('/');
     }
   };
 
   return (
-    <header className="w-full flex items-center justify-between p-4 bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
+    <>
+      <header
+        className={`w-full flex items-center justify-between p-4 bg-white dark:bg-[#1e1e1e] transition-colors duration-300 ${
+          isHome ? "" : "fixed top-0 left-0 right-0 z-50 shadow-sm supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-[#1e1e1e]/80 backdrop-blur"
+        }`}
+      >
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center w-full">
         <div className="w-[120px] h-[60px] flex items-center">
@@ -144,6 +154,9 @@ export const SectionComponentNodeSection = (): JSX.Element => {
           <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
         </div>
       )}
-    </header>
+      </header>
+      {/* Spacer to offset fixed header height on non-home routes */}
+      {!isHome && <div className="h-16 sm:h-20" aria-hidden="true" />}
+    </>
   );
 };
