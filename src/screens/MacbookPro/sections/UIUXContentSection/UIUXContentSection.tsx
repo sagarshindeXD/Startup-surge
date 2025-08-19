@@ -10,17 +10,12 @@ export const UIUXContentSection = (): JSX.Element => {
       <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-4 sm:gap-8 lg:gap-12">
         <div className="flex-1 lg:pr-8">
           <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">
-              UI/
-              <br />
-            </span>
-            <span className="text-gray-800 dark:text-white">UX</span>
+            <span className="font-semibold text-[#ffa500]">UI/UX </span>
+            <span className="text-gray-800 dark:text-white">that feels like magic</span>
           </h1>
           <div className="mt-4 sm:mt-10 max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-xl text-gray-800 dark:text-white text-justify leading-[24px] sm:leading-[28px] transition-colors duration-300">
-              Delight your users! Our UI/UX experts design intuitive, engaging interfaces that keep visitors coming back. We blend form and function for seamless digital journeys.
-              <br />
-              #UIUX #UserExperience
+              Frictionless flows, delightful details, and obsessive usability so users binge your product like a show.
             </p>
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 

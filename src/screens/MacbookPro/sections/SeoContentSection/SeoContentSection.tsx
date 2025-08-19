@@ -11,18 +11,13 @@ export const SeoContentSection = (): JSX.Element => {
         {/* Content Section */}
         <div className="flex-1 lg:pr-8">
           <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">
-              SEO
-              <br />
-            </span>
-            <span className="text-gray-800 dark:text-white">Optimization</span>
+            <span className="font-semibold text-[#ffa500]">SEO </span>
+            <span className="text-gray-800 dark:text-white">sorcery</span>
           </h1>
 
           <div className="mt-4 sm:mt-8 md:mt-10 max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-800 dark:text-white text-justify leading-[24px] sm:leading-[28px] transition-colors duration-300">
-              Unlock the power of search! Our SEO wizards boost your brand's visibility, drive organic traffic, and help you dominate the digital landscape. From keyword research to technical audits, we craft strategies that put you at the top of search results.
-              <br />
-              #SEOExperts #RankHigher
+              Make search engines fall in love with you. From site architecture to intent‑rich content, we plant you on Page One and keep you there.
             </p>
 
             <div className="mt-4 sm:mt-8 md:mt-10 flex items-center">

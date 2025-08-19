@@ -57,17 +57,14 @@ export const SupportFormSection = (): JSX.Element => {
             <div className="flex flex-col items-center mb-8">
               <div className="flex items-center justify-center mb-6">
                 <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl transition-colors duration-300">
-                  Need our
+                  Ready to
                 </span>
                 <span className="font-['League_Spartan',Helvetica] font-semibold text-[#ffa500] text-2xl md:text-4xl ml-2">
-                  support
-                </span>
-                <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl ml-1 transition-colors duration-300">
-                  ?
+                  surge
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl mb-8 transition-colors duration-300">
-                Have questions or need assistance? Fill out the form below and our team will get back to you as soon as possible.
+                Share your goals—our team will reply with a plan and next steps.
               </p>
             </div>
               
@@ -131,7 +128,7 @@ export const SupportFormSection = (): JSX.Element => {
                     type="submit" 
                     className="bg-[#ffa500] hover:bg-[#e69500] text-white font-semibold py-2 px-8 rounded-full transition-colors duration-300"
                   >
-                    Send Message
+                    Start your surge
                   </Button>
                 </div>
               </form>

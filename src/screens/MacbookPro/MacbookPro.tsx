@@ -113,11 +113,10 @@ export const MacbookPro = (): JSX.Element => {
               {/* Overlayed Welcome to the StartupSurge era */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-4 sm:-mt-32 px-2">
                 <div className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-2xl sm:text-5xl md:text-[100px] text-center tracking-[0] leading-[36px] sm:leading-[60px] md:leading-[100px] drop-shadow-xl transition-colors duration-300">
-                  <span>Welcome to the</span>
+                  <span className="font-bold text-gray-800 dark:text-white text-3xl sm:text-6xl md:text-[120px]">Startup</span>
+                  <span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">Surge</span>
                   <br />
-                  <span className="font-bold text-gray-800 dark:text-white text-3xl sm:text-6xl md:text-[120px]">Startup</span><span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">Surge</span>
-                  <br />
-                  <span className="text-gray-800 dark:text-white">era</span>
+                  <span className="text-gray-800 dark:text-white text-base sm:text-2xl md:text-3xl block mt-0.5">Building brands digitally</span>
                 </div>
               </div>
             </div>

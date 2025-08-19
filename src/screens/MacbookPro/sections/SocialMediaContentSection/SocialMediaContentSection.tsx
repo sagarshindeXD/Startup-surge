@@ -10,21 +10,12 @@ export const SocialMediaContentSection = (): JSX.Element => {
       <div className="flex flex-col sm:flex-row sm:max-w-[1752px] mx-auto px-2 sm:px-0 gap-4 sm:gap-0">
         <div className="flex-1 pr-0 sm:pr-8 pl-0 sm:pl-12">
           <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-6xl leading-[32px] sm:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">
-              Social Media
-              <br />
-            </span>
-            <span className="text-gray-800 dark:text-white">Marketing</span>
+            <span className="font-semibold text-[#ffa500]">Social Media </span>
+            <span className="text-gray-800 dark:text-white">that sticks</span>
           </h1>
           <div className="mt-4 sm:mt-10 sm:max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-xl text-gray-800 dark:text-white text-justify leading-[22px] sm:leading-[28px] transition-colors duration-300">
-              Tired of meh marketing? Ditch the mortals, ascend with StartupSurge - Gangs
-              of Digital Designers! We&#39;re the wild creative crew crafting
-              digital experiences that slay algorithms, spark conversations, and
-              drive results like Zeus&#39; wrath. Unleash your brand&#39;s
-              divine potential - contact us and let StartupSurge rule your online realm!{" "}
-              <br />
-              #GangofDigitalDesigners #UnleashYourBrand
+              Culture‑aware, platform‑native, meme‑literate storytelling that turns followers into fans and fans into advocates.
             </p>
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 

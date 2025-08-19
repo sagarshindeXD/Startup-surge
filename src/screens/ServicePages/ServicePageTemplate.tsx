@@ -8,6 +8,7 @@ interface ServicePageTemplateProps {
   serviceDescription: string;
   whatIsService: string;
   whereWeComeIn: string;
+  whatWeSolve?: string[];
   benefits: string[];
 }
 
@@ -15,9 +16,17 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
   serviceTitle,
   serviceDescription,
   whatIsService,
-  whereWeComeIn,
+  whereWeComeIn: _whereWeComeIn, // kept for backward compatibility; content now standardized
+  whatWeSolve,
   benefits,
 }) => {
+
+  const defaultWhatWeSolve = [
+    "You’re invisible for high‑intent searches.",
+    "Traffic isn’t qualified or converting.",
+    "Technical debt is blocking crawl/indexing.",
+    "Competitors outrank you with weaker products.",
+  ];
 
   // Function to get relevant social media images based on service type
   const getServiceImage = (title: string) => {
@@ -134,24 +143,22 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
         </div>
       </section>
 
-      {/* Where We Come In Section - Normal and Left Aligned */}
+      {/* What We Solve Section - Normal and Left Aligned */}
       <section className="py-16 px-4 md:px-8 lg:px-16 bg-[#2a2a2a]">
         <div className="max-w-6xl mx-auto">
           <div className="text-left mb-12">
             <h2 className="[font-family:'League_Spartan',Helvetica] font-bold text-white text-3xl md:text-4xl mb-6">
-              Where Do We Come In?
+              What We Solve:
             </h2>
             <div className="w-24 h-1 bg-[#ffa500] mb-8"></div>
           </div>
           <div className="bg-[#1e1e1e] rounded-xl p-8 md:p-12 shadow-2xl">
             <ul className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl space-y-4 mb-6">
-              {whereWeComeIn.split('. ').map((point, index) => (
-                point.trim() && (
-                  <li key={index} className="flex items-start space-x-3">
-                    <span className="text-[#ffa500] text-xl font-bold mt-1">•</span>
-                    <span>{point.trim()}</span>
-                  </li>
-                )
+              {(whatWeSolve ?? defaultWhatWeSolve).map((point, idx) => (
+                <li key={idx} className="flex items-start space-x-3">
+                  <span className="text-[#ffa500] text-xl font-bold mt-1">•</span>
+                  <span>{point}</span>
+                </li>
               ))}
             </ul>
             <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl opacity-90">

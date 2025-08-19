@@ -63,12 +63,14 @@ export const SectionComponentNodeSection = (): JSX.Element => {
     <header className="w-full flex items-center justify-between p-4 bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center w-full">
-        <img
-          className="w-[80px] h-[40px] dark:w-[120px] dark:h-[60px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
-          alt="StartupSurge logo"
-          src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
-          onClick={handleLogoClick}
-        />
+        <div className="w-[120px] h-[60px] flex items-center">
+          <img
+            className="w-full h-full object-contain dark:object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
+            alt="StartupSurge logo"
+            src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
+            onClick={handleLogoClick}
+          />
+        </div>
         <div className="ml-6 relative">
           <NavigationMenu>
             <NavigationMenuList className="flex space-x-4">
@@ -98,7 +100,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
       {/* Mobile Nav */}
       <div className="flex sm:hidden items-center w-full justify-between">
         <img
-          className="w-[64px] h-[32px] object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
+          className="w-[64px] h-[32px] object-contain dark:object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
           alt="StartupSurge logo"
           src={theme === 'light' ? "/logo.png" : "/StartupSurge Logo-05.png"}
           onClick={handleLogoClick}

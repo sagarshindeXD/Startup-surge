@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import SiddheshImg from "../../assets/Siddhesh.jpg";
+import RohitImg from "../../assets/Rohit.jpg";
+import SafanaImg from "../../assets/Safana.jpg";
+import SimranImg from "../../assets/Simran.jpg";
+import SagarImg from "../../assets/Sagar.jpg";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
 import { motion, AnimatePresence } from "framer-motion";
@@ -50,34 +55,34 @@ export const AboutPage: React.FC = () => {
     {
       name: "Dr.Siddhesh Surve",
       role: "Founder",
-      image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Alex+Chen",
+      image: SiddheshImg,
       description: "Passionate Strategist & problem solver, fueled by curiosity.",
       linkedin: "https://www.linkedin.com/in/siddhesh-anil-surve/"
     },
     {
       name: "Mr.Rohit Bagdi",
       role: "Co-Founder",
-      image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Sarah+Johnson",
+      image: RohitImg,
       description: "Crafting stories through creativity.",
       linkedin: "https://www.linkedin.com/in/rohit-bagdi-93a30b7b/"
     },
     {
       name: "Ms.Safana Shaikh",
       role: "Marketing head",
-      image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Mike+Rodriguez",
+      image: SafanaImg,
       description: "Digital storyteller with a knack for bold ideas and real results.",
       linkedin: "https://www.linkedin.com/in/safana-shaikh-630861246/"
     },
     {
       name: "Ms.Simran Kochhar",
       role: "Marketing Specialist",
-      image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=David+Kim",
+      image: SimranImg,
       description: "Strategic thinker who drives brand growth and customer engagement through targeted marketing campaigns.",
       linkedin: "https://www.linkedin.com/in/simran-kochhar-40b0651b0/"
     },{
       name: "Mr.Sagar Shinde",
       role: "Web Developer",
-      image: "https://via.placeholder.com/300x300/1e1e1e/ffa500?text=Emily+Watson",
+      image: SagarImg,
       description: "Creative problem-solver who builds dynamic, user-friendly websites and web applications with modern technologies.",
       linkedin: "https://www.linkedin.com/in/sagar-shinde-69a2a2291/"
     }
@@ -217,8 +222,8 @@ export const AboutPage: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-['League_Spartan',Helvetica] text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-[28px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-6">
-              <span className="text-gray-800 dark:text-white">Meet the </span>
-              <span className="font-semibold text-[#ffa500]">Team</span>
+              <span className="text-gray-800 dark:text-white">Meet your digital </span>
+              <span className="font-semibold text-[#ffa500]">dream team.</span>
             </h2>
             <motion.div 
               className="w-16 sm:w-24 h-1 bg-[#ffa500] mx-auto mb-4 sm:mb-8"
@@ -228,7 +233,7 @@ export const AboutPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
             ></motion.div>
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white text-center max-w-xl sm:max-w-3xl mx-auto leading-relaxed opacity-90 transition-colors duration-300">
-              Our exceptional team of digital experts who bring creativity, innovation, and expertise to every project we undertake.
+              We’re a cross‑functional crew of strategists, designers, writers and growth PMs who love turning ideas into momentum. We show up curious, collaborate hard, and leave things better than we found them.
             </p>
           </motion.div>
           {/* Row 1: Exactly 3 cards */}

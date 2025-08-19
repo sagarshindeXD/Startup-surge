@@ -109,6 +109,8 @@ export const ServicesPage = (): JSX.Element => {
       <div className="z-50 w-full">
         <SectionComponentNodeSection />
       </div>
+      {/* Spacer after nav for breathing room */}
+      <div className="h-4 sm:h-8" aria-hidden="true" />
       {/* Add padding to main content to prevent overlap on mobile */}
       <main className="flex-1 px-3 sm:px-4 md:px-8 lg:px-16 py-8 sm:py-16 relative pt-16 sm:pt-0 pb-12 sm:pb-0 [padding-bottom:env(safe-area-inset-bottom)]">
         {/* Background Animation */}
@@ -196,6 +198,8 @@ export const ServicesPage = (): JSX.Element => {
           </div>
         )}
       </main>
+      {/* Spacer before footer for breathing room */}
+      <div className="h-8 sm:h-12" aria-hidden="true" />
       {/* Footer */}
       <div className={`transition-all duration-1000 ease-out delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <FooterSection />

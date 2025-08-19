@@ -24,6 +24,8 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('dark');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [overlayColor, setOverlayColor] = useState<string>('#1e1e1e');
 
   useEffect(() => {
     // Check for saved theme preference or default to system preference
@@ -45,12 +47,26 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    const nextTheme: Theme = theme === 'light' ? 'dark' : 'light';
+    // Prepare overlay with target theme background
+    setOverlayColor(nextTheme === 'light' ? '#ffffff' : '#1e1e1e');
+    setIsTransitioning(true);
+    // Switch theme immediately; overlay will briefly fade over the change
+    setTheme(nextTheme);
+    // End transition after animation duration
+    window.setTimeout(() => setIsTransitioning(false), 420);
   };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       {children}
+      {isTransitioning && (
+        <div
+          aria-hidden="true"
+          className="theme-overlay"
+          style={{ backgroundColor: overlayColor }}
+        />
+      )}
     </ThemeContext.Provider>
   );
-}; 
+};

@@ -10,17 +10,12 @@ export const WebDesigningContentSection = (): JSX.Element => {
       <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-4 sm:gap-8 lg:gap-12">
         <div className="flex-1 lg:pr-8">
           <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">
-              Web
-              <br />
-            </span>
-            <span className="text-gray-800 dark:text-white">Designing</span>
+            <span className="font-semibold text-[#ffa500]">Websites</span>
+            <span className="text-white"> that wow</span>
           </h1>
           <div className="mt-4 sm:mt-10 max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-xl text-gray-800 dark:text-white text-justify leading-[24px] sm:leading-[28px] transition-colors duration-300">
-              Make your mark online! Our web designers craft stunning, user-friendly sites that captivate and convert. Responsive, fast, and beautiful—your digital storefront, reimagined.
-              <br />
-              #WebDesign #DigitalExperience
+              Speed, beauty, and conversion in one build. We craft digital storefronts that load fast and sell faster.
             </p>
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 

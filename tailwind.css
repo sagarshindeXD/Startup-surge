@@ -15,11 +15,39 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Account for sticky nav */
+  /* Stabilize layout when scrollbar appears/disappears */
+  scrollbar-gutter: stable both-edges;
+  /* Fallback to always reserve scrollbar space */
+  overflow-y: scroll;
 }
 
 /* Enhanced smooth scrolling for webkit browsers */
 * {
   -webkit-overflow-scrolling: touch;
+}
+
+/* Theme switch overlay animation */
+.theme-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  animation: theme-fade 420ms ease-in-out forwards;
+}
+
+@keyframes theme-fade {
+  0% { opacity: 0; }
+  20% { opacity: 0.35; }
+  60% { opacity: 0.35; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-overlay {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 /* Custom scrollbar for better visual feedback */
