@@ -526,11 +526,21 @@ export const AIPage: React.FC = () => {
           setRecos(viaClient);
           setError("Serverless API unavailable; used client key.");
         } catch (err2: any) {
-          try {
-            const fallback = recommend(form);
-            setRecos(fallback);
-          } catch {}
-          setError(err2?.message || err?.message || "Failed to generate with AI. Showing a heuristic plan.");
+          const msg = err2?.message || "";
+          // If client key missing in dev, silently fall back to heuristic
+          if (/missing\s+vite.*gemini.*api\s*key/i.test(msg)) {
+            try {
+              const fallback = recommend(form);
+              setRecos(fallback);
+            } catch {}
+            setError("Client Gemini key missing in dev. Showing a heuristic plan.");
+          } else {
+            try {
+              const fallback = recommend(form);
+              setRecos(fallback);
+            } catch {}
+            setError(msg || err?.message || "Failed to generate with AI. Showing a heuristic plan.");
+          }
         }
       } else {
         try {
