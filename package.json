@@ -10,23 +10,24 @@
     "build:vercel": "node build.js"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.11.5",
     "@radix-ui/react-navigation-menu": "^1.2.1",
     "@radix-ui/react-scroll-area": "^1.2.0",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
+    "@studio-freight/lenis": "^1.0.42",
     "class-variance-authority": "^0.7.0",
     "clsx": "2.1.1",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.453.0",
-    "react-helmet-async": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.4",
     "react-router-dom": "^6.8.1",
     "react-swipeable": "^7.0.2",
-    "tailwind-merge": "2.5.4",
-    "@studio-freight/lenis": "^1.0.42"
+    "tailwind-merge": "2.5.4"
   },
   "devDependencies": {
     "@animaapp/vite-plugin-screen-graph": "^0.1.11",
