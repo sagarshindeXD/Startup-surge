@@ -64,13 +64,22 @@ Guidance:
 - Prefer India-specific INR budgets if suggesting paid ads.
 - Keep lists focused and non-redundant.
 - Ensure platforms and strategies align with inputs.
+- Do market reasearch yourself and provide relevant insights
+- Ads budget MUST be fixed as: Meta Ads = 10000 INR per campaign; Google Ads = 25000 INR per campaign.
 - Keep tone crisp and professional.
 `;
 }
 
+// Ensure Node runtime (not Edge)
+export const config = {
+  runtime: "nodejs20.x",
+};
+
 export default async function handler(req: any, res: any) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
+  if (req.method === "GET") {
+    return res.status(200).json({ ok: true, message: "generate-plan API is up. Use POST with JSON body." });
+  } else if (req.method !== "POST") {
+    res.setHeader("Allow", "GET, POST");
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
@@ -80,7 +89,14 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const form = (typeof req.body === "string" ? JSON.parse(req.body) : req.body) as FormState;
+    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    if (!body || typeof body !== "object") {
+      return res.status(400).json({ error: "Bad Request: expected JSON body" });
+    }
+    const form = body as FormState;
+    if (!form.brandName || !form.objective) {
+      return res.status(400).json({ error: "Bad Request: 'brandName' and 'objective' are required" });
+    }
     const genAI = new GoogleGenerativeAI(key);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -109,6 +125,14 @@ export default async function handler(req: any, res: any) {
     return res.status(200).json(parsed);
   } catch (err: any) {
     console.error("/api/generate-plan error:", err);
-    return res.status(500).json({ error: err?.message || "Internal Server Error" });
+    const message = err?.message || String(err) || "Internal Server Error";
+    // Surface common Gemini errors clearly
+    if (/permission|unauthorized|invalid(?:\s+)?key|401|403/i.test(message)) {
+      return res.status(502).json({ error: `Gemini auth failed: ${message}` });
+    }
+    if (/quota|rate|429/i.test(message)) {
+      return res.status(502).json({ error: `Gemini rate/quota issue: ${message}` });
+    }
+    return res.status(500).json({ error: message });
   }
 }
