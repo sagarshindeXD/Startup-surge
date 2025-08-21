@@ -519,16 +519,25 @@ export const AIPage: React.FC = () => {
       let r = await generatePlanViaApi(form);
       setRecos(r);
     } catch (err: any) {
-      try {
-        const viaClient = await generatePlanWithGemini(form);
-        setRecos(viaClient);
-        setError("Serverless API unavailable; used client key.");
-      } catch (err2: any) {
+      // In development, try client-side Gemini fallback; in production, skip to heuristic
+      if ((import.meta as any)?.env?.DEV) {
+        try {
+          const viaClient = await generatePlanWithGemini(form);
+          setRecos(viaClient);
+          setError("Serverless API unavailable; used client key.");
+        } catch (err2: any) {
+          try {
+            const fallback = recommend(form);
+            setRecos(fallback);
+          } catch {}
+          setError(err2?.message || err?.message || "Failed to generate with AI. Showing a heuristic plan.");
+        }
+      } else {
         try {
           const fallback = recommend(form);
           setRecos(fallback);
         } catch {}
-        setError(err2?.message || err?.message || "Failed to generate with AI. Showing a heuristic plan.");
+        setError(err?.message || "Failed to generate with AI. Showing a heuristic plan.");
       }
     } finally {
       setLoading(false);
