@@ -8,6 +8,7 @@ import { ServicesPage } from "./screens/ServicesPage";
 import { AboutPage } from "./screens/AboutPage/AboutPage";
 import { BlogsPage } from "./screens/BlogsPage";
 import { AIPage } from "./screens/AIPage";
+import { BlogDetailPage } from "./screens/BlogDetailPage";
 import { ScrollToTop } from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
 import {
@@ -31,6 +32,7 @@ const AnimatedRoutes = () => {
       <Route path="/" element={<PageTransition pathname={pathname}><MacbookPro /></PageTransition>} />
       <Route path="/about" element={<PageTransition pathname={pathname}><AboutPage /></PageTransition>} />
       <Route path="/blogs" element={<PageTransition pathname={pathname}><BlogsPage /></PageTransition>} />
+      <Route path="/blogs/:slug" element={<PageTransition pathname={pathname}><BlogDetailPage /></PageTransition>} />
       <Route path="/ai" element={<PageTransition pathname={pathname}><AIPage /></PageTransition>} />
       <Route path="/services" element={<PageTransition pathname={pathname}><ServicesPage /></PageTransition>} />
       <Route path="/services/seo" element={<PageTransition pathname={pathname}><SEOPage /></PageTransition>} />

@@ -51,7 +51,7 @@ export const FooterSection = (): JSX.Element => {
   ];
 
   return (
-    <footer className="w-full mt-8 sm:mt-0">
+    <footer className="w-full mt-8 sm:mt-12">
       <Separator className="bg-gray-300 dark:bg-[#d9d9d91a] h-1 transition-colors duration-300" />
 
       <div className="flex flex-col py-6 sm:py-8 px-4 sm:px-6 pb-10 sm:pb-8 [padding-bottom:env(safe-area-inset-bottom)]">

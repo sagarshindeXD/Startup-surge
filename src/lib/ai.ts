@@ -17,15 +17,15 @@ export type FormState = {
     | "Niche"
     | "";
   audienceNature: string;
-  ageGroup: "Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+" | "";
-  objective:
+  ageGroup: ("Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+")[];
+  objective: (
     | "Lead Generation"
     | "Awareness"
     | "Google Ranking (SEO)"
     | "App Installs"
     | "Sales/Revenue"
     | "Engagement"
-    | "";
+  )[];
   leadGenBudgetINR?: string;
 };
 
@@ -77,8 +77,8 @@ Industry: ${form.industry} (${form.industryType.join(", ")})
 Offering: ${form.offering}
 Audience Segment: ${form.audienceSegment}
 Audience Nature: ${form.audienceNature}
-Age Group: ${form.ageGroup}
-Primary Objective: ${form.objective}
+Age Group: ${form.ageGroup.join(", ")}
+Primary Objective: ${form.objective.join(", ")}
 Lead Gen Budget (INR): ${form.leadGenBudgetINR || "-"}
 
 Guidance:

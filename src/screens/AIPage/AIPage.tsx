@@ -21,15 +21,15 @@ type FormState = {
     | "Niche"
     | "";
   audienceNature: string; // free text
-  ageGroup: "Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+" | "";
-  objective:
+  ageGroup: ("Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+")[];
+  objective: (
     | "Lead Generation"
     | "Awareness"
     | "Google Ranking (SEO)"
     | "App Installs"
     | "Sales/Revenue"
     | "Engagement"
-    | "";
+  )[];
   leadGenBudgetINR?: string; // only when objective is Lead Generation
 };
 
@@ -42,8 +42,8 @@ const initialState: FormState = {
   offering: "",
   audienceSegment: "",
   audienceNature: "",
-  ageGroup: "",
-  objective: "",
+  ageGroup: [],
+  objective: [],
   leadGenBudgetINR: "",
 };
 
@@ -65,6 +65,30 @@ export const AIPage: React.FC = () => {
     "SaaS",
   ];
 
+  // Age Group multiselect
+  const [ageOpen, setAgeOpen] = useState(false);
+  const ageRef = useRef<HTMLDivElement | null>(null);
+  const ageGroupOptions: (FormState["ageGroup"][number])[] = [
+    "Below 18",
+    "18-25",
+    "26-35",
+    "36-45",
+    "46-60",
+    "60+",
+  ];
+
+  // Objective multiselect
+  const [objectiveOpen, setObjectiveOpen] = useState(false);
+  const objectiveRef = useRef<HTMLDivElement | null>(null);
+  const objectiveOptions: (FormState["objective"][number])[] = [
+    "Lead Generation",
+    "Awareness",
+    "Google Ranking (SEO)",
+    "App Installs",
+    "Sales/Revenue",
+    "Engagement",
+  ];
+
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -72,7 +96,7 @@ export const AIPage: React.FC = () => {
     setForm((s) => ({ ...s, [name]: value }));
   };
 
-  // industryType selection handled via custom dropdown below
+  // Multiselect handlers (industryType, ageGroup, objective)
 
   const addIndustryType = (val: string) => {
     setForm((s) => {
@@ -88,12 +112,40 @@ export const AIPage: React.FC = () => {
     }));
   };
 
+  const addAgeGroup = (val: string) => {
+    setForm((s) => {
+      if (s.ageGroup.includes(val as any)) return s;
+      return { ...s, ageGroup: [...s.ageGroup, val as any] };
+    });
+  };
+
+  const removeAgeGroup = (val: string) => {
+    setForm((s) => ({
+      ...s,
+      ageGroup: s.ageGroup.filter((x) => x !== (val as any)) as FormState["ageGroup"],
+    }));
+  };
+
+  const addObjective = (val: string) => {
+    setForm((s) => {
+      if (s.objective.includes(val as any)) return s;
+      return { ...s, objective: [...s.objective, val as any] };
+    });
+  };
+
+  const removeObjective = (val: string) => {
+    setForm((s) => ({
+      ...s,
+      objective: s.objective.filter((x) => x !== (val as any)) as FormState["objective"],
+    }));
+  };
+
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
-      if (!industryRef.current) return;
-      if (!industryRef.current.contains(e.target as Node)) {
-        setIndustryOpen(false);
-      }
+      const target = e.target as Node;
+      if (industryRef.current && !industryRef.current.contains(target)) setIndustryOpen(false);
+      if (ageRef.current && !ageRef.current.contains(target)) setAgeOpen(false);
+      if (objectiveRef.current && !objectiveRef.current.contains(target)) setObjectiveOpen(false);
     };
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
@@ -108,9 +160,9 @@ export const AIPage: React.FC = () => {
       form.offering &&
       form.audienceSegment &&
       form.audienceNature.trim() &&
-      form.ageGroup &&
-      form.objective;
-    const leadGenNeedsBudget = form.objective === "Lead Generation" ? !!form.leadGenBudgetINR && form.leadGenBudgetINR.trim() !== "" : true;
+      form.ageGroup.length > 0 &&
+      form.objective.length > 0;
+    const leadGenNeedsBudget = form.objective.includes("Lead Generation") ? !!form.leadGenBudgetINR && form.leadGenBudgetINR.trim() !== "" : true;
     return !!baseValid && leadGenNeedsBudget;
   }, [form]);
 
@@ -172,7 +224,7 @@ export const AIPage: React.FC = () => {
       return "clear, benefit-led, trustworthy";
     };
     const formatByAge = () => {
-      const age = f.ageGroup || "";
+      const age = f.ageGroup || [];
       if (age.includes("18-25") || age.includes("Below 18")) return "short-form video, memes, trends";
       if (age.includes("26-35")) return "snappy reels + in-depth blogs/videos";
       if (age.includes("36-45") || age.includes("46-60") || age.includes("60+")) return "explainers, comparisons, testimonials";
@@ -248,7 +300,7 @@ export const AIPage: React.FC = () => {
       strategyByPlatforms.push("YouTube: long-form explainers", "SEO: problem-solution content hubs");
       contentStrategy.push("How-to guides", "Comparison blog posts", "FAQ-based shorts");
     }
-    if (/students/i.test(f.audienceNature) || f.ageGroup === "18-25") {
+    if (/students/i.test(f.audienceNature) || f.ageGroup.includes("18-25")) {
       platforms.add("Instagram");
       platforms.add("YouTube");
       platforms.add("TikTok (if available)");
@@ -327,21 +379,20 @@ export const AIPage: React.FC = () => {
 
     // Tone and format lines
     add(contentStrategy, `Tone: ${toneByAudience()}`, `Formats: ${formatByAge()}`);
-
     // Execution plan derived from objective and channels
     add(
       executionPlan,
       "Research ICP, competitors, keywords, creative angles",
-      f.objective === "Lead Generation" && "Spin up offer + lead magnet; set up conversion tracking",
-      f.objective === "Awareness" && "Plan always-on content calendar and creator partnerships",
-      (f.objective === "Sales/Revenue" || f.offering === "Product") && "Build offer stacks, bundles, and cart recovery",
-      f.objective === "Google Ranking (SEO)" && "Publish topic clusters; fix tech SEO and internal links",
+      f.objective.includes("Lead Generation") && "Spin up offer + lead magnet; set up conversion tracking",
+      f.objective.includes("Awareness") && "Plan always-on content calendar and creator partnerships",
+      (f.objective.includes("Sales/Revenue") || f.offering === "Product") && "Build offer stacks, bundles, and cart recovery",
+      f.objective.includes("Google Ranking (SEO)") && "Publish topic clusters; fix tech SEO and internal links",
       "Launch pilots across 2-3 priority channels; QA tracking",
       "Review results weekly; iterate creatives/funnels; scale winners"
     );
 
     // Objective-specific additions
-    if (f.objective === "Lead Generation") {
+    if (f.objective.includes("Lead Generation")) {
       strategyByPlatforms.push("Lead magnets & gated content", "Retargeting with social proof");
       elaboratedKPIs.push(
         "Cost per Lead (CPL): average ad spend required per qualified lead",
@@ -349,14 +400,14 @@ export const AIPage: React.FC = () => {
       );
       aida.action.push("Form submissions", "Instant meeting booking");
     }
-    if (f.objective === "Sales/Revenue") {
+    if (f.objective.includes("Sales/Revenue")) {
       strategyByPlatforms.push("Bundling/Offers", "Cart recovery & remarketing");
       elaboratedKPIs.push(
         "Average Order Value (AOV): mean basket size",
         "Revenue: gross sales attributed to campaigns"
       );
     }
-    if (f.objective === "Google Ranking (SEO)") {
+    if (f.objective.includes("Google Ranking (SEO)")) {
       platforms.add("SEO");
       strategyByPlatforms.push("Topical authority via hubs", "On-page + technical SEO improvements");
       elaboratedKPIs.push(
@@ -370,11 +421,11 @@ export const AIPage: React.FC = () => {
     // Important parameters tailored to objective
     add(
       importantParameters,
-      (f.objective === "Lead Generation" || f.offering === "Service") && "Cost per Lead (CPL)",
-      (f.objective === "Lead Generation" || f.objective === "Sales/Revenue") && "Cost per Acquisition (CPA)",
-      (f.objective === "Awareness") && "Reach & Effective Frequency",
-      (f.objective === "Google Ranking (SEO)") && "Keyword Topical Authority Score",
-      (f.objective === "Engagement") && "Engagement Rate (ER) by reach",
+      (f.objective.includes("Lead Generation") || f.offering === "Service") && "Cost per Lead (CPL)",
+      (f.objective.includes("Lead Generation") || f.objective.includes("Sales/Revenue")) && "Cost per Acquisition (CPA)",
+      (f.objective.includes("Awareness")) && "Reach & Effective Frequency",
+      (f.objective.includes("Google Ranking (SEO)")) && "Keyword Topical Authority Score",
+      (f.objective.includes("Engagement")) && "Engagement Rate (ER) by reach",
       "Click-Through Rate (CTR)",
       "Conversion Rate",
       (f.offering === "Product" || f.offering === "App") && "Retention / Lifetime Value (LTV)"
@@ -383,16 +434,16 @@ export const AIPage: React.FC = () => {
     // Our understanding and market research synthesis (personalized)
     ourUnderstanding.push(
       `Brand: ${f.brandName}`,
-      `Primary objective: ${f.objective || "N/A"}`,
+      `Primary objective: ${f.objective.length ? f.objective.join(", ") : "N/A"}`,
       `Offering: ${f.offering}`,
       `Industry: ${f.industry} (${f.industryType.join(", ") || "-"})`,
-      `Audience: ${f.audienceSegment || "-"}, ${f.ageGroup || "-"}`,
+      `Audience: ${f.audienceSegment || "-"}, ${f.ageGroup.length ? f.ageGroup.join(", ") : "-"}`,
       `Audience nature: ${f.audienceNature || "-"}`,
       `Target platform focus: ${f.targetPlatform || "-"}`
     );
 
     // Market research — dynamically phrased based on inputs
-    const audienceAge = f.ageGroup ? f.ageGroup.replace("-", "–") : "-";
+    const audienceAge = f.ageGroup && f.ageGroup.length ? f.ageGroup.join(", ").replace(/-/g, "–") : "-";
     const industryLower = f.industry ? f.industry.toLowerCase() : "the niche";
     const actives = preferredPlatforms.length ? preferredPlatforms.join(", ") : Array.from(platforms).join(", ") || "Community/SEO";
     add(
@@ -503,7 +554,7 @@ export const AIPage: React.FC = () => {
         "Influencer-led seeding to validate messaging before scaling ads",
         "Partnerships/Affiliates to tap into existing trust networks",
       ]),
-      recommendation: f.objective === "Lead Generation" && f.leadGenBudgetINR
+      recommendation: f.objective.includes("Lead Generation") && f.leadGenBudgetINR
         ? `Run gated lead magnet + retargeting on ${topPlatforms.includes("Meta Ads") || topPlatforms.includes("Instagram") ? "Meta/Instagram" : topPlatforms[0] || "priority channels"}; allocate ~${f.leadGenBudgetINR} INR initially and scale winners.`
         : `Prioritize ${topPlatforms.slice(0,2).join(" & ") || "the most relevant channels"} with fast experiments; keep weekly creative sprints and CRO.`,
     };
@@ -566,18 +617,18 @@ export const AIPage: React.FC = () => {
       {/* Navigation (match site) */}
       <SectionComponentNodeSection />
       <Helmet>
-        <title>AI Strategy Assistant | StartupSurge</title>
-        <meta name="description" content="Get a tailored, AIDA-based plan with platforms, strategies, KPIs and INR ad budgets based on your inputs." />
+        <title>Ask Sage | StartupSurge</title>
+        <meta name="description" content="Enter your details to get a crisp, channel-wise action plan with KPIs, timelines, and budgets." />
       </Helmet>
 
       {/* Hero/Header */}
       <section className="w-full py-10 sm:py-16 md:py-20 lg:py-28 relative px-3 sm:px-6 md:px-10 lg:px-16">
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto text-center">
           <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-8">
-            <span className="font-semibold text-[#ffa500]">AI</span> Strategy Assistant
+            <span className="font-semibold text-[#ffa500]">Ask</span> Sage
           </h1>
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white max-w-xl sm:max-w-3xl mx-auto leading-relaxed opacity-90">
-            Enter your details to receive a tailored plan with strategy, channels, KPIs, timeline and budget.
+            Enter your details to get a crisp, channel-wise action plan with KPIs, timelines, and budgets.
           </p>
         </div>
       </section>
@@ -687,33 +738,99 @@ export const AIPage: React.FC = () => {
             <input id="audienceNature" name="audienceNature" type="text" value={form.audienceNature} onChange={onChange} placeholder="e.g., Professionals, Students, Hobbyists" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="ageGroup" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Age Group</label>
-            <select id="ageGroup" name="ageGroup" value={form.ageGroup} onChange={onChange} className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]">
-              <option value="">Select</option>
-              <option value="Below 18">Below 18</option>
-              <option value="18-25">18-25</option>
-              <option value="26-35">26-35</option>
-              <option value="36-45">36-45</option>
-              <option value="46-60">46-60</option>
-              <option value="60+">60+</option>
-            </select>
+          <div className="flex flex-col" ref={ageRef}>
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Age Group</label>
+            <button
+              type="button"
+              onClick={() => setAgeOpen((o) => !o)}
+              className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
+            >
+              <span className="text-left truncate">
+                {form.ageGroup.length ? `${form.ageGroup.length} selected` : "Select age ranges"}
+              </span>
+              <svg className={`w-4 h-4 transition-transform ${ageOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
+              </svg>
+            </button>
+            {ageOpen && (
+              <div className="mt-1 max-h-56 overflow-auto rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow">
+                {ageGroupOptions.map((opt) => {
+                  const selected = form.ageGroup.includes(opt);
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => (selected ? removeAgeGroup(opt) : addAgeGroup(opt))}
+                      className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between hover:bg-orange-50/70 dark:hover:bg-[#2a2a2a] ${selected ? "bg-orange-50/70 dark:bg-[#232323]" : ""}`}
+                    >
+                      <span>{opt}</span>
+                      {selected && <span className="text-[#ffa500] font-semibold">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+            {form.ageGroup.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {form.ageGroup.map((t) => (
+                  <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
+                    {t}
+                    <button type="button" className="ml-1 text-orange-700 dark:text-orange-300" onClick={() => removeAgeGroup(t)} aria-label={`Remove ${t}`}>
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="flex flex-col md:col-span-2">
-            <label htmlFor="objective" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Objective</label>
-            <select id="objective" name="objective" value={form.objective} onChange={onChange} className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]">
-              <option value="">Select objective</option>
-              <option value="Lead Generation">Lead Generation</option>
-              <option value="Awareness">Awareness</option>
-              <option value="Google Ranking (SEO)">Google Ranking (SEO)</option>
-              <option value="App Installs">App Installs</option>
-              <option value="Sales/Revenue">Sales/Revenue</option>
-              <option value="Engagement">Engagement</option>
-            </select>
+          <div className="flex flex-col md:col-span-2" ref={objectiveRef}>
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Objective</label>
+            <button
+              type="button"
+              onClick={() => setObjectiveOpen((o) => !o)}
+              className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
+            >
+              <span className="text-left truncate">
+                {form.objective.length ? `${form.objective.length} selected` : "Select objectives"}
+              </span>
+              <svg className={`w-4 h-4 transition-transform ${objectiveOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
+              </svg>
+            </button>
+            {objectiveOpen && (
+              <div className="mt-1 max-h-56 overflow-auto rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow">
+                {objectiveOptions.map((opt) => {
+                  const selected = form.objective.includes(opt);
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => (selected ? removeObjective(opt) : addObjective(opt))}
+                      className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between hover:bg-orange-50/70 dark:hover:bg-[#2a2a2a] ${selected ? "bg-orange-50/70 dark:bg-[#232323]" : ""}`}
+                    >
+                      <span>{opt}</span>
+                      {selected && <span className="text-[#ffa500] font-semibold">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+            {form.objective.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {form.objective.map((t) => (
+                  <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
+                    {t}
+                    <button type="button" className="ml-1 text-orange-700 dark:text-orange-300" onClick={() => removeObjective(t)} aria-label={`Remove ${t}`}>
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
-          {form.objective === "Lead Generation" && (
+          {form.objective.includes("Lead Generation") && (
             <div className="flex flex-col md:col-span-2">
               <label htmlFor="leadGenBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Lead Gen Budget (INR)</label>
               <input id="leadGenBudgetINR" name="leadGenBudgetINR" type="number" value={form.leadGenBudgetINR} onChange={onChange} placeholder="e.g., 50000" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />

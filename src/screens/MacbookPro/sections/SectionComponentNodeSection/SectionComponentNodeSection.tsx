@@ -34,34 +34,15 @@ export const SectionComponentNodeSection = (): JSX.Element => {
     { text: "Services", href: "/services", isActive: location.pathname === "/services" },
     { text: "About", href: "/about", isActive: location.pathname === "/about" },
     { text: "Blogs", href: "/blogs", isActive: location.pathname === "/blogs" },
-    { text: "AI", href: "/ai", isActive: location.pathname === "/ai" },
+    { text: "Sage", href: "/ai", isActive: location.pathname === "/ai" },
   ];
 
   const handleLogoClick = () => {
     navigate('/');
   };
 
-  const handleNavItemClick = (text: string) => {
-    // Handle navigation based on the item clicked
-    switch (text.toLowerCase()) {
-      case 'home':
-        navigate('/');
-        break;
-      case 'services':
-        navigate('/services');
-        break;
-      case 'about':
-        navigate('/about');
-        break;
-      case 'blogs':
-        navigate('/blogs');
-        break;
-      case 'ai':
-        navigate('/ai');
-        break;
-      default:
-        navigate('/');
-    }
+  const handleNavItemClick = (href: string) => {
+    navigate(href);
   };
 
   return (
@@ -92,7 +73,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
                         ? "text-[#ffa500]" 
                         : "text-gray-800 dark:text-white hover:text-[#ffa500]"
                     }`}
-                    onClick={() => handleNavItemClick(item.text)}
+                    onClick={() => handleNavItemClick(item.href)}
                     style={{ textDecoration: 'none' }}
                   >
                     {item.text}
@@ -140,7 +121,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
                   className={`text-base font-medium text-left [font-family:'League_Spartan',Helvetica] px-3 py-3 rounded-md transition-colors duration-200 active:opacity-80 ${item.isActive ? 'text-[#ffa500]' : 'text-gray-800 dark:text-white hover:text-[#ffa500]'}`}
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    handleNavItemClick(item.text);
+                    handleNavItemClick(item.href);
                   }}
                 >
                   {item.text}

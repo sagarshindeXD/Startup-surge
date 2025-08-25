@@ -1,72 +1,25 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent } from "../../components/ui/card";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
+import { blogs } from "../../data/blogs";
 
 export const BlogsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [email, setEmail] = useState("");
 
-  // Sample blog data with social media and digital marketing themes
-  const blogPosts = [
-    {
-      id: 1,
-      title: "10 Social Media Marketing Trends That Will Dominate 2024",
-      excerpt: "Discover the latest social media strategies that are reshaping digital marketing and driving unprecedented engagement rates.",
-      category: "Social Media",
-      image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop&crop=center",
-      date: "March 15, 2024",
-      readTime: "5 min read",
-      author: "StartupSurge Team"
-    },
-    {
-      id: 2,
-      title: "The Ultimate Guide to Instagram Reels Marketing",
-      excerpt: "Learn how to leverage Instagram Reels to boost your brand visibility and connect with your target audience effectively.",
-      category: "Instagram Marketing",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-      date: "March 12, 2024",
-      readTime: "7 min read",
-      author: "Digital Marketing Experts"
-    },
-    {
-      id: 4,
-      title: "SEO Strategies for Social Media Success",
-      excerpt: "Combine the power of SEO and social media to create a comprehensive digital marketing strategy that drives results.",
-      category: "SEO & Social Media",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&crop=center",
-      date: "March 8, 2024",
-      readTime: "6 min read",
-      author: "SEO Specialists"
-    },
-    {
-      id: 5,
-      title: "Facebook Ads Optimization: From Beginner to Expert",
-      excerpt: "Transform your Facebook advertising campaigns with advanced optimization techniques and data-driven strategies.",
-      category: "Facebook Marketing",
-      image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop&crop=center",
-      date: "March 5, 2024",
-      readTime: "10 min read",
-      author: "Ad Optimization Pros"
-    },
-    {
-      id: 6,
-      title: "LinkedIn Marketing: B2B Social Media Mastery",
-      excerpt: "Unlock the potential of LinkedIn for B2B marketing with proven strategies to generate leads and build professional networks.",
-      category: "LinkedIn Marketing",
-      image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop&crop=center",
-      date: "March 3, 2024",
-      readTime: "9 min read",
-      author: "B2B Marketing Team"
-    }
-  ];
+  // Blog data is sourced from src/data/blogs
 
-  const categories = ["All", "Social Media", "Instagram Marketing", "SEO & Social Media", "Facebook Marketing", "LinkedIn Marketing"];
+  const categories = [
+    "All",
+    ...Array.from(new Set(blogs.map((b) => b.category)))
+  ];
 
   // Filter blog posts based on selected category
   const filteredPosts = activeCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+    ? blogs 
+    : blogs.filter(post => post.category === activeCategory);
 
   // Handle email subscription
   const handleSubscribe = (e: React.FormEvent) => {
@@ -130,7 +83,7 @@ export const BlogsPage: React.FC = () => {
             {filteredPosts.map((post) => (
               <Card key={post.id} className="border-0 bg-orange-50 dark:bg-[#2a2a2a] hover:bg-orange-100 dark:hover:bg-[#333] transition-all duration-300 cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e] active:scale-[0.98]" role="article" tabIndex={0} aria-label={`${post.title} by ${post.author}`}>
                 <CardContent className="p-0">
-                  <div className="relative overflow-hidden">
+                  <Link to={`/blogs/${post.slug}`} className="block relative overflow-hidden" aria-label={`Open blog: ${post.title}`}>
                     <img
                       src={post.image}
                       alt={post.title}
@@ -141,7 +94,7 @@ export const BlogsPage: React.FC = () => {
                         {post.category}
                       </span>
                     </div>
-                  </div>
+                  </Link>
                   <div className="p-3 sm:p-6">
                     <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">
                       <span>{post.date}</span>
@@ -149,7 +102,9 @@ export const BlogsPage: React.FC = () => {
                       <span>{post.readTime}</span>
                     </div>
                     <h3 className="font-['League_Spartan',Helvetica] text-base sm:text-xl font-semibold text-gray-800 dark:text-white mb-2 sm:mb-3 group-hover:text-[#ffa500] transition-colors duration-300">
-                      {post.title}
+                      <Link to={`/blogs/${post.slug}`} className="text-inherit no-underline hover:underline focus:outline-none focus:ring-2 focus:ring-[#ffa500] rounded-sm">
+                        {post.title}
+                      </Link>
                     </h3>
                     <p className="font-['League_Spartan',Helvetica] text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-2 sm:mb-4">
                       {post.excerpt}
@@ -158,9 +113,9 @@ export const BlogsPage: React.FC = () => {
                       <span className="font-['League_Spartan',Helvetica] text-xs sm:text-sm text-[#ffa500]">
                         {post.author}
                       </span>
-                      <button className="text-[#ffa500] hover:text-white transition-colors duration-300 font-['League_Spartan',Helvetica] text-xs sm:text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e] px-2 py-1 rounded-md" aria-label={`Read more: ${post.title}`}>
+                      <Link to={`/blogs/${post.slug}`} className="text-[#ffa500] hover:text-white transition-colors duration-300 font-['League_Spartan',Helvetica] text-xs sm:text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e] px-2 py-1 rounded-md" aria-label={`Read more: ${post.title}`}>
                         Read More →
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>

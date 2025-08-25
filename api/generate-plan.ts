@@ -18,15 +18,15 @@ type FormState = {
     | "Niche"
     | "";
   audienceNature: string;
-  ageGroup: "Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+" | "";
-  objective:
+  ageGroup: ("Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+")[];
+  objective: (
     | "Lead Generation"
     | "Awareness"
     | "Google Ranking (SEO)"
     | "App Installs"
     | "Sales/Revenue"
     | "Engagement"
-    | "";
+  )[];
   leadGenBudgetINR?: string;
 };
 
@@ -56,8 +56,8 @@ Industry: ${form.industry} (${form.industryType.join(", ")})
 Offering: ${form.offering}
 Audience Segment: ${form.audienceSegment}
 Audience Nature: ${form.audienceNature}
-Age Group: ${form.ageGroup}
-Primary Objective: ${form.objective}
+Age Group: ${form.ageGroup.join(", ")}
+Primary Objective: ${form.objective.join(", ")}
 Lead Gen Budget (INR): ${form.leadGenBudgetINR || "-"}
 
 Guidance:
@@ -65,7 +65,7 @@ Guidance:
 - Keep lists focused and non-redundant.
 - Ensure platforms and strategies align with inputs.
 - Do market reasearch yourself and provide relevant insights
-- Ads budget MUST be fixed as: Meta Ads = 10000 INR per campaign; Google Ads = 25000 INR per campaign.
+- Ads budget MUST be  as: Meta Ads = rs.10000 per campaign; Google Ads = 25000 INR per campaign.
 - Keep tone crisp and professional.
 `;
 }
@@ -94,8 +94,8 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: "Bad Request: expected JSON body" });
     }
     const form = body as FormState;
-    if (!form.brandName || !form.objective) {
-      return res.status(400).json({ error: "Bad Request: 'brandName' and 'objective' are required" });
+    if (!form.brandName || !Array.isArray(form.objective) || form.objective.length === 0) {
+      return res.status(400).json({ error: "Bad Request: 'brandName' and at least one 'objective' are required" });
     }
     const genAI = new GoogleGenerativeAI(key);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
