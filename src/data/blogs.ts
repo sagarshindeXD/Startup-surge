@@ -116,12 +116,12 @@ Here’s your starter kit:
  Start with Instagram AR filters (cheap, accessible, fun). Got a brand? Create a filter that lets users “try” your product. Even a digital advertising company with small budgets can pull this off.
 
 3.     Combine Forces
- This is where it gets spicy: AI + AR. Imagine AI-generated personalized AR experiences. Example: A skincare brand where AI analyzes your selfie and AR shows you the perfect product match. That’s not 2030—it’s already happening.
+ This is where it gets spicy: AI + AR. Imagine AI-generated personalized AR experiences. Example: A skincare brand where AI analyzes your selfie and AR shows you the perfect product match. That’s not 2030 it’s already happening.
 
 
 The Real Risk? Doing Nothing.
 Here’s the harsh truth: your competitors are already exploring this. While you’re debating whether AR is “worth it,” an agency is building immersive campaigns that blow yours out of the water. While you’re hesitating on AI, an SEO agency is generating blog strategies faster than you can say “Google ranking.”
-We’re not saying you need to abandon traditional tactics. SEO, PPC, email - it all still matters. But ignoring AI and AR in 2025 is like refusing to get on the internet in 2005.`,
+We’re not saying you need to abandon traditional tactics. SEO, PPC, email it all still matters. But ignoring AI and AR in 2025 is like refusing to get on the internet in 2005.`,
   },
   {
     id: 3,

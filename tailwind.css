@@ -21,10 +21,7 @@ html {
   overflow-y: scroll;
 }
 
-/* Enhanced smooth scrolling for webkit browsers */
-* {
-  -webkit-overflow-scrolling: touch;
-}
+/* Removed global -webkit-overflow-scrolling to prevent conflicts with Lenis */
 
 /* Theme switch overlay animation */
 .theme-overlay {

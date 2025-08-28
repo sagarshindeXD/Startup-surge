@@ -53,7 +53,7 @@ export const BlogDetailPage: React.FC = () => {
 
         <div className="prose max-w-none prose-orange dark:prose-invert">
           {post.content.split(/\n\n+/).map((para, idx) => (
-            <p key={idx} className="text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-7 sm:leading-8 mb-4">
+            <p key={idx} className="text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-7 sm:leading-8 mb-4 whitespace-pre-line">
               {para}
             </p>
           ))}
