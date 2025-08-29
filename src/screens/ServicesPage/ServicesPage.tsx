@@ -101,7 +101,7 @@ export const ServicesPage = (): JSX.Element => {
   return (
     <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300">
       <Helmet>
-        <title>Services | StartupSurge® — Startup Marketing, SEO, SMM, Performance</title>
+        <title>Services | StartupSurge® | Startup Marketing, SEO, SMM, Performance</title>
         <meta name="description" content="Explore StartupSurge services: SEO, social media marketing, performance marketing, UI/UX, web design, email, WhatsApp, influencer marketing and more." />
         <link rel="canonical" href="https://www.startupsurge.in/services" />
       </Helmet>

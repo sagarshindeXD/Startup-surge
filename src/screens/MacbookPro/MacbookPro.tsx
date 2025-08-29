@@ -118,10 +118,10 @@ export const MacbookPro = (): JSX.Element => {
       data-model-id="1:5"
     >
       <Helmet>
-        <title>StartupSurge® — Startup Marketing Agency | SEO, Social, Performance</title>
+        <title>StartupSurge® | Startup Marketing Agency | SEO, Social, Performance</title>
         <meta name="description" content="Grow your startup with SEO, performance marketing, social media, UI/UX and web design. StartupSurge delivers traffic, leads, and revenue." />
         <link rel="canonical" href="https://www.startupsurge.in/" />
-        <meta property="og:title" content="StartupSurge® — Startup Marketing Agency" />
+        <meta property="og:title" content="StartupSurge® | Startup Marketing Agency" />
         <meta property="og:description" content="SEO, performance marketing, social media, UI/UX and web design for startups." />
         <meta property="og:url" content="https://www.startupsurge.in/" />
       </Helmet>

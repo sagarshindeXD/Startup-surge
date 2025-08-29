@@ -32,7 +32,7 @@ export const AboutPage: React.FC = () => {
       id: "go-beyond-imagination",
       title: "Go Beyond ",
       titleHighlight: "Imagination",
-      content: "We don't just meet expectations—we shatter them. Our creative team pushes forward the boundaries of what's possible, exploring uncharted territories in digital innovation to deliver experiences that are not just memorable, but truly extraordinary and beyond what anyone could have imagined."
+      content: "We don't just meet expectations; we shatter them. Our creative team pushes forward the boundaries of what's possible, exploring uncharted territories in digital innovation to deliver experiences that are not just memorable, but truly extraordinary and beyond what anyone could have imagined."
     }
   ];
   
@@ -97,7 +97,7 @@ export const AboutPage: React.FC = () => {
       variants={pageTransition}
     >
       <Helmet>
-        <title>About Us | StartupSurge® — Digital Marketing Agency for Startups</title>
+        <title>About Us | StartupSurge® | Digital Marketing Agency for Startups</title>
         <meta name="description" content="Learn about StartupSurge: a startup-focused marketing agency delivering SEO, performance marketing, social media, UI/UX and web design." />
         <link rel="canonical" href="https://www.startupsurge.in/about" />
       </Helmet>

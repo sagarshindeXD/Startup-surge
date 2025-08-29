@@ -16,6 +16,7 @@ import {
   SocialMediaMarketingPage,
   PerformanceMarketingPage,
   UIUXDesignerPage,
+  GraphicDesignerPage,
   EcommerceMarketingPage,
   WhatsAppMarketingPage,
   EmailMarketingPage,
@@ -39,6 +40,7 @@ const AnimatedRoutes = () => {
       <Route path="/services/social-media-marketing" element={<PageTransition pathname={pathname}><SocialMediaMarketingPage /></PageTransition>} />
       <Route path="/services/performance-marketing" element={<PageTransition pathname={pathname}><PerformanceMarketingPage /></PageTransition>} />
       <Route path="/services/ui-ux-designer" element={<PageTransition pathname={pathname}><UIUXDesignerPage /></PageTransition>} />
+      <Route path="/services/graphic-designer" element={<PageTransition pathname={pathname}><GraphicDesignerPage /></PageTransition>} />
       <Route path="/services/ecommerce-marketing" element={<PageTransition pathname={pathname}><EcommerceMarketingPage /></PageTransition>} />
       <Route path="/services/whatsapp-marketing" element={<PageTransition pathname={pathname}><WhatsAppMarketingPage /></PageTransition>} />
       <Route path="/services/email-marketing" element={<PageTransition pathname={pathname}><EmailMarketingPage /></PageTransition>} />

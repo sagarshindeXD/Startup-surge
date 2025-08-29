@@ -64,7 +64,7 @@ export const SupportFormSection = (): JSX.Element => {
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl mb-8 transition-colors duration-300">
-                Share your goals—our team will reply with a plan and next steps.
+                Share your goals with us, and our team will reply with a plan and next steps.
               </p>
             </div>
               
