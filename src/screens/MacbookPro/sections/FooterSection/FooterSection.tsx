@@ -77,6 +77,14 @@ export const FooterSection = (): JSX.Element => {
           <div className="text-center mt-1 sm:mt-4">
             <p className="text-gray-800 dark:text-white text-xs sm:text-sm font-['League_Spartan',Helvetica] transition-colors duration-300">
               © 2024 <span className="text-gray-800 dark:text-white">Startup</span><span className="text-[#ffa500]">Surge</span>. All rights reserved.
+              {' '}
+              <a 
+                href="/privacy-policy" 
+                className="text-[#ffa500] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffa500] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#1e1e1e] rounded-sm"
+                aria-label="Privacy Policy"
+              >
+                Privacy Policy
+              </a>
             </p>
           </div>
         </div>

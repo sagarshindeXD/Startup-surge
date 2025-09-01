@@ -22,6 +22,7 @@ import {
   EmailMarketingPage,
   InfluencerMarketingPage,
 } from "./screens/ServicePages";
+import { PrivacyPolicyPage } from "./screens/PrivacyPolicyPage/PrivacyPolicyPage";
 
 // AnimatedRoutes component to handle route transitions
 const AnimatedRoutes = () => {
@@ -45,6 +46,7 @@ const AnimatedRoutes = () => {
       <Route path="/services/whatsapp-marketing" element={<PageTransition pathname={pathname}><WhatsAppMarketingPage /></PageTransition>} />
       <Route path="/services/email-marketing" element={<PageTransition pathname={pathname}><EmailMarketingPage /></PageTransition>} />
       <Route path="/services/influencer-marketing" element={<PageTransition pathname={pathname}><InfluencerMarketingPage /></PageTransition>} />
+      <Route path="/privacy-policy" element={<PageTransition pathname={pathname}><PrivacyPolicyPage /></PageTransition>} />
     </Routes>
   );
 };
