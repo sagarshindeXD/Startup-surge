@@ -57,10 +57,10 @@ export const SupportFormSection = (): JSX.Element => {
             <div className="flex flex-col items-center mb-8">
               <div className="flex items-center justify-center mb-6">
                 <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl transition-colors duration-300">
-                  Ready to
+                  Ready To 
                 </span>
                 <span className="font-['League_Spartan',Helvetica] font-semibold text-[#ffa500] text-2xl md:text-4xl ml-2">
-                  surge
+                  Surge ?
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl mb-8 transition-colors duration-300">

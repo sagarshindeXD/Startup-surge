@@ -18,7 +18,8 @@
         "/services/ecommerce-marketing",
         "/services/whatsapp-marketing",
         "/services/email-marketing",
-        "/services/influencer-marketing"
+        "/services/influencer-marketing",
+        "/privacy-policy"
       ],
       "isRoot": true
     }
