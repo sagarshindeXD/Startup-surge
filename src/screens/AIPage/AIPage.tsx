@@ -711,10 +711,66 @@ export const AIPage: React.FC = () => {
     setSubmitted(true);
     setError(null);
     setLoading(true);
+    // Helper: merge AI output (freeform) into our strict schema using heuristic as a baseline
+    const mergeWithHeuristic = (ai: any): Recommendations => {
+      const base = recommend(form);
+      const arr = (v: any) => (Array.isArray(v) ? v.filter(Boolean) : undefined);
+      const epbp = (v: any) => {
+        if (!Array.isArray(v)) return undefined;
+        const mapped = v.map((x: any) => ({
+          platform: String(x.platform || x.name || x.title || "").trim(),
+          organic: arr(x.organic) || undefined,
+          paid: arr(x.paid) || undefined,
+          other: arr(x.other) || undefined,
+        }));
+        const filtered = mapped.filter((x) => !!x.platform);
+        // Type guard to ensure platform is a non-empty string
+        return filtered as { platform: string; organic?: string[]; paid?: string[]; other?: string[] }[];
+      };
+      const mr = ai?.marketResearchDetailed;
+      const merged: Recommendations = {
+        ...base,
+        ourUnderstanding: arr(ai?.ourUnderstanding) || base.ourUnderstanding,
+        objectiveElaborated: arr(ai?.objectiveElaborated) || base.objectiveElaborated,
+        marketResearch: arr(ai?.marketResearch) || base.marketResearch,
+        marketResearchDetailed: mr ? {
+          potentialAudience: arr(mr.potentialAudience) || base.marketResearchDetailed?.potentialAudience || [],
+          competition: arr(mr.competition) || base.marketResearchDetailed?.competition || [],
+          marketShare: arr(mr.marketShare) || base.marketResearchDetailed?.marketShare || [],
+          opportunity: arr(mr.opportunity) || base.marketResearchDetailed?.opportunity || [],
+        } : base.marketResearchDetailed,
+        platforms: arr(ai?.platforms) || base.platforms,
+        platformsSelected: arr(ai?.platformsSelected) || base.platformsSelected || base.platforms,
+        platformsRecommended: arr(ai?.platformsRecommended) || base.platformsRecommended,
+        strategyByPlatforms: arr(ai?.strategyByPlatforms) || base.strategyByPlatforms,
+        contentStrategy: arr(ai?.contentStrategy) || base.contentStrategy,
+        aidaFunnel: base.aidaFunnel, // keep internal for now
+        executionPlan: arr(ai?.executionPlan) || base.executionPlan,
+        executionPlanByPlatform: epbp(ai?.executionPlanByPlatform) || base.executionPlanByPlatform,
+        importantParameters: arr(ai?.importantParameters) || base.importantParameters,
+        elaboratedKPIs: arr(ai?.elaboratedKPIs) || base.elaboratedKPIs,
+        adsBudgetINR: base.adsBudgetINR, // enforce rule-based budgets
+        alternatives: [],
+        recommendation: typeof ai?.recommendation === 'string' && ai.recommendation.trim() ? ai.recommendation : base.recommendation,
+      };
+      return merged;
+    };
+
     try {
-      // Use heuristic generator to guarantee the exact structure and visibility of all sections
-      const fallback = recommend(form);
-      setRecos(fallback);
+      // Prefer serverless API; normalize/merge with heuristic for guaranteed structure
+      const viaApi = await generatePlanViaApi(form);
+      setRecos(mergeWithHeuristic(viaApi));
+    } catch (errApi: any) {
+      try {
+        // Try client AI
+        const viaClient = await generatePlan(form);
+        setRecos(mergeWithHeuristic(viaClient));
+      } catch (errClient: any) {
+        // Fallback to heuristic
+        const fallback = recommend(form);
+        setRecos(fallback);
+        setError(errApi?.message || errClient?.message || null);
+      }
     } finally {
       setLoading(false);
     }
