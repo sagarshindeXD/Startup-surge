@@ -54,19 +54,21 @@ export const BlogDetailPage: React.FC = () => {
           </div>
         )}
 
-        <div className="prose max-w-none prose-orange dark:prose-invert">
+        <div className="prose max-w-none prose-orange dark:prose-invert blog-content">
           {post.content.split(/\n\n+/).map((para, idx) => {
-            // Check if paragraph is a subheading (ends with a colon)
-            const isSubheading = para.trim().endsWith(':');
-            const className = `text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-7 sm:leading-8 mb-4 whitespace-pre-line ${isSubheading ? 'font-bold' : ''}`;
-            
+            const className = "text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-7 sm:leading-8 mb-4 whitespace-pre-line";
             return (
               <p key={idx} className={className}>
-                {para}
+                <span dangerouslySetInnerHTML={{ __html: para }} />
               </p>
             );
           })}
         </div>
+
+        {/* Scoped styling for subheadings within blog content */}
+        <style>{`
+          .blog-content strong { color: #ffa500; }
+        `}</style>
 
         <div className="mt-10">
           <Link to="/blogs" className="text-[#ffa500] hover:underline">← Back To Blogs</Link>

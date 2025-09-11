@@ -635,9 +635,10 @@ export const AIPage: React.FC = () => {
       {/* Hero/Header */}
       <section className="w-full py-10 sm:py-16 md:py-20 lg:py-28 relative px-3 sm:px-6 md:px-10 lg:px-16">
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto text-center">
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-8 text-white">
+          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] text-white">
             Ask <span className="font-semibold text-[#ffa500]">Sage</span>
           </h1>
+          <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4 mx-auto mb-4 sm:mb-6"></div>
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white max-w-xl sm:max-w-3xl mx-auto leading-relaxed opacity-90">
             Enter Your Details To Get A Crisp, Channel-Wise Action Plan With KPIs, Timelines, And Budgets.
           </p>

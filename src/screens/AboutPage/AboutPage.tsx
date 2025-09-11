@@ -109,8 +109,8 @@ export const AboutPage: React.FC = () => {
       
       {/* Hero Section - Desktop Version */}
       <section className="hidden sm:block w-full py-8 sm:py-20 md:py-28 lg:py-32 relative px-2 sm:px-4 md:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-left">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 gap-12 items-center">
+          <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -167,13 +167,6 @@ export const AboutPage: React.FC = () => {
               </p>
             </div>
           </motion.div>
-          </div>
-          <div className="hidden lg:block">
-            <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-              alt="StartupSurge Team" 
-              className="rounded-lg shadow-2xl w-full h-auto object-cover"
-            />
           </div>
         </div>
       </section>
