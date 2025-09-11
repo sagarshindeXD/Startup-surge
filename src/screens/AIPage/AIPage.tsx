@@ -714,14 +714,25 @@ export const AIPage: React.FC = () => {
     // Helper: merge AI output (freeform) into our strict schema using heuristic as a baseline
     const mergeWithHeuristic = (ai: any): Recommendations => {
       // When AI succeeds, we prefer AI content entirely; we only use safe defaults (empty lists)
-      const arr = (v: any) => (Array.isArray(v) ? v.filter(Boolean) : undefined);
+      const toList = (v: any): string[] | undefined => {
+        if (!v) return undefined;
+        if (Array.isArray(v)) return v.filter(Boolean).map((s) => String(s));
+        if (typeof v === 'string') {
+          // Split paragraphs/markdown into bullet-like lines
+          return v
+            .split(/\r?\n+/)
+            .map((s) => s.replace(/^\s*[-*#]+\s*/, '').trim())
+            .filter(Boolean);
+        }
+        return undefined;
+      };
       const epbp = (v: any) => {
         if (!Array.isArray(v)) return undefined;
         const mapped = v.map((x: any) => ({
           platform: String(x.platform || x.name || x.title || "").trim(),
-          organic: arr(x.organic) || undefined,
-          paid: arr(x.paid) || undefined,
-          other: arr(x.other) || undefined,
+          organic: toList(x.organic) || undefined,
+          paid: toList(x.paid) || undefined,
+          other: toList(x.other) || undefined,
         }));
         const filtered = mapped.filter((x) => !!x.platform);
         // Type guard to ensure platform is a non-empty string
@@ -794,25 +805,25 @@ export const AIPage: React.FC = () => {
 
       const merged: Recommendations = {
         // Do NOT inject heuristic content when AI is available; provide AI values or empty defaults
-        ourUnderstanding: arr(ai?.ourUnderstanding) || [],
-        objectiveElaborated: arr(ai?.objectiveElaborated) || [],
-        marketResearch: arr(ai?.marketResearch) || [],
+        ourUnderstanding: toList(ai?.ourUnderstanding) || [],
+        objectiveElaborated: toList(ai?.objectiveElaborated) || [],
+        marketResearch: toList(ai?.marketResearch) || [],
         marketResearchDetailed: mr ? {
-          potentialAudience: arr(mr.potentialAudience) || [],
-          competition: arr(mr.competition) || [],
-          marketShare: arr(mr.marketShare) || [],
-          opportunity: arr(mr.opportunity) || [],
+          potentialAudience: toList(mr.potentialAudience) || [],
+          competition: toList(mr.competition) || [],
+          marketShare: toList(mr.marketShare) || [],
+          opportunity: toList(mr.opportunity) || [],
         } : undefined,
-        platforms: arr(ai?.platforms) || [],
-        platformsSelected: arr(ai?.platformsSelected) || arr(ai?.platforms) || [],
-        platformsRecommended: arr(ai?.platformsRecommended) || [],
-        strategyByPlatforms: arr(ai?.strategyByPlatforms) || [],
-        contentStrategy: arr(ai?.contentStrategy) || [],
+        platforms: toList(ai?.platforms) || [],
+        platformsSelected: toList(ai?.platformsSelected) || toList(ai?.platforms) || [],
+        platformsRecommended: toList(ai?.platformsRecommended) || [],
+        strategyByPlatforms: toList(ai?.strategyByPlatforms) || [],
+        contentStrategy: toList(ai?.contentStrategy) || [],
         aidaFunnel: { awareness: [], interest: [], desire: [], action: [] },
-        executionPlan: arr(ai?.executionPlan) || [],
+        executionPlan: toList(ai?.executionPlan) || [],
         executionPlanByPlatform: epbp(ai?.executionPlanByPlatform),
-        importantParameters: arr(ai?.importantParameters) || [],
-        elaboratedKPIs: arr(ai?.elaboratedKPIs) || [],
+        importantParameters: toList(ai?.importantParameters) || [],
+        elaboratedKPIs: toList(ai?.elaboratedKPIs) || [],
         adsBudgetINR: (aiAds && aiAds.length ? aiAds : undefined),
         alternatives: [],
         recommendation: typeof ai?.recommendation === 'string' && ai.recommendation.trim() ? ai.recommendation : '',
