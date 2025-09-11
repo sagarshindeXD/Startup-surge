@@ -713,7 +713,7 @@ export const AIPage: React.FC = () => {
     setLoading(true);
     // Helper: merge AI output (freeform) into our strict schema using heuristic as a baseline
     const mergeWithHeuristic = (ai: any): Recommendations => {
-      const base = recommend(form);
+      // When AI succeeds, we prefer AI content entirely; we only use safe defaults (empty lists)
       const arr = (v: any) => (Array.isArray(v) ? v.filter(Boolean) : undefined);
       const epbp = (v: any) => {
         if (!Array.isArray(v)) return undefined;
@@ -728,44 +728,100 @@ export const AIPage: React.FC = () => {
         return filtered as { platform: string; organic?: string[]; paid?: string[]; other?: string[] }[];
       };
       const mr = ai?.marketResearchDetailed;
-      // Prefer AI-provided ads budget if shape looks valid; otherwise fallback to base (rule-computed)
+      // Prefer AI-provided ads budget if shape looks valid; validate against monthly budget rules
       const aiAdsRaw = Array.isArray(ai?.adsBudgetINR) ? ai.adsBudgetINR : undefined;
-      const aiAds = aiAdsRaw?.map((r: any) => ({
+      const aiAdsPre = aiAdsRaw?.map((r: any) => ({
         channel: typeof r?.channel === 'string' ? r.channel : undefined,
         budgetINR: typeof r?.budgetINR === 'string' ? r.budgetINR : undefined,
         notes: typeof r?.notes === 'string' ? r.notes : undefined,
       })).filter((r: any) => r.channel && r.budgetINR);
 
+      const parseINRNum = (s?: string) => {
+        if (!s) return undefined;
+        const n = parseInt(String(s).replace(/[^0-9]/g, ''), 10);
+        return Number.isFinite(n) ? n : undefined;
+      };
+      const monthly = parseINRNum(form.overallBudgetINR);
+      const fmtINR = (n: number) => `₹${n.toLocaleString('en-IN')}`;
+
+      const clamp = (val: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, val));
+
+      const aiAds = aiAdsPre?.map((row: { channel: string; budgetINR: string; notes?: string }) => {
+        let amt = parseINRNum(row.budgetINR) || 0;
+
+        if (/(meta|instagram|facebook)/i.test(row.channel!)) {
+          const min = 10000;
+          const pct = monthly !== undefined ? Math.round(monthly * 0.2) : undefined;
+          const need = pct !== undefined ? Math.max(min, pct) : min;
+          if (amt < need) amt = need;
+          return { channel: row.channel!, budgetINR: fmtINR(amt), notes: row.notes };
+        }
+
+        if (/linkedin/i.test(row.channel!)) {
+          const min = 15000;
+          const pct = monthly !== undefined ? Math.round(monthly * 0.3) : undefined;
+          const need = pct !== undefined ? Math.max(min, pct) : min;
+          if (amt < need) amt = need;
+          return { channel: row.channel!, budgetINR: fmtINR(amt), notes: row.notes };
+        }
+
+        if (/whatsapp/i.test(row.channel!)) {
+          const cap = monthly !== undefined ? Math.round(monthly * 0.1) : undefined;
+          const limit = cap !== undefined ? Math.min(5000, cap) : 5000;
+          if (amt > limit) amt = limit;
+          return { channel: row.channel!, budgetINR: fmtINR(amt), notes: row.notes };
+        }
+
+        if (/(google|search|pmax|performance\s*max)/i.test(row.channel!)) {
+          const min = 25000;
+          if (monthly !== undefined) {
+            const lo = Math.round(monthly * 0.5);
+            const mid = Math.round(monthly * 0.6);
+            const hi = Math.round(monthly * 0.7);
+            // Move into [lo, hi] band, prefer closest target within band; enforce min
+            let target = clamp(amt || mid, lo, hi);
+            target = Math.max(target, min);
+            amt = target;
+          } else {
+            amt = Math.max(amt, min);
+          }
+          return { channel: row.channel!, budgetINR: fmtINR(amt), notes: row.notes };
+        }
+
+        // Unknown channel: leave as-is
+        return { channel: row.channel!, budgetINR: fmtINR(amt || 0), notes: row.notes };
+      });
+
       const merged: Recommendations = {
-        ...base,
-        ourUnderstanding: arr(ai?.ourUnderstanding) || base.ourUnderstanding,
-        objectiveElaborated: arr(ai?.objectiveElaborated) || base.objectiveElaborated,
-        marketResearch: arr(ai?.marketResearch) || base.marketResearch,
+        // Do NOT inject heuristic content when AI is available; provide AI values or empty defaults
+        ourUnderstanding: arr(ai?.ourUnderstanding) || [],
+        objectiveElaborated: arr(ai?.objectiveElaborated) || [],
+        marketResearch: arr(ai?.marketResearch) || [],
         marketResearchDetailed: mr ? {
-          potentialAudience: arr(mr.potentialAudience) || base.marketResearchDetailed?.potentialAudience || [],
-          competition: arr(mr.competition) || base.marketResearchDetailed?.competition || [],
-          marketShare: arr(mr.marketShare) || base.marketResearchDetailed?.marketShare || [],
-          opportunity: arr(mr.opportunity) || base.marketResearchDetailed?.opportunity || [],
-        } : base.marketResearchDetailed,
-        platforms: arr(ai?.platforms) || base.platforms,
-        platformsSelected: arr(ai?.platformsSelected) || base.platformsSelected || base.platforms,
-        platformsRecommended: arr(ai?.platformsRecommended) || base.platformsRecommended,
-        strategyByPlatforms: arr(ai?.strategyByPlatforms) || base.strategyByPlatforms,
-        contentStrategy: arr(ai?.contentStrategy) || base.contentStrategy,
-        aidaFunnel: base.aidaFunnel, // keep internal for now
-        executionPlan: arr(ai?.executionPlan) || base.executionPlan,
-        executionPlanByPlatform: epbp(ai?.executionPlanByPlatform) || base.executionPlanByPlatform,
-        importantParameters: arr(ai?.importantParameters) || base.importantParameters,
-        elaboratedKPIs: arr(ai?.elaboratedKPIs) || base.elaboratedKPIs,
-        adsBudgetINR: (aiAds && aiAds.length ? aiAds : base.adsBudgetINR),
+          potentialAudience: arr(mr.potentialAudience) || [],
+          competition: arr(mr.competition) || [],
+          marketShare: arr(mr.marketShare) || [],
+          opportunity: arr(mr.opportunity) || [],
+        } : undefined,
+        platforms: arr(ai?.platforms) || [],
+        platformsSelected: arr(ai?.platformsSelected) || arr(ai?.platforms) || [],
+        platformsRecommended: arr(ai?.platformsRecommended) || [],
+        strategyByPlatforms: arr(ai?.strategyByPlatforms) || [],
+        contentStrategy: arr(ai?.contentStrategy) || [],
+        aidaFunnel: { awareness: [], interest: [], desire: [], action: [] },
+        executionPlan: arr(ai?.executionPlan) || [],
+        executionPlanByPlatform: epbp(ai?.executionPlanByPlatform),
+        importantParameters: arr(ai?.importantParameters) || [],
+        elaboratedKPIs: arr(ai?.elaboratedKPIs) || [],
+        adsBudgetINR: (aiAds && aiAds.length ? aiAds : undefined),
         alternatives: [],
-        recommendation: typeof ai?.recommendation === 'string' && ai.recommendation.trim() ? ai.recommendation : base.recommendation,
+        recommendation: typeof ai?.recommendation === 'string' && ai.recommendation.trim() ? ai.recommendation : '',
       };
       return merged;
     };
 
     try {
-      // Prefer serverless API; normalize/merge with heuristic for guaranteed structure
+      // Prefer serverless API; normalize and show only AI content
       const viaApi = await generatePlanViaApi(form);
       setRecos(mergeWithHeuristic(viaApi));
     } catch (errApi: any) {
@@ -774,10 +830,9 @@ export const AIPage: React.FC = () => {
         const viaClient = await generatePlan(form);
         setRecos(mergeWithHeuristic(viaClient));
       } catch (errClient: any) {
-        // Fallback to heuristic
-        const fallback = recommend(form);
-        setRecos(fallback);
-        setError(errApi?.message || errClient?.message || null);
+        // AI unavailable: show message and no plan (no heuristic fallback)
+        setRecos(null);
+        setError("Sage is taking a quick coffee break ☕. We’ll show your AI-generated plan as soon as it’s back online.");
       }
     } finally {
       setLoading(false);
