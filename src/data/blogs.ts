@@ -37,7 +37,7 @@ That's the magic. Reels don't ask for permission, they demand attention. And unl
 Instagram figured this out by watching TikTok eat its lunch. Attention shifted, and Instagram had no choice but to follow. Now, Reels are the algorithm’s golden child, and the best way for startups, creators, and even big brands to get discovered.
 <strong>The New Marketing Rulebook: Entertainment First, Branding Second</strong>
 Here's the uncomfortable truth: nobody logs into Instagram to be sold to. They come to laugh, learn, and escape. That means your Reels can't feel like ads; they need to feel like content.
-Take a brand we worked with at Startup Surge. Their carousels were gorgeous but dead on arrival. We flipped the strategy: instead of “5 SEO tips you need,” we shot a Reel of the founder saying:
+Take a brand we worked with at StartupSurge. Their carousels were gorgeous but dead on arrival. We flipped the strategy: instead of “5 SEO tips you need,” we shot a Reel of the founder saying:
 “Ever Google yourself and cringe at what shows up? Yeah, your customers are doing that too.”
 That hook? Instant relatability. That’s the trick: speak like a human, not a brand. Once you’ve earned attention, you can layer in the branding.
 
@@ -194,7 +194,7 @@ Consumers today don’t want to be hunted. They want to belong. And the startups
 <strong>Cookies Crumble, Trust Stays</strong>
 The “death of the cookie” isn’t the end of digital marketing, it’s the start of a better one. A cleaner, more human, more authentic ecosystem where creativity beats stalking, and connection beats clicks.
 For startups, this is your chance. Don’t think of it as losing a tool. Think of it as gaining freedom to market the way people actually want to be marketed to.
-And if you’re ready to future-proof your startup with smart digital marketing services, let’s talk. Startup Surge isn’t just another agency. We’re your growth partners in this privacy-first era.
+And if you’re ready to future-proof your startup with smart digital marketing services, let’s talk. StartupSurge isn’t just another agency. We’re your growth partners in this privacy-first era.
 Because in 2025, ads don’t chase people anymore. Brands attract them. And the startups who understand this shift? They won’t just survive the cookie apocalypse, they’ll thrive in it.`,
   },
   {
@@ -250,7 +250,7 @@ Here’s your cheat sheet:
 • Turn scarcity into hype.
 • Let your customers be your voice.
 
-At Startup Surge, we’ve built our reputation as the best digital marketing agency in Mumbai by helping founders like you do more with less. Because at the end of the day, growth isn’t about how much money you spend. It’s about how much value you create, how many people you touch, and how consistently you show up.
+At StartupSurge, we’ve built our reputation as the best digital marketing agency in Mumbai by helping founders like you do more with less. Because at the end of the day, growth isn’t about how much money you spend. It’s about how much value you create, how many people you touch, and how consistently you show up.
 And if you’re bootstrapping your way to greatness, you’re already on the right path.`,
   },
   {
@@ -268,7 +268,7 @@ And if you’re bootstrapping your way to greatness, you’re already on the rig
     author: "StartupSurge Team",
     content: `Every unicorn you know today - from Swiggy to Spotify, started with exactly zero customers.
 The difference between “just an idea” and “a living, breathing business”? The ability to get those first 1,000 humans to believe in your vision.
-It sounds small compared to millions of users, but trust us at Startup Surge: the first 1,000 are the hardest and the most important. They are the proof your product works, the fans who spread your story, and the fuel that gets you investor-ready.
+It sounds small compared to millions of users, but trust us at StartupSurge: the first 1,000 are the hardest and the most important. They are the proof your product works, the fans who spread your story, and the fuel that gets you investor-ready.
 So, how do you actually go from “Hey, I’ve got this idea” → to “Wow, we have 1,000 paying customers”? Let’s break down the digital playbook.
 
 <strong>Step 1: Nail the Story Before the Strategy</strong>
@@ -322,7 +322,7 @@ Your creativity is your currency, and in a world drowning in ads, that's your un
 
 Here's the truth: your first 1,000 customers won't just bring revenue. They'll give you feedback, referrals, and a foundation to scale. They'll be the ones cheering for you when nobody else knows your name.
 
-At Startup Surge, we've helped founders in every niche, from e-commerce to edtech, hit that magical milestone. If there's one thing we've learned, it's this: the playbook isn't about money; it's about mindset.
+At StartupSurge, we've helped founders in every niche, from e-commerce to edtech, hit that magical milestone. If there's one thing we've learned, it's this: the playbook isn't about money; it's about mindset.
 
 Start small, stay consistent, and get creative. Your idea deserves more than likes; it deserves to change lives. And those first 1,000 customers? They're waiting for you to start.`,
   },
@@ -341,7 +341,7 @@ Start small, stay consistent, and get creative. Your idea deserves more than lik
     author: "StartupSurge Team",
     content: `Scroll through Instagram or Twitter, and you’ll see it - a Zomato one-liner making you chuckle while you’re hungry, or a quirky Dunzo post that somehow feels like it was written by your sarcastic best friend.
 These brands aren’t just delivering food or parcels. They’re delivering moments, emotions, and memes. And they’ve nailed something every startup founder in India dreams of: going viral without blowing up the budget.
-At Startup Surge - a digital agency in Mumbai that studies and builds growth playbooks for startups, we often get asked: “How do we replicate Zomato’s vibe? How can we do what Dunzo does, but for our brand?”
+At StartupSurge - a digital agency in Mumbai that studies and builds growth playbooks for startups, we often get asked: “How do we replicate Zomato’s vibe? How can we do what Dunzo does, but for our brand?”
 Here’s the breakdown:
 
 <strong>Speak Human, Not Corporate</strong>
@@ -397,7 +397,7 @@ Success doesn't require a big budget. What it does require is:
 • Consistent posting
 • A relatable brand persona
 
-At Startup Surge, we've helped early-stage founders implement these strategies to build engaged communities, sometimes even before launching their products. This demonstrates the power of digital-first storytelling.
+At StartupSurge, we've helped early-stage founders implement these strategies to build engaged communities, sometimes even before launching their products. This demonstrates the power of digital-first storytelling.
 
 Next time you see a Zomato or Dunzo post that makes you pause, take a moment to analyze it. What makes it effective? How could your brand create similar engagement? In today's digital landscape, any startup can achieve viral success with the right approach.`,
   },
@@ -438,7 +438,7 @@ The brain hates unanswered questions. If your hook teases an answer, people watc
 Humor, shock, inspiration, emotion = attention. That’s why the most shared Reels aren’t “informational,” they’re felt.
 
 <strong>How Startups Can Apply This Science</strong>
-At Startup Surge, we’ve tested hundreds of hooks as a digital marketing agency and here’s what always works:
+At StartupSurge, we’ve tested hundreds of hooks as a digital marketing agency and here’s what always works:
 • Text-first Reels: Start with a bold line on screen before you even talk.
 
 • Human faces: People trust people. Eye contact = watch time.
@@ -482,7 +482,7 @@ Because in 2025, attention isn't given. It's earned – three seconds at a time.
     content: `When was the last time you bought something because a celebrity endorsed it? Now, when was the last time you bought something because a random customer left a review or posted a Reel about it?
 Exactly.
 Welcome to 2025 - the year when user-generated content (UGC) officially dethrones influencer marketing as the king of trust.
-At Startup Surge, a digital marketing company in Mumbai, we’ve seen this shift play out with dozens of clients: campaigns powered by everyday people outperforming glossy influencer collabs. And honestly? It makes sense.
+At StartupSurge, a digital marketing company in Mumbai, we’ve seen this shift play out with dozens of clients: campaigns powered by everyday people outperforming glossy influencer collabs. And honestly? It makes sense.
 Here’s why 
 
 Trust Is the New Currency 
@@ -550,7 +550,7 @@ Because when everyone’s an influencer, the only voices people trust are the on
     author: "StartupSurge Team",
     content: `Why do some Reels blow up overnight while others - maybe better shot, better edited, barely get a handful of views?
 It’s not just “the algorithm.” It’s psychology.
-At Startup Surge, a digital marketing agency in Mumbai, we’ve learned that Reels go viral not because they’re the prettiest - but because they tap into the way our brains crave novelty, connection, and emotion. In other words: viral content is built on science, not luck.
+At StartupSurge, a digital marketing agency in Mumbai, we’ve learned that Reels go viral not because they’re the prettiest - but because they tap into the way our brains crave novelty, connection, and emotion. In other words: viral content is built on science, not luck.
 So let’s decode it. 
 
 The Dopamine Hook 

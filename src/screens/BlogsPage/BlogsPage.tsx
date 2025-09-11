@@ -59,7 +59,7 @@ export const BlogsPage: React.FC = () => {
             <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4 mx-auto"></div>
           </div>
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white max-w-xl sm:max-w-3xl mx-auto leading-relaxed opacity-90 transition-colors duration-300">
-            Stay Ahead Of The Curve With Our Expert Insights On Social Media Marketing, SEO Strategies, And Digital Trends That Drive Real Business Results.
+            Stay ahead of the curve with our expert insights on social media marketing, SEO strategies, and digital trends that drive real business results.
           </p>
         </div>
       </section>
@@ -131,15 +131,15 @@ export const BlogsPage: React.FC = () => {
       <section className="w-full py-8 sm:py-16 px-2 sm:px-4 md:px-8 lg:px-16 bg-orange-50 dark:bg-[#2a2a2a] transition-colors duration-300">
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto text-center">
           <h2 className="font-['League_Spartan',Helvetica] text-xl sm:text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2 sm:mb-4 transition-colors duration-300">
-            Stay Updated With Latest Trends
+            Stay updated with the latest trends
           </h2>
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto transition-colors duration-300">
-            Get The Latest Digital Marketing Insights, Social Media Tips, And Industry Trends Delivered Directly To Your Inbox.
+            Get the latest digital marketing insights, social media tips, and industry trends delivered directly to your inbox.
           </p>
           <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center max-w-xs sm:max-w-md mx-auto">
             <input
               type="email"
-              placeholder="Enter Your Email Address"
+              placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

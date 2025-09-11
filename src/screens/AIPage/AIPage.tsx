@@ -31,7 +31,6 @@ type FormState = {
     | "Engagement"
   )[];
   marketingApproach?: 'Organic' | 'Paid';
-  leadGenBudgetINR?: string; // only when objective is Lead Generation and marketingApproach is Paid
   overallBudgetINR?: string; // optional monthly ads budget for precise allocations
 };
 
@@ -47,7 +46,6 @@ const initialState: FormState = {
   ageGroup: [],
   objective: [],
   marketingApproach: undefined,
-  leadGenBudgetINR: "",
   overallBudgetINR: "",
 };
 
@@ -175,8 +173,7 @@ export const AIPage: React.FC = () => {
       form.audienceNature.trim() &&
       form.ageGroup.length > 0 &&
       form.objective.length > 0;
-    const leadGenNeedsBudget = (form.objective.includes("Lead Generation") && form.marketingApproach === 'Paid') ? !!form.leadGenBudgetINR && form.leadGenBudgetINR.trim() !== "" : true;
-    return !!baseValid && leadGenNeedsBudget;
+    return !!baseValid;
   }, [form]);
 
   type Recommendations = {
@@ -564,7 +561,7 @@ export const AIPage: React.FC = () => {
       const n = s ? parseInt(String(s).replace(/[^0-9]/g, ''), 10) : NaN;
       return isNaN(n) ? undefined : n;
     };
-    const monthlyBudget = parseINR(f.overallBudgetINR) || parseINR(f.leadGenBudgetINR);
+    const monthlyBudget = parseINR(f.overallBudgetINR);
     const fmt = (n: number) => `₹${n.toLocaleString('en-IN')}`;
     adsBudgetINR = [];
     const includeMeta = topPlatforms.some((p) => /meta ads|instagram/i.test(p));
@@ -595,33 +592,61 @@ export const AIPage: React.FC = () => {
     // Ensure arrays are unique and tidy
     const uniq = (arr: string[]) => Array.from(new Set(arr)).filter(Boolean);
 
-    // Build execution plan by platform (concise)
+    // Build execution plan by platform (mindmap-aligned)
     const executionPlanByPlatform: { platform: string; organic?: string[]; paid?: string[]; other?: string[] }[] = [];
     const addExec = (p: string, o?: string[], pd?: string[], ot?: string[]) => executionPlanByPlatform.push({ platform: p, organic: o?.filter(Boolean), paid: pd?.filter(Boolean), other: ot?.filter(Boolean) });
+
+    // Instagram
     addExec('Instagram', [
-      '3-4 Reels/week with benefit-first hooks',
-      'Stories polls/quiz; Highlights for social proof'
+      'Account hygiene check',
+      'Competitor analysis',
+      'Content calendar — 15 posts/month (8 Reels, 7 static)',
+      'Creative hooks: POV, before/after, listicle, myth-busting',
+      'Stories polls/quiz weekly; Highlights: Offers, Proof, FAQs'
     ], [
-      'Prospecting (broad + interests), Retargeting (viewers, engagers)'
+      'Phase 0 — Pixel/GA4, conversions, product feeds (if any)',
+      'Phase 1 — Prospecting (Broad + Interest + Lookalike); Reels-first placements',
+      'Phase 2 — Retargeting (viewed/ATC/engagers); offer stacks + UGC; A/B 3–5 hooks'
     ]);
+
+    // Facebook
     addExec('Facebook', [
-      'Repurpose IG content; community groups engagement'
+      'Account hygiene check',
+      'Competitor analysis',
+      'Cross-post IG plan; 12 posts/month; community groups engagement'
     ], [
-      'Lookalikes; catalog/advantage placements if eCom'
+      'Phase 0 — Pixel/GA4; baseline events',
+      'Phase 1 — Advantage+ placements + Interest targeting',
+      'Phase 2 — Retargeting (video views/engagers); selective exclusions'
     ]);
+
+    // LinkedIn
     addExec('LinkedIn', [
-      'Founder-led thought leadership 3x/week',
-      'ABM: connection + DM sequence (value-first)'
+      'Account hygiene check',
+      'Competitor analysis',
+      'Creator-led plan: 12 posts/month (4 articles/month)',
+      'Founder-led POV, carousels, case studies; ABM engagement cadence'
     ], [
-      'Lead Gen Forms with case-study creatives'
+      'Phase 0 — Insight Tag + conversions; CRM webhook for leads',
+      'Phase 1 — Lead Gen Forms (ABM lists, titles, industries)',
+      'Phase 2 — Retarget site visitors & 75% video viewers; nurture'
     ]);
+
+    // WhatsApp
     addExec('WhatsApp', undefined, undefined, [
-      'Opt-in flows; broadcast nurtures; cart/lead follow-ups'
+      'Opt-in capture (site/IG/LI) + consent logging',
+      'Broadcast cadence: 2–4/month; value-first templates',
+      'Automations: cart/lead follow-ups; reminders; reactivation'
     ]);
+
+    // Google Ads (and SEO)
     addExec('Google Ads', [
-      'SEO basics: titles/meta/internal links'
+      'SEO clusters: 3–5 hubs; on-page + internal links',
+      'Tech SEO quick wins: speed, schema, index coverage'
     ], [
-      'Search (exact/phrase), PMAX (if product), retarget display'
+      'Phase 0 — GA4 + conversions; keyword theming; negatives',
+      'Phase 1 — Search: exact/phrase SKAGs; sitelinks/callouts',
+      'Phase 2 — Performance Max (if product/services fit); retarget display'
     ]);
 
     return {
@@ -651,9 +676,7 @@ export const AIPage: React.FC = () => {
         "Influencer-led seeding to validate messaging before scaling ads",
         "Partnerships/Affiliates to tap into existing trust networks",
       ]),
-      recommendation: f.objective.includes("Lead Generation") && f.leadGenBudgetINR
-        ? `Run gated lead magnet + retargeting on ${topPlatforms.includes("Meta Ads") || topPlatforms.includes("Instagram") ? "Meta/Instagram" : topPlatforms[0] || "priority channels"}; allocate ~${f.leadGenBudgetINR} INR initially and scale winners.`
-        : `Prioritize ${topPlatforms.slice(0,2).join(" & ") || "the most relevant channels"} with fast experiments; keep weekly creative sprints and CRO.`,
+      recommendation: `Prioritize ${topPlatforms.slice(0,2).join(" & ") || "the most relevant channels"} with fast experiments; follow budget allocation rules and scale winners weekly.`,
     };
   };
 
@@ -735,7 +758,7 @@ export const AIPage: React.FC = () => {
         <div className="max-w-2xl sm:max-w-[1752px] mx-auto">
           <h2 className="text-xl sm:text-2xl font-semibold [font-family:'League_Spartan',Helvetica] mb-6">Your inputs</h2>
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 lg:gap-7">
+          <form onSubmit={handleSubmit} className="ai-form grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 lg:gap-7">
           <div className="flex flex-col md:col-span-2">
             <label htmlFor="brandName" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Brand Name</label>
             <input id="brandName" name="brandName" type="text" value={form.brandName} onChange={onChange} placeholder="E.G., Acme Co." className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
@@ -759,10 +782,31 @@ export const AIPage: React.FC = () => {
               onClick={() => setIndustryOpen((o) => !o)}
               className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
             >
-              <span className="text-left truncate">
-                {form.industryType.length ? `${form.industryType.length} Selected` : "Select Types"}
+              <span className="text-left flex-1 min-w-0">
+                {form.industryType.length ? (
+                  <span className="flex flex-wrap gap-1.5 items-center">
+                    {form.industryType.slice(0, 2).map((t) => (
+                      <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
+                        {t}
+                        <button
+                          type="button"
+                          className="ml-1 text-orange-700 dark:text-orange-300"
+                          onClick={(e) => { e.stopPropagation(); removeIndustryType(t); }}
+                          aria-label={`Remove ${t}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                    {form.industryType.length > 2 && (
+                      <span className="text-xs text-gray-600 dark:text-gray-300">+{form.industryType.length - 2} more</span>
+                    )}
+                  </span>
+                ) : (
+                  <span className="text-gray-500">Select Types</span>
+                )}
               </span>
-              <svg className={`w-4 h-4 transition-transform ${industryOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg className={`w-4 h-4 shrink-0 transition-transform ${industryOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
               </svg>
             </button>
@@ -784,18 +828,7 @@ export const AIPage: React.FC = () => {
                 })}
               </div>
             )}
-            {form.industryType.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {form.industryType.map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
-                    {t}
-                    <button type="button" className="ml-1 text-orange-700 dark:text-orange-300" onClick={() => removeIndustryType(t)} aria-label={`Remove ${t}`}>
-                      ×
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
+            {/* chips moved inside the field */}
           </div>
 
           <div className="flex flex-col">
@@ -842,10 +875,31 @@ export const AIPage: React.FC = () => {
               onClick={() => setAgeOpen((o) => !o)}
               className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
             >
-              <span className="text-left truncate">
-                {form.ageGroup.length ? `${form.ageGroup.length} Selected` : "Select Age Ranges"}
+              <span className="text-left flex-1 min-w-0">
+                {form.ageGroup.length ? (
+                  <span className="flex flex-wrap gap-1.5 items-center">
+                    {form.ageGroup.slice(0, 2).map((t) => (
+                      <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
+                        {t}
+                        <button
+                          type="button"
+                          className="ml-1 text-orange-700 dark:text-orange-300"
+                          onClick={(e) => { e.stopPropagation(); removeAgeGroup(t); }}
+                          aria-label={`Remove ${t}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                    {form.ageGroup.length > 2 && (
+                      <span className="text-xs text-gray-600 dark:text-gray-300">+{form.ageGroup.length - 2} more</span>
+                    )}
+                  </span>
+                ) : (
+                  <span className="text-gray-500">Select Age Ranges</span>
+                )}
               </span>
-              <svg className={`w-4 h-4 transition-transform ${ageOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg className={`w-4 h-4 shrink-0 transition-transform ${ageOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
               </svg>
             </button>
@@ -867,18 +921,7 @@ export const AIPage: React.FC = () => {
                 })}
               </div>
             )}
-            {form.ageGroup.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {form.ageGroup.map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
-                    {t}
-                    <button type="button" className="ml-1 text-orange-700 dark:text-orange-300" onClick={() => removeAgeGroup(t)} aria-label={`Remove ${t}`}>
-                      ×
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
+            {/* chips moved inside the field */}
           </div>
 
 
@@ -910,7 +953,6 @@ export const AIPage: React.FC = () => {
               onChange={(e) => setForm(s => ({
                 ...s,
                 marketingApproach: e.target.value as 'Organic' | 'Paid',
-                leadGenBudgetINR: e.target.value === 'Organic' ? undefined : s.leadGenBudgetINR
               }))}
               className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]"
               required
@@ -928,10 +970,31 @@ export const AIPage: React.FC = () => {
               onClick={() => setObjectiveOpen((o) => !o)}
               className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
             >
-              <span className="text-left truncate">
-                {form.objective.length ? `${form.objective.length} selected` : "Select objectives"}
+              <span className="text-left flex-1 min-w-0">
+                {form.objective.length ? (
+                  <span className="flex flex-wrap gap-1.5 items-center">
+                    {form.objective.slice(0, 2).map((t) => (
+                      <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
+                        {t}
+                        <button
+                          type="button"
+                          className="ml-1 text-orange-700 dark:text-orange-300"
+                          onClick={(e) => { e.stopPropagation(); removeObjective(t); }}
+                          aria-label={`Remove ${t}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                    {form.objective.length > 2 && (
+                      <span className="text-xs text-gray-600 dark:text-gray-300">+{form.objective.length - 2} more</span>
+                    )}
+                  </span>
+                ) : (
+                  <span className="text-gray-500">Select objectives</span>
+                )}
               </span>
-              <svg className={`w-4 h-4 transition-transform ${objectiveOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg className={`w-4 h-4 shrink-0 transition-transform ${objectiveOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
               </svg>
             </button>
@@ -953,37 +1016,11 @@ export const AIPage: React.FC = () => {
                 })}
               </div>
             )}
-            {form.objective.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {form.objective.map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 dark:bg-[#2a2a2a] dark:text-orange-300 text-xs font-medium">
-                    {t}
-                    <button type="button" className="ml-1 text-orange-700 dark:text-orange-300" onClick={() => removeObjective(t)} aria-label={`Remove ${t}`}>
-                      ×
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
+            {/* chips moved inside the field */}
           </div>
           
           {form.marketingApproach === 'Paid' && (
             <>
-              <div className="flex flex-col md:col-span-2">
-                <label htmlFor="leadGenBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
-                  {form.objective.includes("Lead Generation") ? 'Lead Generation ' : ''}Budget (INR)
-                </label>
-                <input 
-                  id="leadGenBudgetINR" 
-                  name="leadGenBudgetINR" 
-                  type="number" 
-                  value={form.leadGenBudgetINR || ''} 
-                  onChange={onChange} 
-                  placeholder="E.G., 50000" 
-                  className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" 
-                  required
-                />
-              </div>
               <div className="flex flex-col md:col-span-2">
                 <label htmlFor="overallBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                   Monthly Ads Budget (INR) — optional (for precise allocations)
@@ -1119,6 +1156,28 @@ export const AIPage: React.FC = () => {
           )}
         </div>
       </main>
+      {/* Scoped CSS: make text inputs consistent with dropdowns even when autofilled */}
+      <style>{`
+        .ai-form input, .ai-form textarea, .ai-form select {
+          background-color: inherit;
+        }
+        /* WebKit autofill override (light) */
+        .ai-form input:-webkit-autofill,
+        .ai-form textarea:-webkit-autofill,
+        .ai-form select:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+          -webkit-text-fill-color: #111111 !important;
+          transition: background-color 9999s ease-in-out 0s;
+        }
+        /* WebKit autofill override (dark) */
+        .dark .ai-form input:-webkit-autofill,
+        .dark .ai-form textarea:-webkit-autofill,
+        .dark .ai-form select:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+          -webkit-text-fill-color: #f5f5f5 !important;
+          transition: background-color 9999s ease-in-out 0s;
+        }
+      `}</style>
       {/* Footer (match site) */}
       <FooterSection />
     </div>
