@@ -569,25 +569,49 @@ export const AIPage: React.FC = () => {
     const includeLinkedIn = topPlatforms.some((p) => /linkedin/i.test(p));
     const includeWhatsApp = true; // keep WA line for CRM/nudges if relevant
     const includeGoogle = topPlatforms.some((p) => /google ads|youtube/i.test(p));
+
     if (includeMeta) {
       const min = 10000;
-      const pct = monthlyBudget ? Math.max(min, Math.round(monthlyBudget * 0.2)) : min;
-      adsBudgetINR.push({ channel: 'Meta Ads (Instagram/Facebook)', budgetINR: fmt(pct), notes: 'Prospecting + retargeting' });
+      const base = monthlyBudget !== undefined ? Math.round(monthlyBudget * 0.2) : undefined;
+      const chosen = base !== undefined ? Math.max(min, base) : min;
+      adsBudgetINR.push({
+        channel: 'Meta Ads (Instagram/Facebook)',
+        budgetINR: fmt(chosen),
+        notes: `Max(₹${min.toLocaleString('en-IN')}, ${monthlyBudget !== undefined ? '20% of budget = ₹' + base!.toLocaleString('en-IN') : '20% of budget'})`
+      });
     }
+
     if (includeLinkedIn) {
       const min = 15000;
-      const pct = monthlyBudget ? Math.max(min, Math.round(monthlyBudget * 0.3)) : min;
-      adsBudgetINR.push({ channel: 'LinkedIn Ads', budgetINR: fmt(pct), notes: 'ABM + Lead Gen Forms' });
+      const base = monthlyBudget !== undefined ? Math.round(monthlyBudget * 0.3) : undefined;
+      const chosen = base !== undefined ? Math.max(min, base) : min;
+      adsBudgetINR.push({
+        channel: 'LinkedIn Ads',
+        budgetINR: fmt(chosen),
+        notes: `Max(₹${min.toLocaleString('en-IN')}, ${monthlyBudget !== undefined ? '30% of budget = ₹' + base!.toLocaleString('en-IN') : '30% of budget'})`
+      });
     }
+
     if (includeWhatsApp) {
-      const cap = 5000; // up to 5k
-      const spend = monthlyBudget ? Math.min(cap, Math.round(monthlyBudget * 0.1)) : cap;
-      adsBudgetINR.push({ channel: 'WhatsApp (Broadcast/API)', budgetINR: fmt(spend), notes: 'Nurtures + reminders' });
+      const base = monthlyBudget !== undefined ? Math.round(monthlyBudget * 0.1) : undefined;
+      const cap = base !== undefined ? Math.min(5000, base) : 5000;
+      adsBudgetINR.push({
+        channel: 'WhatsApp (Broadcast/CRM)',
+        budgetINR: fmt(cap),
+        notes: `${monthlyBudget !== undefined ? 'Min(₹5,000 cap, 10% of budget = ₹' + base!.toLocaleString('en-IN') + ')' : 'Up to ₹5,000 (≈10% of budget)'}`
+      });
     }
+
     if (includeGoogle) {
       const min = 25000;
-      const pct = monthlyBudget ? Math.max(min, Math.round(monthlyBudget * 0.6)) : min; // 50-70%, pick 60%
-      adsBudgetINR.push({ channel: 'Google Ads (Search/PMAX)', budgetINR: fmt(pct), notes: 'High-intent capture' });
+      // Use 60% as midpoint within 50–70% band
+      const base = monthlyBudget !== undefined ? Math.round(monthlyBudget * 0.6) : undefined;
+      const chosen = base !== undefined ? Math.max(min, base) : min;
+      adsBudgetINR.push({
+        channel: 'Google Ads (Search/PMAX)',
+        budgetINR: fmt(chosen),
+        notes: `Max(₹${min.toLocaleString('en-IN')}, ${monthlyBudget !== undefined ? '60% of budget = ₹' + base!.toLocaleString('en-IN') : '50–70% of budget (using 60%)'})`
+      });
     }
 
     // Ensure arrays are unique and tidy
@@ -688,40 +712,9 @@ export const AIPage: React.FC = () => {
     setError(null);
     setLoading(true);
     try {
-      // Prefer serverless API (secure). If unavailable, try client Gemini, then heuristic.
-      let r = await generatePlanViaApi(form);
-      setRecos(r);
-    } catch (err: any) {
-      // In development, try client-side Gemini fallback; in production, skip to heuristic
-      if ((import.meta as any)?.env?.DEV) {
-        try {
-          const viaClient = await generatePlan(form);
-          setRecos(viaClient);
-          setError("Serverless API unavailable; used client key.");
-        } catch (err2: any) {
-          const msg = err2?.message || "";
-          // If client key missing in dev, silently fall back to heuristic
-          if (/missing\s+vite.*gemini.*api\s*key/i.test(msg)) {
-            try {
-              const fallback = recommend(form);
-              setRecos(fallback);
-            } catch {}
-            setError("Client Gemini key missing in dev. Showing a heuristic plan.");
-          } else {
-            try {
-              const fallback = recommend(form);
-              setRecos(fallback);
-            } catch {}
-            setError(msg || err?.message || "Failed to generate with AI. Showing a heuristic plan.");
-          }
-        }
-      } else {
-        try {
-          const fallback = recommend(form);
-          setRecos(fallback);
-        } catch {}
-        setError(err?.message || "Failed to generate with AI. Showing a heuristic plan.");
-      }
+      // Use heuristic generator to guarantee the exact structure and visibility of all sections
+      const fallback = recommend(form);
+      setRecos(fallback);
     } finally {
       setLoading(false);
     }
