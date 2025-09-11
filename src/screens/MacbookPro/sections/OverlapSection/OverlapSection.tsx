@@ -12,7 +12,7 @@ interface OverlapSectionProps {
 export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: OverlapSectionProps): JSX.Element => {
   const navigate = useNavigate();
   
-  // Define the service categories
+  // Define the service categories with their corresponding section IDs
   const serviceCategories = [
     { id: "seo", label: "SEO" },
     { id: "social-media", label: "Social Media" },
@@ -21,12 +21,21 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
     { id: "ui-ux", label: "UI/UX" },
   ];
 
+  // Handle service click - only update the active tab and call the onCapsuleClick handler
+  const handleServiceClick = (categoryId: string) => {
+    // Update the active tab
+    if (onValueChange) onValueChange(categoryId);
+    
+    // Call the original onCapsuleClick if provided
+    if (onCapsuleClick) onCapsuleClick(categoryId);
+  };
+
   return (
     <div className="w-full flex justify-center">
       <div className="max-w-full sm:max-w-[600px] w-full h-[40px] sm:h-[48px] flex justify-center overflow-x-auto sm:overflow-x-visible scrollbar-hide">
         <Tabs
           value={value}
-          onValueChange={onValueChange}
+          onValueChange={handleServiceClick}
           defaultValue="social-media"
           className="w-full"
         >
@@ -36,7 +45,7 @@ export const OverlapSection = ({ onCapsuleClick, value, onValueChange }: Overlap
                 <TabsTrigger
                   value={category.id}
                   className={`h-[22px] font-['League_Spartan',Helvetica] font-normal text-base sm:text-lg tracking-[0] leading-normal whitespace-nowrap px-2 sm:px-0 data-[state=active]:text-[#ffa500] data-[state=inactive]:text-gray-800 data-[state=inactive]:dark:text-white data-[state=active]:shadow-none ${index === 0 ? 'pl-2 sm:pl-4' : ''} ${index === serviceCategories.length - 1 ? 'pr-2 sm:pr-4' : ''} !bg-transparent transition-colors duration-300`}
-                  onClick={() => onCapsuleClick && onCapsuleClick(category.id)}
+                  onClick={() => handleServiceClick(category.id)}
                 >
                   {category.label}
                 </TabsTrigger>

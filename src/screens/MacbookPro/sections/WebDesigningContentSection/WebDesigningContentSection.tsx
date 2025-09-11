@@ -9,19 +9,28 @@ export const WebDesigningContentSection = (): JSX.Element => {
     <section className="w-full py-8 sm:py-16 md:py-20 lg:py-28 relative px-2 sm:px-4 md:px-8 lg:px-16">
       <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-4 sm:gap-8 lg:gap-12">
         <div className="flex-1 lg:pr-8">
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">Websites</span>
-            <span className="text-white"> that wow</span>
-          </h1>
+          <div className="flex flex-col items-start">
+            <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
+              <span className="font-semibold text-[#ffa500]">Website </span>
+              <span className="text-gray-800 dark:text-white">Designing</span>
+            </h1>
+            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2"></div>
+          </div>
           <div className="mt-4 sm:mt-10 max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-xl text-gray-800 dark:text-white text-justify leading-[24px] sm:leading-[28px] transition-colors duration-300">
-              Speed, beauty, and conversion in one build. We craft digital storefronts that load fast and sell faster.
+<span className="font-bold text-[#ffa500]">Your website isn't just a URL, it's your brand's first impression.</span>
+<br /><br />
+A well-designed website is more than visuals; it's a digital experience that speaks for your brand. We create websites that are sleek, responsive, and built to engage visitors from the very first click. With the right blend of design, functionality, and storytelling, we make sure your site doesn't just look good, it works hard for your business.
+
+For any brand, a website is the foundation of online credibility. It builds trust, improves user experience, and becomes the place where curiosity turns into conversions. Without a strong website, even the best marketing campaigns can fall flat.
+<br /><br />
+<span className="font-bold text-[#ffa500]">Let's design a website that doesn't just attract visitors but converts them into customers.</span>
             </p>
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 
                 className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-white rounded-[35px] h-[41px] px-5 cursor-pointer"
                 onClick={() => {
-                  navigate('/services/ui-ux-designer');
+                  navigate('/services/web-design');
                 }}
               >
                 <span className="font-['League_Spartan',Helvetica] text-base sm:text-xl">

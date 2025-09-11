@@ -1,27 +1,135 @@
 import React from "react";
-import { ServicePageTemplate } from "./ServicePageTemplate";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
+import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
+
+const ServiceCard = ({ title, emoji, description }: { title: string; emoji: string; description: string }) => (
+  <motion.div 
+    className="bg-white dark:bg-[#2d2d2d] rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+    whileHover={{ scale: 1.02 }}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+  >
+    <div className="text-4xl mb-4">{emoji}</div>
+    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+      {title}
+    </h3>
+    <p className="text-gray-600 dark:text-gray-300">
+      {description}
+    </p>
+  </motion.div>
+);
 
 export const EcommerceMarketingPage: React.FC = () => {
-  const ecommerceData = {
-    serviceTitle: "Ecommerce Marketing",
-    serviceDescription: "Accelerate your online store's growth with our specialized ecommerce marketing strategies that drive traffic, increase conversions, and boost sales.",
-    whatIsService: "Ecommerce Marketing is the strategic promotion of online stores and products to drive traffic, increase conversions, and boost sales. It includes product marketing, email campaigns, social media advertising, search engine optimization for ecommerce, retargeting campaigns, and conversion rate optimization specifically tailored for online shopping experiences. This specialized form of digital marketing focuses on the unique customer journey from discovery to purchase in the online retail environment.",
-    whereWeComeIn: "We optimize every aspect of your ecommerce business to maximize sales and customer lifetime value. Our ecommerce marketing experts implement product-focused campaigns, optimize your online store for conversions, create compelling product descriptions and visuals, and develop customer retention strategies. We don't just drive traffic—we drive qualified traffic that converts into loyal customers, ensuring your online store becomes a profitable, sustainable business.",
-    whatWeSolve: [
-      "High CPCs, low AOV/ROAS",
-      "Abandonment at cart/checkout",
-      "Weak merchandising and PDPs",
-      "Retention flat, LTV not growing",
-    ],
-    benefits: [
-      "Digital Brand Presence",
-      "Channel Strategy Planning",
-      "Content Calendar",
-      "Copywriting",
-      "Creative Design",
-      "Social Media Management"
-    ]
-  };
+  const services = [
+    {
+      title: "E-commerce SEO 🔍",
+      emoji: "🔍",
+      description: "Optimize your online store to rank higher in search results and drive organic traffic to your products."
+    },
+    {
+      title: "Product Listing Ads 📊",
+      emoji: "📊",
+      description: "Create high-converting shopping campaigns that showcase your products to ready-to-buy customers."
+    },
+    {
+      title: "Conversion Rate Optimization 📈",
+      emoji: "📈",
+      description: "Improve your store's conversion rates through data-driven testing and optimization strategies."
+    },
+    {
+      title: "Email Marketing ✉️",
+      emoji: "✉️",
+      description: "Nurture leads and recover abandoned carts with automated, personalized email campaigns."
+    },
+    {
+      title: "Marketplace Management 🛍️",
+      emoji: "🛍️",
+      description: "Expand your reach by optimizing and managing your presence on major e-commerce platforms."
+    },
+    {
+      title: "Customer Retention 💎",
+      emoji: "💎",
+      description: "Build loyalty and increase customer lifetime value with strategic retention programs."
+    }
+  ];
 
-  return <ServicePageTemplate {...ecommerceData} />;
-}; 
+  return (
+    <div className="min-h-screen bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
+      <Helmet>
+        <title>E-commerce Marketing Services | StartupSurge®</title>
+        <meta name="description" content="Boost your online store's performance with our comprehensive e-commerce marketing strategies. Drive traffic, increase conversions, and maximize sales." />
+        <link rel="canonical" href="https://www.startupsurge.in/services/ecommerce-marketing" />
+      </Helmet>
+
+      {/* Navigation */}
+      <SectionComponentNodeSection />
+
+      {/* Hero Section */}
+      <section className="w-full py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Text Content */}
+            <motion.div
+              className="pt-8"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 text-left">
+                Our <span className="text-[#ffa500] font-bold">E-commerce Marketing</span> Edge
+              </h1>
+              <div className="space-y-4 text-left">
+                <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
+                  We don't just drive traffic—we drive qualified traffic that converts into loyal customers, ensuring your online store becomes a profitable, sustainable business.
+                </p>
+              </div>
+            </motion.div>
+            
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-xl"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="E-commerce Marketing"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#252525] transition-colors duration-300">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl sm:text-4xl text-gray-900 dark:text-white mb-8">
+              Our <span className="text-[#ffa500] font-bold">Services</span>
+            </h2>
+            <div className="h-1 w-16 bg-[#ffa500] mx-auto"></div>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {services.map((service, index) => (
+              <ServiceCard key={index} {...service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FooterSection />
+    </div>
+  );
+};

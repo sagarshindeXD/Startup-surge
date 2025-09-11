@@ -9,13 +9,22 @@ export const PerformanceMarketingContentSection = (): JSX.Element => {
     <section className="w-full py-8 sm:py-16 md:py-20 lg:py-28 relative px-2 sm:px-4 md:px-8 lg:px-16">
       <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-4 sm:gap-8 lg:gap-12">
         <div className="flex-1 lg:pr-8">
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">Performance marketing, </span>
-            <span className="text-gray-800 dark:text-white">turned up</span>
-          </h1>
+          <div className="flex flex-col items-start">
+            <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
+              <span className="font-semibold text-[#ffa500]">Performance </span>
+              <span className="text-gray-800 dark:text-white">Marketing</span>
+            </h1>
+            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2"></div>
+          </div>
           <div className="mt-4 sm:mt-10 max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-xl text-gray-800 dark:text-white text-justify leading-[24px] sm:leading-[28px] transition-colors duration-300">
-              Media buying with creative science. We run tight experiments, find winners fast, and scale what prints results.
+<span className="font-bold text-[#ffa500]">Why just spend on ads when you can invest in results?</span>
+<br /><br />
+Performance Marketing is where creativity meets measurable impact. Every click, impression, and conversion is tracked, so you only pay for what truly drives growth. From Google Ads to social campaigns, we optimize every rupee to ensure your brand reaches the right audience at the right time.
+
+For any brand, Performance Marketing is the fastest route to visibility and revenue. It gives you control, scalability, and real-time insights into what's working—so every campaign becomes smarter and more profitable.
+<br /><br />
+<span className="font-bold text-[#ffa500]">Stop wasting budget, start fueling growth.</span>
             </p>
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 

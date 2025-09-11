@@ -14,9 +14,9 @@ export const BlogDetailPage: React.FC = () => {
       <div className="bg-white dark:bg-[#1e1e1e] min-h-screen transition-colors duration-300">
         <SectionComponentNodeSection />
         <div className="max-w-2xl sm:max-w-[1200px] mx-auto px-4 py-16 text-center">
-          <h1 className="text-2xl sm:text-4xl font-semibold text-gray-800 dark:text-white mb-4">Post not found</h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">The article you’re looking for doesn’t exist or may have been moved.</p>
-          <Link to="/blogs" className="text-[#ffa500] hover:underline">← Back to blogs</Link>
+          <h1 className="text-2xl sm:text-4xl font-semibold text-gray-800 dark:text-white mb-4">Post Not Found</h1>
+          <p className="text-gray-600 dark:text-gray-300 mb-6">The Article You're Looking For Doesn't Exist Or May Have Been Moved.</p>
+          <Link to="/blogs" className="text-[#ffa500] hover:underline">← Back To Blogs</Link>
         </div>
         <FooterSection />
       </div>
@@ -40,9 +40,12 @@ export const BlogDetailPage: React.FC = () => {
             <span>•</span>
             <span className="px-2 py-0.5 bg-[#ffa500] text-black rounded-full">{post.category}</span>
           </div>
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl font-bold text-gray-800 dark:text-white leading-tight">
-            {post.title}
-          </h1>
+          <div className="flex flex-col items-start mb-4 sm:mb-6">
+            <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl font-bold text-gray-800 dark:text-white leading-tight">
+              {post.title}
+            </h1>
+            <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4"></div>
+          </div>
         </header>
 
         {post.image && (
@@ -52,15 +55,21 @@ export const BlogDetailPage: React.FC = () => {
         )}
 
         <div className="prose max-w-none prose-orange dark:prose-invert">
-          {post.content.split(/\n\n+/).map((para, idx) => (
-            <p key={idx} className="text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-7 sm:leading-8 mb-4 whitespace-pre-line">
-              {para}
-            </p>
-          ))}
+          {post.content.split(/\n\n+/).map((para, idx) => {
+            // Check if paragraph is a subheading (ends with a colon)
+            const isSubheading = para.trim().endsWith(':');
+            const className = `text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-7 sm:leading-8 mb-4 whitespace-pre-line ${isSubheading ? 'font-bold' : ''}`;
+            
+            return (
+              <p key={idx} className={className}>
+                {para}
+              </p>
+            );
+          })}
         </div>
 
         <div className="mt-10">
-          <Link to="/blogs" className="text-[#ffa500] hover:underline">← Back to blogs</Link>
+          <Link to="/blogs" className="text-[#ffa500] hover:underline">← Back To Blogs</Link>
         </div>
       </article>
 

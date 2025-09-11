@@ -21,6 +21,7 @@ import {
   WhatsAppMarketingPage,
   EmailMarketingPage,
   InfluencerMarketingPage,
+  WebDesignPage,
 } from "./screens/ServicePages";
 import { PrivacyPolicyPage } from "./screens/PrivacyPolicyPage/PrivacyPolicyPage";
 
@@ -40,7 +41,8 @@ const AnimatedRoutes = () => {
       <Route path="/services/seo" element={<PageTransition pathname={pathname}><SEOPage /></PageTransition>} />
       <Route path="/services/social-media-marketing" element={<PageTransition pathname={pathname}><SocialMediaMarketingPage /></PageTransition>} />
       <Route path="/services/performance-marketing" element={<PageTransition pathname={pathname}><PerformanceMarketingPage /></PageTransition>} />
-      <Route path="/services/ui-ux-designer" element={<PageTransition pathname={pathname}><UIUXDesignerPage /></PageTransition>} />
+      <Route path="/services/ui-ux-design" element={<PageTransition pathname={pathname}><UIUXDesignerPage /></PageTransition>} />
+      <Route path="/services/web-design" element={<PageTransition pathname={pathname}><WebDesignPage /></PageTransition>} />
       <Route path="/services/graphic-designer" element={<PageTransition pathname={pathname}><GraphicDesignerPage /></PageTransition>} />
       <Route path="/services/ecommerce-marketing" element={<PageTransition pathname={pathname}><EcommerceMarketingPage /></PageTransition>} />
       <Route path="/services/whatsapp-marketing" element={<PageTransition pathname={pathname}><WhatsAppMarketingPage /></PageTransition>} />

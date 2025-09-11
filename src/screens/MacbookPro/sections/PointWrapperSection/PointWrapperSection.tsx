@@ -25,6 +25,7 @@ export const PointWrapperSection = (): JSX.Element => {
                 <h1 className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-4xl text-left leading-tight">
                   Marketing Magic
                 </h1>
+                <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2"></div>
               </div>
             </div>
             <Separator
@@ -33,8 +34,8 @@ export const PointWrapperSection = (): JSX.Element => {
             />
             <div className="flex items-center">
               <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-base tracking-[0] leading-normal text-center max-w-[300px]">
-                We harness the power of insights and a sprinkle of marketing
-                mojo to optimize your journey to the top of the digital Olympus.
+                We Harness The Power Of Insights And A Sprinkle Of Marketing
+                Mojo To Optimize Your Journey To The Top Of The Digital Olympus.
               </p>
             </div>
           </div>

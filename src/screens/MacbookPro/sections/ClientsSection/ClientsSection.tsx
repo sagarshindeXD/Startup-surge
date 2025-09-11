@@ -41,7 +41,7 @@ export const ClientsSection: React.FC = () => {
           </h2>
           <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400"></div>
           <p className="font-['League_Spartan',Helvetica] text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-6 max-w-2xl mx-auto">
-            Trusted by innovative brands and businesses
+            Trusted By Innovative Brands And Businesses
           </p>
         </div>
 

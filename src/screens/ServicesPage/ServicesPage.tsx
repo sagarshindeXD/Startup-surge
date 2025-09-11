@@ -8,14 +8,15 @@ export const ServicesPage = (): JSX.Element => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  // Keyboard activation support for cards (accessibility)
+  
+  // Handle keyboard navigation for service cards
   const handleKeyActivate = (e: React.KeyboardEvent<HTMLDivElement>, path: string) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       navigate(path);
     }
   };
+
 
   useEffect(() => {
     // Trigger animations after component mounts
@@ -30,7 +31,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-white",
       textColor: "text-[#ffa500]",
       delay: 0,
-      path: "/services/seo",
+      path: "/services/seo"
     },
     {
       id: 2,
@@ -38,7 +39,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-[#ffa500]",
       textColor: "text-white",
       delay: 100,
-      path: "/services/social-media-marketing",
+      path: "/services/social-media-marketing"
     },
     {
       id: 3,
@@ -46,7 +47,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-white",
       textColor: "text-[#ffa500]",
       delay: 200,
-      path: "/services/performance-marketing",
+      path: "/services/performance-marketing"
     },
     {
       id: 4,
@@ -54,7 +55,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-[#ffa500]",
       textColor: "text-white",
       delay: 300,
-      path: "/services/ui-ux-designer",
+      path: "/services/ui-ux-design"
     },
     {
       id: 5,
@@ -62,7 +63,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-[#ffa500]",
       textColor: "text-white",
       delay: 400,
-      path: "/services/graphic-designer",
+      path: "/services/graphic-designer"
     },
     {
       id: 6,
@@ -70,7 +71,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-[#ffa500]",
       textColor: "text-white",
       delay: 500,
-      path: "/services/ecommerce-marketing",
+      path: "/services/ecommerce-marketing"
     },
     {
       id: 7,
@@ -78,7 +79,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-white",
       textColor: "text-[#ffa500]",
       delay: 600,
-      path: "/services/whatsapp-marketing",
+      path: "/services/whatsapp-marketing"
     },
     {
       id: 8,
@@ -86,7 +87,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-[#ffa500]",
       textColor: "text-white",
       delay: 700,
-      path: "/services/email-marketing",
+      path: "/services/email-marketing"
     },
     {
       id: 9,
@@ -94,7 +95,7 @@ export const ServicesPage = (): JSX.Element => {
       bgColor: "bg-white",
       textColor: "text-[#ffa500]",
       delay: 800,
-      path: "/services/influencer-marketing",
+      path: "/services/influencer-marketing"
     },
   ];
 
@@ -102,7 +103,7 @@ export const ServicesPage = (): JSX.Element => {
     <div className="bg-white dark:bg-[#1e1e1e] min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300">
       <Helmet>
         <title>Services | StartupSurge® | Startup Marketing, SEO, SMM, Performance</title>
-        <meta name="description" content="Explore StartupSurge services: SEO, social media marketing, performance marketing, UI/UX, web design, email, WhatsApp, influencer marketing and more." />
+        <meta name="description" content="Explore StartupSurge Services: SEO, Social Media Marketing, Performance Marketing, UI/UX, Web Design, Email, WhatsApp, Influencer Marketing And More." />
         <link rel="canonical" href="https://www.startupsurge.in/services" />
       </Helmet>
       {/* Navigation */}

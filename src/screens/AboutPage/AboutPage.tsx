@@ -17,22 +17,25 @@ export const AboutPage: React.FC = () => {
   // Define sections for mobile swipeable content
   const sections = [
     {
-      id: "god-of-digitals",
+      id: "we-are-startupsurge",
       title: "We are ",
-      titleHighlight: "God of Digitals",
-      content: "We are the architects of digital transformation, the creators of extraordinary experiences, and the visionaries who turn imagination into reality. Our passion for innovation drives us to push boundaries and create solutions that not only meet expectations but exceed them in ways that were once thought impossible."
+      titleHighlight: "StartupSurge",
+      content: "We are the catalysts of growth, the creators of bold digital experiences, and the partners who help brands ride the right wave at the right time. With strategy, design, and innovation at our core, we don't just build campaigns, we build momentum that makes your brand impossible to ignore.",
+      highlightColor: "#ffa500"
     },
     {
-      id: "do-the-right-thing",
-      title: "Do the ",
-      titleHighlight: "Right Thing",
-      content: "We believe in doing what's right, not just what's easy. Every decision we make, every strategy we develop, and every solution we create is guided by our unwavering commitment to ethical practices, transparency, and delivering genuine value to our clients and their audiences."
+      id: "do-it-with-purpose",
+      title: "Do it with ",
+      titleHighlight: "Purpose",
+      content: "Every idea we craft and every strategy we execute is rooted in clarity and intent. We believe in delivering real value, not vanity metrics. Transparency, ethics, and impact guide everything we do, so your brand grows with authenticity and trust.",
+      highlightColor: "#ffa500"
     },
     {
-      id: "go-beyond-imagination",
+      id: "go-beyond-growth",
       title: "Go Beyond ",
-      titleHighlight: "Imagination",
-      content: "We don't just meet expectations; we shatter them. Our creative team pushes forward the boundaries of what's possible, exploring uncharted territories in digital innovation to deliver experiences that are not just memorable, but truly extraordinary and beyond what anyone could have imagined."
+      titleHighlight: "Growth",
+      content: "For us, 'good enough' is never enough. We push boundaries, explore fresh ideas, and design digital journeys that don't just attract attention but spark lasting connections. With StartupSurge, your brand doesn't just grow, it surges ahead.",
+      highlightColor: "#ffa500"
     }
   ];
   
@@ -68,7 +71,7 @@ export const AboutPage: React.FC = () => {
     },
     {
       name: "Ms.Safana Shaikh",
-      role: "Marketing head",
+      role: "Marketing Head",
       image: SafanaImg,
       description: "Digital storyteller with a knack for bold ideas and real results.",
       linkedin: "https://www.linkedin.com/in/safana-shaikh-630861246/"
@@ -106,19 +109,23 @@ export const AboutPage: React.FC = () => {
       
       {/* Hero Section - Desktop Version */}
       <section className="hidden sm:block w-full py-8 sm:py-20 md:py-28 lg:py-32 relative px-2 sm:px-4 md:px-8 lg:px-16">
-        <div className="max-w-2xl sm:max-w-6xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-5xl md:text-6xl lg:text-7xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-6">
-              <span className="font-semibold text-[#ffa500]">We are </span>
-              <span className="text-gray-800 dark:text-white">God of Digitals</span>
-            </h1>
+            <div className="flex flex-col items-center mb-4 sm:mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl text-center text-white mb-6">
+                <span>We are </span>
+                <span className="text-[#ffa500] font-bold">StartupSurge</span>
+              </h1>
+              <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4 mx-auto"></div>
+            </div>
             <div className="max-w-xl sm:max-w-4xl mx-auto mb-8 sm:mb-16">
-              <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white text-center leading-[22px] sm:leading-[28px] opacity-90 transition-colors duration-300">
-                We are the architects of digital transformation, the creators of extraordinary experiences, and the visionaries who turn imagination into reality. Our passion for innovation drives us to push boundaries and create solutions that not only meet expectations but exceed them in ways that were once thought impossible.
+              <p className="font-['League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-sm sm:text-base md:text-lg lg:text-xl text-center leading-[22px] sm:leading-[28px] tracking-[0] max-w-3xl mx-auto px-4 sm:px-6">
+                We are the catalysts of growth, the creators of bold digital experiences, and the partners who help brands ride the right wave at the right time. With strategy, design, and innovation at our core, we don't just build campaigns, we build momentum that makes your brand impossible to ignore.
               </p>
             </div>
           </motion.div>
@@ -128,13 +135,16 @@ export const AboutPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="font-['League_Spartan',Helvetica] text-2xl sm:text-5xl md:text-6xl lg:text-7xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-6">
-              <span className="font-semibold text-gray-800 dark:text-white">Do the </span>
-              <span className="text-[#ffa500]">Right Thing</span>
-            </h2>
+            <div className="flex flex-col items-center mb-4 sm:mb-6">
+              <h2 className="text-3xl sm:text-4xl text-center text-white mb-8">
+                <span>Do it with </span>
+                <span className="text-[#ffa500] font-bold">Purpose</span>
+              </h2>
+              <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4 mx-auto"></div>
+            </div>
             <div className="max-w-xl sm:max-w-4xl mx-auto mb-8 sm:mb-16">
               <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white text-center leading-[22px] sm:leading-[28px] opacity-90 transition-colors duration-300">
-                We believe in doing what's right, not just what's easy. Every decision we make, every strategy we develop, and every solution we create is guided by our unwavering commitment to ethical practices, transparency, and delivering genuine value to our clients and their audiences.
+                Every idea we craft and every strategy we execute is rooted in clarity and intent. We believe in delivering real value, not vanity metrics. Transparency, ethics, and impact guide everything we do, so your brand grows with authenticity and trust.
               </p>
             </div>
           </motion.div>
@@ -144,16 +154,27 @@ export const AboutPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <h3 className="font-['League_Spartan',Helvetica] text-2xl sm:text-5xl md:text-6xl lg:text-7xl leading-[32px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-6">
-              <span className="font-semibold text-gray-800 dark:text-white">Go Beyond </span>
-              <span className="text-[#ffa500]">Imagination</span>
-            </h3>
+            <div className="flex flex-col items-center mb-4 sm:mb-6">
+              <h3 className="text-3xl sm:text-4xl text-center text-white mb-8">
+                <span>Go Beyond </span>
+                <span className="text-[#ffa500] font-bold">Growth</span>
+              </h3>
+              <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4 mx-auto"></div>
+            </div>
             <div className="max-w-xl sm:max-w-4xl mx-auto">
               <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white text-center leading-[22px] sm:leading-[28px] opacity-90 transition-colors duration-300">
-                We don't just meet expectations—we shatter them. Our creative team pushes the boundaries of what's possible, exploring uncharted territories in digital innovation to deliver experiences that are not just memorable, but truly extraordinary and beyond what anyone could have imagined.
+                For us, 'good enough' is never enough. We push boundaries, explore fresh ideas, and design digital journeys that don't just attract attention but spark lasting connections. With StartupSurge, your brand doesn't just grow, it surges ahead.
               </p>
             </div>
           </motion.div>
+          </div>
+          <div className="hidden lg:block">
+            <img 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+              alt="StartupSurge Team" 
+              className="rounded-lg shadow-2xl w-full h-auto object-cover"
+            />
+          </div>
         </div>
       </section>
       
@@ -169,14 +190,10 @@ export const AboutPage: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="min-h-[300px] flex flex-col justify-center"
             >
-              <h2 className="font-['League_Spartan',Helvetica] text-3xl leading-[40px] tracking-[0] mb-4">
-                <span className={currentSection === 0 || currentSection === 2 ? "font-semibold text-[#ffa500]" : "font-semibold text-gray-800 dark:text-white"}>
-                  {sections[currentSection].title}
-                </span>
-                <span className={currentSection === 1 ? "text-[#ffa500]" : "text-gray-800 dark:text-white"}>
-                  {sections[currentSection].titleHighlight}
-                </span>
-              </h2>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl text-center text-white mb-6">
+                {sections[currentSection].title}
+                <span className="text-[#ffa500] font-bold">{sections[currentSection].titleHighlight}</span>
+              </h1>
               <div className="max-w-xl mx-auto mb-6">
                 <p className="font-['League_Spartan',Helvetica] text-base text-gray-600 dark:text-white text-center leading-[22px] opacity-90 transition-colors duration-300">
                   {sections[currentSection].content}
@@ -221,9 +238,9 @@ export const AboutPage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-['League_Spartan',Helvetica] text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-[28px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0] mb-4 sm:mb-6">
-              <span className="text-gray-800 dark:text-white">Meet your digital </span>
-              <span className="font-semibold text-[#ffa500]">dream team.</span>
+            <h2 className="text-3xl sm:text-4xl text-center text-white mb-8">
+              <span>Meet Your </span>
+              <span className="text-[#ffa500] font-bold">Dream Team</span>
             </h2>
             <motion.div 
               className="w-16 sm:w-24 h-1 bg-[#ffa500] mx-auto mb-4 sm:mb-8"

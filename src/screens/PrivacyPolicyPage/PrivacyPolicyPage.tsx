@@ -100,7 +100,7 @@ export const PrivacyPolicyPage = () => {
                 <strong>Email:</strong> privacy@startupsurge.com
               </p>
               <p>
-                <strong>Address:</strong> [Your Company Address]
+                <strong>Address:</strong> 
               </p>
             </section>
             

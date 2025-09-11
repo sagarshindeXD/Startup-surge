@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
-import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
+import { ServicePageTemplate } from "./ServicePageTemplate";
 
 const ServiceCard = ({ title, emoji, description }: { title: string; emoji: string; description: string }) => (
   <motion.div 
@@ -22,46 +22,46 @@ const ServiceCard = ({ title, emoji, description }: { title: string; emoji: stri
   </motion.div>
 );
 
-export const InfluencerMarketingPage: React.FC = () => {
+export const WebDesignPage: React.FC = () => {
   const services = [
     {
-      title: "Influencer Strategy & Planning 🎯",
+      title: "Custom Website Design 🖥️",
+      emoji: "🖥️",
+      description: "Tailored designs that reflect your brand's personality and speak directly to your audience."
+    },
+    {
+      title: "Responsive & Mobile-First 📱",
+      emoji: "📱",
+      description: "Seamless user experience across all devices—desktop, tablet, and mobile."
+    },
+    {
+      title: "User-Centric Layouts 🎯",
       emoji: "🎯",
-      description: "Data-driven influencer strategies that align with your brand goals and target audience."
+      description: "Designs built to guide users effortlessly, turning curiosity into action."
     },
     {
-      title: "Influencer Identification 🔍",
+      title: "Speed & Performance Optimization ⚡",
+      emoji: "⚡",
+      description: "Fast-loading, smooth-performing websites that keep visitors engaged."
+    },
+    {
+      title: "SEO-Friendly Structure 🔍",
       emoji: "🔍",
-      description: "Finding the perfect influencers who genuinely connect with your brand values and audience."
+      description: "Built with search visibility in mind so your site ranks higher from the start."
     },
     {
-      title: "Campaign Management 📈",
-      emoji: "📈",
-      description: "End-to-end campaign execution from concept to performance analysis."
-    },
-    {
-      title: "Content Collaboration 🤝",
-      emoji: "🤝",
-      description: "Co-creating authentic content that resonates with both your brand and the influencer's audience."
-    },
-    {
-      title: "Performance Tracking 📊",
-      emoji: "📊",
-      description: "Comprehensive analytics to measure ROI and optimize future campaigns."
-    },
-    {
-      title: "Relationship Management 💼",
-      emoji: "💼",
-      description: "Building and nurturing long-term partnerships with key influencers in your industry."
+      title: "Conversion-Focused Design 💡",
+      emoji: "💡",
+      description: "Crafted with strategy to drive leads, sales, and measurable results."
     }
   ];
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
       <Helmet>
-        <title>Influencer Marketing Services | StartupSurge®</title>
-        <meta name="description" content="Amplify your brand with strategic influencer partnerships. We connect you with the right voices to expand your reach and credibility." />
-        <link rel="canonical" href="https://www.startupsurge.in/services/influencer-marketing" />
+        <title>Web Design Services | StartupSurge®</title>
+        <meta name="description" content="Stunning, responsive websites designed to convert. We create custom web experiences that engage visitors and drive business growth." />
+        <link rel="canonical" href="https://www.startupsurge.in/services/web-design" />
       </Helmet>
 
       {/* Navigation */}
@@ -79,14 +79,14 @@ export const InfluencerMarketingPage: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 text-left">
-                Influencer <span className="text-[#ffa500] font-bold">Marketing</span>
+                Web <span className="text-[#ffa500] font-bold">Design</span>
               </h1>
               <div className="space-y-4 text-left">
                 <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
-                  Amplify your brand reach and credibility with our strategic influencer marketing campaigns that connect you with the right voices in your industry.
+                  Create a powerful online presence with custom websites that are as functional as they are beautiful.
                 </p>
                 <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-200">
-                  We don't just find influencers—we build strategic partnerships that amplify your brand message and drive real business results.
+                  We don't just design websites—we create digital experiences that captivate, engage, and convert.
                 </p>
               </div>
             </motion.div>
@@ -99,8 +99,8 @@ export const InfluencerMarketingPage: React.FC = () => {
               className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-xl"
             >
               <img 
-                src="https://images.unsplash.com/photo-1529154691717-330d061f4a8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                alt="Influencer Marketing"
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Web Design"
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -116,23 +116,28 @@ export const InfluencerMarketingPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl sm:text-4xl text-gray-900 dark:text-white mb-8">
               Our <span className="text-[#ffa500] font-bold">Services</span>
             </h2>
-            <div className="h-1 w-16 bg-[#ffa500] mx-auto"></div>
+            <div className="w-24 h-1 bg-[#ffa500] mx-auto mb-6"></div>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Beautiful, functional websites designed to engage visitors and drive business growth
+            </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+              <ServiceCard
+                key={index}
+                title={service.title}
+                emoji={service.emoji}
+                description={service.description}
+              />
             ))}
           </div>
         </div>
       </section>
-
-      <FooterSection />
     </div>
   );
 };

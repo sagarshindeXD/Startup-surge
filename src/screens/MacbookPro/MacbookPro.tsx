@@ -28,13 +28,56 @@ export const MacbookPro = (): JSX.Element => {
   const capsuleAnchorRef = useRef<HTMLDivElement>(null);
   const prevIndexRef = useRef<number>(0);
 
-  // Define service categories for reuse
+  // Define service categories for reuse with their respective page links
   const serviceCategories = [
-    { id: "seo", label: "SEO", component: SeoContentSection },
-    { id: "social-media", label: "Social Media", component: SocialMediaContentSection },
-    { id: "performance-marketing", label: "Performance Marketing", component: PerformanceMarketingContentSection },
-    { id: "web-designing", label: "Web Designing", component: WebDesigningContentSection },
-    { id: "ui-ux", label: "UI/UX", component: UIUXContentSection },
+    { 
+      id: "seo", 
+      label: "SEO", 
+      component: SeoContentSection,
+      link: "/services/seo"
+    },
+    { 
+      id: "social-media", 
+      label: "Social Media", 
+      component: SocialMediaContentSection,
+      link: "/services/social-media-marketing"
+    },
+    { 
+      id: "performance-marketing", 
+      label: "Performance Marketing", 
+      component: PerformanceMarketingContentSection,
+      link: "/services/performance-marketing"
+    },
+    { 
+      id: "graphic-design", 
+      label: "Graphic Design", 
+      component: WebDesigningContentSection, // Using WebDesigningContentSection as a placeholder
+      link: "/services/graphic-designer"
+    },
+    { 
+      id: "ecommerce", 
+      label: "Ecommerce Marketing", 
+      component: PerformanceMarketingContentSection, // Using PerformanceMarketingContentSection as a placeholder
+      link: "/services/ecommerce-marketing"
+    },
+    { 
+      id: "whatsapp-marketing", 
+      label: "WhatsApp Marketing", 
+      component: SocialMediaContentSection, // Using SocialMediaContentSection as a placeholder
+      link: "/services/whatsapp-marketing"
+    },
+    { 
+      id: "email-marketing", 
+      label: "Email Marketing", 
+      component: SocialMediaContentSection, // Using SocialMediaContentSection as a placeholder
+      link: "/services/email-marketing"
+    },
+    { 
+      id: "influencer-marketing", 
+      label: "Influencer Marketing", 
+      component: SocialMediaContentSection, // Using SocialMediaContentSection as a placeholder
+      link: "/services/influencer-marketing"
+    },
   ];
 
   // Find the current section index
@@ -141,10 +184,9 @@ export const MacbookPro = (): JSX.Element => {
               {/* Overlayed Welcome to the StartupSurge era */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-4 sm:-mt-32 px-2">
                 <div className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-2xl sm:text-5xl md:text-[100px] text-center tracking-[0] leading-[36px] sm:leading-[60px] md:leading-[100px] drop-shadow-xl transition-colors duration-300">
-                  <span className="font-bold text-gray-800 dark:text-white text-3xl sm:text-6xl md:text-[120px]">Startup</span>
-                  <span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">Surge</span>
-                  <br />
-                  <span className="text-gray-800 dark:text-white text-base sm:text-2xl md:text-3xl block mt-0.5">Building brands digitally</span>
+                  <span className="font-bold text-gray-800 dark:text-white text-3xl sm:text-6xl md:text-[120px]">Building </span>
+                  <span className="font-bold text-[#ffa500] text-3xl sm:text-6xl md:text-[120px]">Brands</span>
+                  <span className="font-bold text-gray-800 dark:text-white text-3xl sm:text-6xl md:text-[120px]"> Digitally</span>
                 </div>
               </div>
             </div>
@@ -280,30 +322,24 @@ export const MacbookPro = (): JSX.Element => {
                   <h2 className="[font-family:'League_Spartan',Helvetica] text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-[28px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
                     <span className="text-gray-800 dark:text-white">About </span>
                     <span className="font-bold text-gray-800 dark:text-white">Startup</span><span className="font-bold text-[#ffa500]">Surge</span>
-                    <span className="text-gray-800 dark:text-white">!</span>
                   </h2>
+                  <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4 mx-auto"></div>
                 </div>
                 <div className="[font-family:'League_Spartan',Helvetica] font-normal text-gray-800 dark:text-white text-base sm:text-lg md:text-xl text-center leading-[22px] sm:leading-[28px] tracking-[0] mt-2 sm:mt-8 px-2 transition-colors duration-300">
-                  Think of us as your personal creative cavalry, charging into the
-                  digital battlefield with a riot of ideas and
-                  <br className="hidden md:block" />a relentless pursuit of results. We&#39;re not just
-                  designers, we&#39;re storytellers, strategists, and a touch of
-                  mischievous magicians,
-                  <br className="hidden md:block" />
-                  weaving narratives that captivate your audience and leave them
-                  begging for more.
+                  At StartupSurge, we're more than just a digital agency—we're your growth partners. With creativity at our core and strategy as our compass, we help brands cut through the noise and make an unforgettable impact. Our team blends design, technology, and data-driven marketing to create solutions that don't just look great but deliver real results.
                 </div>
                 <div className="mt-4 sm:mt-12 max-w-4xl mx-auto">
                   <div className="space-y-2 sm:space-y-8">
                     <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-8">
                       <h3 className="font-bold whitespace-nowrap w-auto sm:w-48 text-base sm:text-xl"><span className="text-white dark:text-white">•</span> <span className="text-[#ffa500]">Creative Excellence</span></h3>
                       <div className="text-gray-800 dark:text-white flex-1 transition-colors duration-300">
-                        <p className="leading-relaxed">Innovative design solutions that captivate and inspire. We craft visual identities that tell your story and create user experiences that keep your audience engaged and coming back for more.</p>
+                        Designs that inspire, stories that resonate. We craft powerful brand identities and engaging experiences that leave a lasting impression.
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-8">
                       <h3 className="font-bold whitespace-nowrap w-auto sm:w-48 text-base sm:text-xl"><span className="text-white dark:text-white">•</span> <span className="text-[#ffa500]">Strategic Growth</span></h3>
                       <div className="text-gray-800 dark:text-white flex-1 transition-colors duration-300">
+                        Every move is backed by data. We create ROI-focused marketing strategies that fuel measurable growth and long-term success.
                         <p className="leading-relaxed">Data-driven marketing strategies that deliver measurable results. We optimize performance, focus on ROI, and provide deep market insights to drive your business growth.</p>
                       </div>
                     </div>

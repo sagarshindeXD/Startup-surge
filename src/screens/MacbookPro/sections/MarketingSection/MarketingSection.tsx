@@ -34,7 +34,7 @@ export const MarketingSection = (): JSX.Element => {
           {/* Description text */}
           <div className="flex items-center">
             <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-base tracking-[0] leading-normal text-center max-w-[300px]">
-              We don&#39;t just create pretty pixels, we craft campaigns that conquer algorithms and win hearts. Data is our oracle, guiding us to digital gold.
+              We Don't Just Create Pretty Pixels, We Craft Campaigns That Conquer Algorithms And Win Hearts. Data Is Our Oracle, Guiding Us To Digital Gold.
             </p>
           </div>
         </div>

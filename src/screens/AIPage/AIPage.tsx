@@ -2,12 +2,12 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
-import { generatePlanViaApi, generatePlanWithGemini } from "../../lib/ai";
+import { generatePlan, generatePlanViaApi } from "../../lib/ai";
 
 type FormState = {
   brandName: string;
   brandObjective: string;
-  targetPlatform: string;
+  targetPlatform: 'Instagram' | 'Facebook' | 'LinkedIn' | 'WhatsApp' | 'Google' | '';
   industry: string;
   industryType: ("B2C" | "B2B" | "D2C" | "Marketplace" | "Non-profit" | "SaaS")[];
   offering: "Product" | "Service" | "App" | "Content" | "Course" | "";
@@ -21,7 +21,7 @@ type FormState = {
     | "Niche"
     | "";
   audienceNature: string; // free text
-  ageGroup: ("Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+")[];
+  ageGroup: ("Below 18" | "18-25" | "26-35" | "36-45" | "46-60" | "60+" | "Any Age Group")[];
   objective: (
     | "Lead Generation"
     | "Awareness"
@@ -30,13 +30,14 @@ type FormState = {
     | "Sales/Revenue"
     | "Engagement"
   )[];
-  leadGenBudgetINR?: string; // only when objective is Lead Generation
+  marketingApproach?: 'Organic' | 'Paid';
+  leadGenBudgetINR?: string; // only when objective is Lead Generation and marketingApproach is Paid
 };
 
 const initialState: FormState = {
   brandName: "",
   brandObjective: "",
-  targetPlatform: "",
+  targetPlatform: "", // Will be one of: Instagram, Facebook, LinkedIn, WhatsApp, Google
   industry: "",
   industryType: [],
   offering: "",
@@ -44,6 +45,7 @@ const initialState: FormState = {
   audienceNature: "",
   ageGroup: [],
   objective: [],
+  marketingApproach: undefined,
   leadGenBudgetINR: "",
 };
 
@@ -68,7 +70,8 @@ export const AIPage: React.FC = () => {
   // Age Group multiselect
   const [ageOpen, setAgeOpen] = useState(false);
   const ageRef = useRef<HTMLDivElement | null>(null);
-  const ageGroupOptions: (FormState["ageGroup"][number])[] = [
+  const ageGroupOptions: (FormState["ageGroup"][number] | "Any Age Group")[] = [
+    "Any Age Group",
     "Below 18",
     "18-25",
     "26-35",
@@ -114,7 +117,15 @@ export const AIPage: React.FC = () => {
 
   const addAgeGroup = (val: string) => {
     setForm((s) => {
-      if (s.ageGroup.includes(val as any)) return s;
+      if (val === "Any Age Group") {
+        // If "Any Age Group" is selected, clear other selections
+        return { ...s, ageGroup: ["Any Age Group"] };
+      } else if (s.ageGroup.includes("Any Age Group")) {
+        // If "Any Age Group" was selected before, replace it with the new selection
+        return { ...s, ageGroup: [val as any] };
+      } else if (s.ageGroup.includes(val as any)) {
+        return s;
+      }
       return { ...s, ageGroup: [...s.ageGroup, val as any] };
     });
   };
@@ -162,7 +173,7 @@ export const AIPage: React.FC = () => {
       form.audienceNature.trim() &&
       form.ageGroup.length > 0 &&
       form.objective.length > 0;
-    const leadGenNeedsBudget = form.objective.includes("Lead Generation") ? !!form.leadGenBudgetINR && form.leadGenBudgetINR.trim() !== "" : true;
+    const leadGenNeedsBudget = (form.objective.includes("Lead Generation") && form.marketingApproach === 'Paid') ? !!form.leadGenBudgetINR && form.leadGenBudgetINR.trim() !== "" : true;
     return !!baseValid && leadGenNeedsBudget;
   }, [form]);
 
@@ -573,7 +584,7 @@ export const AIPage: React.FC = () => {
       // In development, try client-side Gemini fallback; in production, skip to heuristic
       if ((import.meta as any)?.env?.DEV) {
         try {
-          const viaClient = await generatePlanWithGemini(form);
+          const viaClient = await generatePlan(form);
           setRecos(viaClient);
           setError("Serverless API unavailable; used client key.");
         } catch (err2: any) {
@@ -628,7 +639,7 @@ export const AIPage: React.FC = () => {
             Ask <span className="font-semibold text-[#ffa500]">Sage</span>
           </h1>
           <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-600 dark:text-white max-w-xl sm:max-w-3xl mx-auto leading-relaxed opacity-90">
-            Enter your details to get a crisp, channel-wise action plan with KPIs, timelines, and budgets.
+            Enter Your Details To Get A Crisp, Channel-Wise Action Plan With KPIs, Timelines, And Budgets.
           </p>
         </div>
       </section>
@@ -640,19 +651,18 @@ export const AIPage: React.FC = () => {
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 lg:gap-7">
           <div className="flex flex-col md:col-span-2">
             <label htmlFor="brandName" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Brand Name</label>
-            <input id="brandName" name="brandName" type="text" value={form.brandName} onChange={onChange} placeholder="e.g., Acme Co." className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
+            <input id="brandName" name="brandName" type="text" value={form.brandName} onChange={onChange} placeholder="E.G., Acme Co." className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
           </div>
 
           <div className="flex flex-col md:col-span-2">
-            <label htmlFor="brandObjective" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Brand Objective (context)</label>
-            <textarea id="brandObjective" name="brandObjective" value={form.brandObjective} onChange={onChange} placeholder="Briefly describe the brand objective/context" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
+            <label htmlFor="brandObjective" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Brand Objective (Context)</label>
+            <textarea id="brandObjective" name="brandObjective" value={form.brandObjective} onChange={onChange} placeholder="Briefly Describe The Brand Objective/Context" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
           </div>
 
-          {/* Target Platform input removed as per request */}
 
           <div className="flex flex-col">
             <label htmlFor="industry" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Industry</label>
-            <input id="industry" name="industry" type="text" value={form.industry} onChange={onChange} placeholder="e.g., Fintech, Beauty, Edtech" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
+            <input id="industry" name="industry" type="text" value={form.industry} onChange={onChange} placeholder="E.G., Fintech, Beauty, Edtech" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
           </div>
 
           <div className="flex flex-col" ref={industryRef}>
@@ -663,7 +673,7 @@ export const AIPage: React.FC = () => {
               className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
             >
               <span className="text-left truncate">
-                {form.industryType.length ? `${form.industryType.length} selected` : "Select types"}
+                {form.industryType.length ? `${form.industryType.length} Selected` : "Select Types"}
               </span>
               <svg className={`w-4 h-4 transition-transform ${industryOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
@@ -734,8 +744,8 @@ export const AIPage: React.FC = () => {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="audienceNature" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Audience Nature (free text)</label>
-            <input id="audienceNature" name="audienceNature" type="text" value={form.audienceNature} onChange={onChange} placeholder="e.g., Professionals, Students, Hobbyists" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
+            <label htmlFor="audienceNature" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Audience Nature (Free Text)</label>
+            <input id="audienceNature" name="audienceNature" type="text" value={form.audienceNature} onChange={onChange} placeholder="E.G., Professionals, Students, Hobbyists" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
           </div>
 
           <div className="flex flex-col" ref={ageRef}>
@@ -746,7 +756,7 @@ export const AIPage: React.FC = () => {
               className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500] flex items-center justify-between"
             >
               <span className="text-left truncate">
-                {form.ageGroup.length ? `${form.ageGroup.length} selected` : "Select age ranges"}
+                {form.ageGroup.length ? `${form.ageGroup.length} Selected` : "Select Age Ranges"}
               </span>
               <svg className={`w-4 h-4 transition-transform ${ageOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
@@ -782,6 +792,46 @@ export const AIPage: React.FC = () => {
                 ))}
               </div>
             )}
+          </div>
+
+
+          <div className="flex flex-col">
+            <label htmlFor="targetPlatform" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Target Platform</label>
+            <select
+              id="targetPlatform"
+              name="targetPlatform"
+              value={form.targetPlatform}
+              onChange={onChange}
+              className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]"
+              required
+            >
+              <option value="">Select Platform</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook">Facebook</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Google">Google</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="marketingApproach" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Marketing Approach</label>
+            <select
+              id="marketingApproach"
+              name="marketingApproach"
+              value={form.marketingApproach || ''}
+              onChange={(e) => setForm(s => ({
+                ...s,
+                marketingApproach: e.target.value as 'Organic' | 'Paid',
+                leadGenBudgetINR: e.target.value === 'Organic' ? undefined : s.leadGenBudgetINR
+              }))}
+              className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]"
+              required
+            >
+              <option value="">Select Approach</option>
+              <option value="Organic">Organic</option>
+              <option value="Paid">Paid</option>
+            </select>
           </div>
 
           <div className="flex flex-col md:col-span-2" ref={objectiveRef}>
@@ -829,11 +879,22 @@ export const AIPage: React.FC = () => {
               </div>
             )}
           </div>
-
-          {form.objective.includes("Lead Generation") && (
+          
+          {form.marketingApproach === 'Paid' && (
             <div className="flex flex-col md:col-span-2">
-              <label htmlFor="leadGenBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Lead Gen Budget (INR)</label>
-              <input id="leadGenBudgetINR" name="leadGenBudgetINR" type="number" value={form.leadGenBudgetINR} onChange={onChange} placeholder="e.g., 50000" className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" />
+              <label htmlFor="leadGenBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                {form.objective.includes("Lead Generation") ? 'Lead Generation ' : ''}Budget (INR)
+              </label>
+              <input 
+                id="leadGenBudgetINR" 
+                name="leadGenBudgetINR" 
+                type="number" 
+                value={form.leadGenBudgetINR || ''} 
+                onChange={onChange} 
+                placeholder="E.G., 50000" 
+                className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" 
+                required
+              />
             </div>
           )}
 
@@ -865,7 +926,7 @@ export const AIPage: React.FC = () => {
               <Card title="Market Research" items={recos.marketResearch} />
 
               <Card title="Preferable Platforms" items={recos.platforms} />
-              <Card title="Strategy by Platforms" items={recos.strategyByPlatforms} />
+              <Card title="Strategy By Platforms" items={recos.strategyByPlatforms} />
               <Card title="Content Strategy" items={recos.contentStrategy} />
 
               <GroupAIDA title="Funnel Plan (AIDA)" groups={[

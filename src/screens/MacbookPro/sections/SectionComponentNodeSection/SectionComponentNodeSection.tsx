@@ -34,7 +34,7 @@ export const SectionComponentNodeSection = (): JSX.Element => {
     { text: "Services", href: "/services", isActive: location.pathname === "/services" },
     { text: "About", href: "/about", isActive: location.pathname === "/about" },
     { text: "Blogs", href: "/blogs", isActive: location.pathname === "/blogs" },
-    { text: "Sage", href: "/ai", isActive: location.pathname === "/ai" },
+    { text: "Sage AI", href: "/ai", isActive: location.pathname === "/ai" },
   ];
 
   const handleLogoClick = () => {

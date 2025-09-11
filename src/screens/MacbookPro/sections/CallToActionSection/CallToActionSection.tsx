@@ -11,14 +11,17 @@ export const CallToActionSection = (): JSX.Element => {
   return (
     <section className="relative w-full py-8 sm:py-16 md:py-20 px-2 sm:px-4 md:px-8 lg:px-16">
       <div className="text-center mb-6 sm:mb-12">
-        <h2 className="[font-family:'League_Spartan',Helvetica] text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[32px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px] tracking-[0]">
-          <span className="text-gray-800 dark:text-white">Latest </span>
-          <span className="font-bold text-[#ffa500]">Insights</span>
-          <span className="text-gray-800 dark:text-white"> & </span>
-          <span className="font-bold text-[#ffa500]">Trends</span>
-        </h2>
+        <div className="inline-block">
+          <h2 className="[font-family:'League_Spartan',Helvetica] text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[32px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px] tracking-[0]">
+            <span className="text-gray-800 dark:text-white">Latest </span>
+            <span className="font-bold text-[#ffa500]">Insights</span>
+            <span className="text-gray-800 dark:text-white"> & </span>
+            <span className="font-bold text-[#ffa500]">Trends</span>
+          </h2>
+          <div className="h-1 w-24 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 mx-auto"></div>
+        </div>
         <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-2 sm:mt-6 transition-colors duration-300">
-          Discover the latest digital marketing strategies and social media trends that drive real business results.
+          Discover The Latest Digital Marketing Strategies And Social Media Trends That Drive Real Business Results.
         </p>
       </div>
       

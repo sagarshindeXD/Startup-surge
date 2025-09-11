@@ -23,6 +23,7 @@ export const PointSection = (): JSX.Element => {
             <h1 className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-4xl text-left leading-tight">
               Pantheon of Passion
             </h1>
+            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2"></div>
           </div>
         </div>
         <Separator
@@ -31,7 +32,7 @@ export const PointSection = (): JSX.Element => {
         />
         <div className="flex items-center">
           <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-base text-center leading-normal max-w-[300px]">
-            We&#39;re a team of passionate rebels, fueled by curiosity and a shared mission to make your brand legendary. Think a mix of Da Vinci, Bowie, and a well-placed meme.
+            We're A Team Of Passionate Rebels, Fueled By Curiosity And A Shared Mission To Make Your Brand Legendary. Think A Mix Of Da Vinci, Bowie, And A Well-Placed Meme.
           </p>
         </div>
       </div>

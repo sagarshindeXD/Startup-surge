@@ -9,13 +9,22 @@ export const SocialMediaContentSection = (): JSX.Element => {
     <section className="w-full py-8 sm:py-28 relative">
       <div className="flex flex-col sm:flex-row sm:max-w-[1752px] mx-auto px-2 sm:px-0 gap-4 sm:gap-0">
         <div className="flex-1 pr-0 sm:pr-8 pl-0 sm:pl-12">
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-6xl leading-[32px] sm:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">Social Media </span>
-            <span className="text-gray-800 dark:text-white">that sticks</span>
-          </h1>
+          <div className="flex flex-col items-start">
+            <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-6xl leading-[32px] sm:leading-[80px] tracking-[0]">
+              <span className="font-semibold text-[#ffa500]">Social Media </span>
+              <span className="text-gray-800 dark:text-white">Marketing</span>
+            </h1>
+            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2"></div>
+          </div>
           <div className="mt-4 sm:mt-10 sm:max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-xl text-gray-800 dark:text-white text-justify leading-[22px] sm:leading-[28px] transition-colors duration-300">
-              Culture‑aware, platform‑native, meme‑literate storytelling that turns followers into fans and fans into advocates.
+<span className="font-bold text-[#ffa500]">Your brand is being talked about online, are you part of the conversation?</span>
+<br /><br />
+Social Media Marketing is more than just posting pretty pictures, it's about building a community, sparking engagement, and turning followers into loyal customers. From crafting scroll-stopping content to running smart ad campaigns, we help your brand connect with the right people on the right platforms.
+
+For any brand today, social media is the heartbeat of digital presence. It humanizes your business, amplifies your story, and keeps you top-of-mind where your audience spends most of their time. Without it, you're missing out on the world's biggest stage.
+<br /><br />
+<span className="font-bold text-[#ffa500]">Let's make your brand the one everyone follows, shares, and remembers.</span>
             </p>
             <div className="mt-4 sm:mt-10 flex items-center">
               <Button 

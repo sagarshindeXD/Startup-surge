@@ -3,29 +3,39 @@ import React from "react";
 import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
 import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
 
+interface ServiceItem {
+  title: string;
+  emoji: string;
+  description: string;
+}
+
 interface ServicePageTemplateProps {
   serviceTitle: string;
   serviceDescription: string;
-  whatIsService: string;
-  whereWeComeIn: string;
+  serviceIntro?: string;
+  services: ServiceItem[];
+  whatIsService?: string;
+  whereWeComeIn?: string;
   whatWeSolve?: string[];
-  benefits: string[];
+  benefits?: string[];
 }
 
 export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
   serviceTitle,
   serviceDescription,
-  whatIsService,
-  whereWeComeIn: _whereWeComeIn, // kept for backward compatibility; content now standardized
-  whatWeSolve,
-  benefits,
+  serviceIntro,
+  services,
+  whatIsService = '',
+  whereWeComeIn = '',
+  whatWeSolve = [],
+  benefits = [],
 }) => {
 
   const defaultWhatWeSolve = [
-    "You’re invisible for high‑intent searches.",
-    "Traffic isn’t qualified or converting.",
-    "Technical debt is blocking crawl/indexing.",
-    "Competitors outrank you with weaker products.",
+    "You're Invisible For High‑Intent Searches.",
+    "Traffic Isn't Qualified Or Converting.",
+    "Technical Debt Is Blocking Crawl/Indexing.",
+    "Competitors Outrank You With Weaker Products.",
   ];
 
   // Function to get relevant social media images based on service type
@@ -82,91 +92,145 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
       {/* Navigation */}
       <SectionComponentNodeSection />
       <main className="flex-1">
-      {/* Hero Section - Same design as capsule sections */}
-      <section className="w-full py-16 md:py-20 lg:py-28 relative px-4 md:px-8 lg:px-16">
-        <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-8 lg:gap-12">
-          {/* Content Section */}
-          <div className="flex-1 lg:pr-8">
-            <h1 className="font-['League_Spartan',Helvetica] text-4xl md:text-5xl lg:text-6xl leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-              <span className="font-semibold text-[#ffa500]">
-                {serviceTitle.split(' ')[0]}
-                <br />
-              </span>
-              <span className="text-gray-800 dark:text-white">{serviceTitle.split(' ').slice(1).join(' ')}</span>
+        {/* Hero Section */}
+        <section className="w-full py-16 md:py-20 lg:py-28 relative px-4 md:px-8 lg:px-16">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6">
+              {serviceTitle.includes(' ') ? (
+                <>
+                  {serviceTitle.split(' ').map((word, index, array) => (
+                    <span key={index} className={index === array.length - 1 ? 'text-[#ffa500] font-bold' : ''}>
+                      {word}{index < array.length - 1 ? ' ' : ''}
+                    </span>
+                  ))}
+                </>
+              ) : (
+                <span className="text-[#ffa500] font-bold">{serviceTitle}</span>
+              )}
             </h1>
-
-            <div className="mt-8 md:mt-10 max-w-[936px]">
-              <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-800 dark:text-white text-justify leading-[28px] mb-6 transition-colors duration-300">
-                {serviceDescription}
+            <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              {serviceDescription}
+            </p>
+            {serviceIntro && (
+              <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-200 max-w-4xl mx-auto mt-6">
+                {serviceIntro}
               </p>
-              <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-700 dark:text-white text-justify leading-[28px] opacity-90 transition-colors duration-300">
-                Our comprehensive approach combines cutting-edge technology with proven strategies to deliver exceptional results. We understand that every business is unique, which is why we tailor our solutions to meet your specific needs and goals. With years of experience in the digital marketing landscape, we've helped countless businesses achieve remarkable growth and establish strong online presences.
+            )}
+          </div>
+        </section>
+
+        {/* Services Grid */}
+        {services && services.length > 0 && (
+          <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#252525] transition-colors duration-300">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {services.map((service, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white dark:bg-[#2d2d2d] rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="text-4xl mb-4">{service.emoji}</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {service.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Service Content Section */}
+        <section className="w-full py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-16">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-12">
+              <div className="lg:w-1/2">
+                <h1 className="font-['League_Spartan',Helvetica] text-4xl md:text-5xl lg:text-6xl leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
+                  <span className="font-semibold text-[#ffa500]">
+                    {serviceTitle.split(' ')[0]}
+                    <br />
+                  </span>
+                  <span className="text-gray-800 dark:text-white">{serviceTitle.split(' ').slice(1).join(' ')}</span>
+                </h1>
+                <div className="h-1 w-16 sm:w-24 md:w-32 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2 sm:mt-4"></div>
+
+                <div className="mt-8 md:mt-10">
+                  <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-800 dark:text-white text-justify leading-[28px] mb-6 transition-colors duration-300">
+                    {serviceDescription}
+                  </p>
+                  <p className="font-['League_Spartan',Helvetica] text-lg md:text-xl text-gray-700 dark:text-white text-justify leading-[28px] opacity-90 transition-colors duration-300">
+                    Our Comprehensive Approach Combines Cutting-Edge Technology With Proven Strategies To Deliver Exceptional Results. We Understand That Every Business Is Unique, Which Is Why We Tailor Our Solutions To Meet Your Specific Needs And Goals. With Years Of Experience In The Digital Marketing Landscape, We've Helped Countless Businesses Achieve Remarkable Growth And Establish Strong Online Presences.
+                  </p>
+                </div>
+              </div>
+
+              {/* Image Section */}
+              <div className="lg:w-1/2 flex items-center justify-center">
+                <div className="relative w-full max-w-[500px] lg:max-w-[600px]">
+                  <img
+                    className="w-full h-auto object-contain rounded-lg shadow-2xl"
+                    alt={`${serviceTitle} visual`}
+                    src={getServiceImage(serviceTitle)}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      console.error(`${serviceTitle} image failed to load:`, e);
+                      // Fallback to a relevant placeholder
+                      target.src = `https://via.placeholder.com/600x400/1e1e1e/ffa500?text=${encodeURIComponent(serviceTitle)}`;
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What is Service Section - Normal and Left Aligned */}
+        <section className="py-16 px-4 md:px-8 lg:px-16 bg-white dark:bg-[#1e1e1e]">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-left mb-12">
+              <h2 className="[font-family:'League_Spartan',Helvetica] font-bold text-gray-900 dark:text-white text-3xl md:text-4xl mb-6">
+                What is {serviceTitle}?
+              </h2>
+              <div className="w-24 h-1 bg-[#ffa500] mb-8"></div>
+            </div>
+            <div className="bg-[#2a2a2a] rounded-xl p-8 md:p-12 shadow-2xl">
+              <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl mb-6">
+                {whatIsService}
+              </p>
+              <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl opacity-90">
+                This Comprehensive Service Encompasses Everything From Initial Research And Analysis To Ongoing Optimization And Performance Monitoring. We Dive Deep Into Understanding Your Industry, Competitors, And Target Audience To Create Strategies That Not Only Meet Current Standards But Anticipate Future Trends And Changes In The Digital Landscape.
               </p>
             </div>
           </div>
+        </section>
 
-          {/* Image Section */}
-          <div className="flex-1 flex items-center justify-center">
-            <div className="relative w-full max-w-[500px] lg:max-w-[600px]">
-              <img
-                className="w-full h-auto object-contain rounded-lg shadow-2xl"
-                alt={`${serviceTitle} visual`}
-                src={getServiceImage(serviceTitle)}
-                onError={(e) => {
-                  console.error(`${serviceTitle} image failed to load:`, e);
-                  // Fallback to a relevant placeholder
-                  e.currentTarget.src = `https://via.placeholder.com/600x400/1e1e1e/ffa500?text=${encodeURIComponent(serviceTitle)}`;
-                }}
-              />
+        {/* What We Solve Section - Normal and Left Aligned */}
+        <section className="py-16 px-4 md:px-8 lg:px-16 bg-[#2a2a2a]">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-left mb-12">
+              <h2 className="[font-family:'League_Spartan',Helvetica] font-bold text-white text-3xl md:text-4xl mb-6">
+                What We Solve:
+              </h2>
+              <div className="w-24 h-1 bg-[#ffa500] mb-8"></div>
+            </div>
+            <div className="bg-[#1e1e1e] rounded-xl p-8 md:p-12 shadow-2xl">
+              <ul className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl space-y-4 mb-6">
+                {(whatWeSolve ?? defaultWhatWeSolve).map((point, idx) => (
+                  <li key={idx} className="flex items-start space-x-3">
+                    <span className="text-[#ffa500] text-xl font-bold mt-1">•</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl opacity-90">
+                Our Dedicated Team Of Experts Works Closely With You Throughout The Entire Process, Ensuring That Every Aspect Of Your Digital Strategy Is Perfectly Aligned With Your Business Objectives. We Provide Regular Updates, Detailed Reports, And Continuous Optimization To Ensure Your Investment Delivers Maximum Returns And Sustainable Long-Term Growth.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* What is Service Section - Normal and Left Aligned */}
-      <section className="py-16 px-4 md:px-8 lg:px-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-left mb-12">
-            <h2 className="[font-family:'League_Spartan',Helvetica] font-bold text-white text-3xl md:text-4xl mb-6">
-              What is {serviceTitle}?
-            </h2>
-            <div className="w-24 h-1 bg-[#ffa500] mb-8"></div>
-          </div>
-          <div className="bg-[#2a2a2a] rounded-xl p-8 md:p-12 shadow-2xl">
-            <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl mb-6">
-              {whatIsService}
-            </p>
-            <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl opacity-90">
-              This comprehensive service encompasses everything from initial research and analysis to ongoing optimization and performance monitoring. We dive deep into understanding your industry, competitors, and target audience to create strategies that not only meet current standards but anticipate future trends and changes in the digital landscape.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Solve Section - Normal and Left Aligned */}
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-[#2a2a2a]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-left mb-12">
-            <h2 className="[font-family:'League_Spartan',Helvetica] font-bold text-white text-3xl md:text-4xl mb-6">
-              What We Solve:
-            </h2>
-            <div className="w-24 h-1 bg-[#ffa500] mb-8"></div>
-          </div>
-          <div className="bg-[#1e1e1e] rounded-xl p-8 md:p-12 shadow-2xl">
-            <ul className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl space-y-4 mb-6">
-              {(whatWeSolve ?? defaultWhatWeSolve).map((point, idx) => (
-                <li key={idx} className="flex items-start space-x-3">
-                  <span className="text-[#ffa500] text-xl font-bold mt-1">•</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl leading-relaxed text-left max-w-4xl opacity-90">
-              Our dedicated team of experts works closely with you throughout the entire process, ensuring that every aspect of your digital strategy is perfectly aligned with your business objectives. We provide regular updates, detailed reports, and continuous optimization to ensure your investment delivers maximum returns and sustainable long-term growth.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
       {/* Our Blessings Section - Cards and Centered */}
       <section className="py-16 px-4 md:px-8 lg:px-16">
@@ -177,7 +241,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
             </h2>
             <div className="w-24 h-1 bg-[#ffa500] mx-auto mb-8"></div>
             <p className="[font-family:'League_Spartan',Helvetica] font-normal text-white text-lg md:text-xl max-w-3xl mx-auto leading-relaxed opacity-90">
-              We bring you comprehensive solutions with our expertise in:
+              We Bring You Comprehensive Solutions With Our Expertise In:
             </p>
           </div>
 
@@ -275,6 +339,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
         </div>
       </section>
       </main>
+      
       {/* Footer */}
       <FooterSection />
 

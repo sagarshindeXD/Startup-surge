@@ -52,16 +52,19 @@ export const SupportFormSection = (): JSX.Element => {
     <section className="w-full px-0 my-12 md:my-20 pb-16 sm:pb-12">  {/* Removed horizontal padding to fit content tightly */}
       <div className="max-w-3xl mx-auto">
         <Card className="relative rounded-[18px] bg-transparent overflow-hidden shadow-lg">
-          <div className="absolute w-full h-full top-0 left-0 bg-gray-300 dark:bg-[#d9d9d9] rounded-[18px] opacity-10 transition-colors duration-300" />
+          <div className="absolute w-full h-full top-0 left-0 bg-gray-300 dark:bg-[#d9d9d9] rounded-[18px] opacity-10 transition-colors duration-300 border-2 border-gray-400" />
           <CardContent className="relative px-3 md:px-4 py-6 md:py-8">
             <div className="flex flex-col items-center mb-8">
-              <div className="flex items-center justify-center mb-6">
-                <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl transition-colors duration-300">
-                  Ready To 
-                </span>
-                <span className="font-['League_Spartan',Helvetica] font-semibold text-[#ffa500] text-2xl md:text-4xl ml-2">
-                  Surge ?
-                </span>
+              <div className="flex flex-col items-center mb-6 w-full">
+                <div className="flex items-center justify-center">
+                  <span className="font-['League_Spartan',Helvetica] font-semibold text-gray-800 dark:text-white text-2xl md:text-4xl transition-colors duration-300">
+                    Ready To 
+                  </span>
+                  <span className="font-['League_Spartan',Helvetica] font-semibold text-[#ffa500] text-2xl md:text-4xl ml-2">
+                    Surge ?
+                  </span>
+                </div>
+                <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-3"></div>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl mb-8 transition-colors duration-300">
                 Share your goals with us, and our team will reply with a plan and next steps.
@@ -80,7 +83,7 @@ export const SupportFormSection = (): JSX.Element => {
                       onChange={handleChange}
                       placeholder="Your name"
                       required
-                      className="w-full bg-transparent border-2 border-gray-700 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
+                      className="w-full bg-transparent border-2 border-gray-400 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
                     />
                   </div>
                   <div>
@@ -94,7 +97,7 @@ export const SupportFormSection = (): JSX.Element => {
                       onChange={handleChange}
                       placeholder="Your email address"
                       required
-                      className="w-full bg-transparent border-2 border-gray-700 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
+                      className="w-full bg-transparent border-2 border-gray-400 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
                     />
                   </div>
                 </div>
@@ -109,7 +112,7 @@ export const SupportFormSection = (): JSX.Element => {
                     onChange={handleChange}
                     placeholder="What is this regarding?"
                     required
-                    className="w-full bg-transparent border-2 border-gray-700 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
+                    className="w-full bg-transparent border-2 border-gray-400 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
                   />
                 </div>
                 
@@ -123,7 +126,7 @@ export const SupportFormSection = (): JSX.Element => {
                     onChange={handleChange}
                     placeholder="How can we help you?"
                     required
-                    className="w-full min-h-[150px] bg-transparent border-2 border-gray-700 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
+                    className="w-full min-h-[100px] bg-transparent border-2 border-gray-400 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#ffa500] focus:border-[#ffa500] transition-colors duration-300"
                   />
                 </div>
                 

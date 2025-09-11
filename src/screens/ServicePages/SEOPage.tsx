@@ -1,37 +1,136 @@
 import React from "react";
-import { ServicePageTemplate } from "./ServicePageTemplate";
 import { Helmet } from "react-helmet-async";
+import { SectionComponentNodeSection } from "../MacbookPro/sections/SectionComponentNodeSection/SectionComponentNodeSection";
+import { FooterSection } from "../MacbookPro/sections/FooterSection/FooterSection";
+import { motion } from "framer-motion";
+
+const ServiceCard = ({ title, emoji, description }: { title: string; emoji: string; description: string }) => (
+  <motion.div 
+    className="bg-white dark:bg-[#2d2d2d] rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+    whileHover={{ scale: 1.02 }}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+  >
+    <div className="text-4xl mb-4">{emoji}</div>
+    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+      {title}
+    </h3>
+    <p className="text-gray-600 dark:text-gray-300">
+      {description}
+    </p>
+  </motion.div>
+);
 
 export const SEOPage: React.FC = () => {
-  const seoData = {
-    serviceTitle: "Search Engine Optimization",
-    serviceDescription: "Boost your online visibility and drive organic traffic with our comprehensive SEO strategies that rank your business at the top of search results.",
-    whatIsService: "Search Engine Optimization (SEO) is the art and science of optimizing your website to rank higher in search engine results pages (SERPs). It involves improving your site's visibility for relevant searches, driving organic traffic, and increasing your online presence without paid advertising. SEO encompasses technical optimization, content strategy, and user experience improvements to make your website more discoverable and valuable to both search engines and users.",
-    whereWeComeIn: "We transform your digital presence with data-driven SEO strategies that deliver measurable results. Our team of SEO experts conducts comprehensive audits, implements technical optimizations, creates compelling content, and continuously monitors performance to ensure your website climbs the search rankings. We don't just optimize for search engines; we optimize for your business growth, ensuring every ranking improvement translates to increased leads, sales, and revenue.",
-    whatWeSolve: [
-      "Invisible on high‑intent queries",
-      "Thin/duplicate content holding you back",
-      "Technical SEO debt blocking crawl/index",
-      "Rankings up, revenue flat",
-    ],
-    benefits: [
-      "Digital Brand Presence",
-      "Channel Strategy Planning",
-      "Content Calendar",
-      "Copywriting",
-      "Creative Design",
-      "Social Media Management"
-    ]
-  };
+  const services = [
+    {
+      title: "Website Audit & Optimization 🔍",
+      emoji: "🔍",
+      description: "Analyze, refine, and strengthen your site's foundation to ensure it's search-engine friendly and user-focused."
+    },
+    {
+      title: "Keyword Strategy 🎯",
+      emoji: "🎯",
+      description: "Target the right keywords that align with your audience's intent and drive qualified traffic to your site."
+    },
+    {
+      title: "On-Page SEO ⚡",
+      emoji: "⚡",
+      description: "Optimize content, metadata, and site structure to boost visibility and improve rankings."
+    },
+    {
+      title: "Technical SEO 🛠️",
+      emoji: "🛠️",
+      description: "Enhance site speed, mobile performance, and crawlability to ensure search engines (and users) love your website."
+    },
+    {
+      title: "Content Optimization ✍️",
+      emoji: "✍️",
+      description: "Craft intent-rich, conversion-focused content that ranks high and keeps users engaged."
+    },
+    {
+      title: "Backlink Building 🔗",
+      emoji: "🔗",
+      description: "Build high-quality, authoritative links that strengthen your brand's credibility and domain authority."
+    }
+  ];
 
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-[#1e1e1e] transition-colors duration-300">
       <Helmet>
         <title>SEO Services for Startups | StartupSurge®</title>
         <meta name="description" content="Rank higher and grow organic traffic. Technical SEO, content, and strategy tailored for startups by StartupSurge." />
         <link rel="canonical" href="https://www.startupsurge.in/services/seo" />
       </Helmet>
-      <ServicePageTemplate {...seoData} />
-    </>
+
+      {/* Navigation */}
+      <SectionComponentNodeSection />
+
+      {/* Hero Section */}
+      <section className="w-full py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Text Content */}
+            <motion.div
+              className="pt-8"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 text-left">
+                Our <span className="text-[#ffa500] font-bold">SEO</span> Edge
+              </h1>
+              <div className="space-y-4 text-left">
+                <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
+                  We bring you powerful, results-driven SEO solutions designed to put your brand in front of the right audience and keep you there.
+                </p>
+              </div>
+            </motion.div>
+            
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-xl"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="SEO Services"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#252525] transition-colors duration-300">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl sm:text-4xl text-gray-900 dark:text-white mb-8">
+              Our <span className="text-[#ffa500] font-bold">Services</span>
+            </h2>
+            <div className="h-1 w-16 bg-[#ffa500] mx-auto"></div>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {services.map((service, index) => (
+              <ServiceCard key={index} {...service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      <FooterSection />
+    </div>
   );
 };

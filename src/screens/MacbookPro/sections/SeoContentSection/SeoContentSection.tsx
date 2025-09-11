@@ -10,14 +10,23 @@ export const SeoContentSection = (): JSX.Element => {
       <div className="flex flex-col lg:flex-row max-w-[1752px] mx-auto gap-4 sm:gap-8 lg:gap-12">
         {/* Content Section */}
         <div className="flex-1 lg:pr-8">
-          <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
-            <span className="font-semibold text-[#ffa500]">SEO </span>
-            <span className="text-gray-800 dark:text-white">sorcery</span>
-          </h1>
+          <div className="flex flex-col items-start">
+            <h1 className="font-['League_Spartan',Helvetica] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[36px] sm:leading-[60px] md:leading-[70px] lg:leading-[80px] tracking-[0]">
+              <span className="font-semibold text-[#ffa500]">Search Engine</span>
+              <span className="text-gray-800 dark:text-white"> Optimization</span>
+            </h1>
+            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400 mt-2"></div>
+          </div>
 
           <div className="mt-4 sm:mt-8 md:mt-10 max-w-[936px]">
             <p className="font-['League_Spartan',Helvetica] text-base sm:text-lg md:text-xl text-gray-800 dark:text-white text-justify leading-[24px] sm:leading-[28px] transition-colors duration-300">
-              Make search engines fall in love with you. From site architecture to intent‑rich content, we plant you on Page One and keep you there.
+<span className="font-bold text-[#ffa500]">If your brand isn't showing up on Google's first page, does it even exist?</span>
+<br /><br />
+Search Engine Optimization (SEO) isn't just about ranking higher, it's about being discovered by the right audience at the right time. From building a strong site structure to creating content that speaks your customer's language, our SEO strategies ensure you don't just climb to Page One - you stay there.
+
+For any brand, SEO is the backbone of online visibility. It builds trust, drives organic traffic, and turns search intent into real business results. Without it, even the most beautiful website remains hidden in the shadows.
+<br /><br />
+<span className="font-bold text-[#ffa500]">Ready to be found, trusted, and chosen?</span>
             </p>
 
             <div className="mt-4 sm:mt-8 md:mt-10 flex items-center">
