@@ -728,6 +728,14 @@ export const AIPage: React.FC = () => {
         return filtered as { platform: string; organic?: string[]; paid?: string[]; other?: string[] }[];
       };
       const mr = ai?.marketResearchDetailed;
+      // Prefer AI-provided ads budget if shape looks valid; otherwise fallback to base (rule-computed)
+      const aiAdsRaw = Array.isArray(ai?.adsBudgetINR) ? ai.adsBudgetINR : undefined;
+      const aiAds = aiAdsRaw?.map((r: any) => ({
+        channel: typeof r?.channel === 'string' ? r.channel : undefined,
+        budgetINR: typeof r?.budgetINR === 'string' ? r.budgetINR : undefined,
+        notes: typeof r?.notes === 'string' ? r.notes : undefined,
+      })).filter((r: any) => r.channel && r.budgetINR);
+
       const merged: Recommendations = {
         ...base,
         ourUnderstanding: arr(ai?.ourUnderstanding) || base.ourUnderstanding,
@@ -749,7 +757,7 @@ export const AIPage: React.FC = () => {
         executionPlanByPlatform: epbp(ai?.executionPlanByPlatform) || base.executionPlanByPlatform,
         importantParameters: arr(ai?.importantParameters) || base.importantParameters,
         elaboratedKPIs: arr(ai?.elaboratedKPIs) || base.elaboratedKPIs,
-        adsBudgetINR: base.adsBudgetINR, // enforce rule-based budgets
+        adsBudgetINR: (aiAds && aiAds.length ? aiAds : base.adsBudgetINR),
         alternatives: [],
         recommendation: typeof ai?.recommendation === 'string' && ai.recommendation.trim() ? ai.recommendation : base.recommendation,
       };
