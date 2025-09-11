@@ -32,6 +32,7 @@ type FormState = {
   )[];
   marketingApproach?: 'Organic' | 'Paid';
   leadGenBudgetINR?: string; // only when objective is Lead Generation and marketingApproach is Paid
+  overallBudgetINR?: string; // optional monthly ads budget for precise allocations
 };
 
 const initialState: FormState = {
@@ -47,6 +48,7 @@ const initialState: FormState = {
   objective: [],
   marketingApproach: undefined,
   leadGenBudgetINR: "",
+  overallBudgetINR: "",
 };
 
 export const AIPage: React.FC = () => {
@@ -181,7 +183,14 @@ export const AIPage: React.FC = () => {
     ourUnderstanding: string[];
     objectiveElaborated: string[];
     marketResearch: string[];
+    marketResearchDetailed?: {
+      potentialAudience: string[];
+      competition: string[];
+      marketShare: string[];
+      opportunity: string[];
+    };
     platforms: string[]; // Preferable Platforms
+    platformsRecommended?: string[];
     strategyByPlatforms: string[];
     contentStrategy: string[];
     aidaFunnel: {
@@ -191,6 +200,7 @@ export const AIPage: React.FC = () => {
       action: string[];
     };
     executionPlan: string[];
+    executionPlanByPlatform?: { platform: string; organic?: string[]; paid?: string[]; other?: string[] }[];
     importantParameters: string[];
     elaboratedKPIs: string[];
     adsBudgetINR?: { channel: string; budgetINR: string; notes?: string }[];
@@ -213,6 +223,12 @@ export const AIPage: React.FC = () => {
     };
     const ourUnderstanding: string[] = [];
     const marketResearch: string[] = [];
+    const marketResearchDetailed = {
+      potentialAudience: [] as string[],
+      competition: [] as string[],
+      marketShare: [] as string[],
+      opportunity: [] as string[],
+    };
     
     // helpers
     const pick = <T,>(arr: T[], n = 3) => arr.filter(Boolean).slice(0, n);
@@ -466,6 +482,22 @@ export const AIPage: React.FC = () => {
       (f.offering === "Product" || f.offering === "App") && `Decision triggers: price–value clarity, social proof, ${industryLower} use-cases`,
       (f.offering === "Service") && `Decision triggers: expertise, case studies, response time`
     );
+    // Populate structured market research
+    add(marketResearchDetailed.potentialAudience,
+      `${f.audienceSegment || 'Target'} • ${audienceAge} • Personas: ${f.audienceNature ? cap(f.audienceNature) : 'N/A'}`
+    );
+    add(marketResearchDetailed.competition,
+      `Key competing channels: ${actives || 'Community/SEO'}`,
+      `Content noise: ${topKeywords.length ? topKeywords.join(', ') : 'Generic category terms'}`
+    );
+    add(marketResearchDetailed.marketShare,
+      `Discovery split → IG/YT: high for B2C; LI/SEO: high for B2B in ${f.industry || 'the niche'}`
+    );
+    add(marketResearchDetailed.opportunity,
+      preferredPlatforms.includes('Instagram') ? 'Own Reels + creator UGC' : 'IG Reels white-space',
+      preferredPlatforms.includes('LinkedIn') ? 'ABM + Thought-leadership' : 'LI leadership white-space',
+      preferredPlatforms.includes('Google Ads') ? 'High-intent capture' : 'Search demand capture'
+    );
 
     // If user explicitly preferred a platform, enrich strategies for it
     if (preferredPlatforms.includes("Instagram")) {
@@ -526,20 +558,71 @@ export const AIPage: React.FC = () => {
     const platformRegex = new RegExp(topPlatforms.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "i");
     const filteredStrategies = strategyByPlatforms.filter((s) => platformRegex.test(s) || !/^[A-Za-z]+:/.test(s)).slice(0, 8);
 
-    // Ads budget in INR if ads suggested
+    // Ads budget per rules
     let adsBudgetINR: { channel: string; budgetINR: string; notes?: string }[] | undefined;
-    if (topPlatforms.some((p) => /meta ads|google ads|youtube/i.test(p))) {
-      adsBudgetINR = [];
-      if (topPlatforms.some((p) => /meta ads/i.test(p))) {
-        adsBudgetINR.push({ channel: "Meta Ads (per campaign)", budgetINR: "₹10,000", notes: "Test 2-3 audiences/creatives" });
-      }
-      if (topPlatforms.some((p) => /google ads|youtube/i.test(p))) {
-        adsBudgetINR.push({ channel: "Google Ads (per campaign)", budgetINR: "₹25,000", notes: "Search/Performance Max" });
-      }
+    const parseINR = (s?: string) => {
+      const n = s ? parseInt(String(s).replace(/[^0-9]/g, ''), 10) : NaN;
+      return isNaN(n) ? undefined : n;
+    };
+    const monthlyBudget = parseINR(f.overallBudgetINR) || parseINR(f.leadGenBudgetINR);
+    const fmt = (n: number) => `₹${n.toLocaleString('en-IN')}`;
+    adsBudgetINR = [];
+    const includeMeta = topPlatforms.some((p) => /meta ads|instagram/i.test(p));
+    const includeLinkedIn = topPlatforms.some((p) => /linkedin/i.test(p));
+    const includeWhatsApp = true; // keep WA line for CRM/nudges if relevant
+    const includeGoogle = topPlatforms.some((p) => /google ads|youtube/i.test(p));
+    if (includeMeta) {
+      const min = 10000;
+      const pct = monthlyBudget ? Math.max(min, Math.round(monthlyBudget * 0.2)) : min;
+      adsBudgetINR.push({ channel: 'Meta Ads (Instagram/Facebook)', budgetINR: fmt(pct), notes: 'Prospecting + retargeting' });
+    }
+    if (includeLinkedIn) {
+      const min = 15000;
+      const pct = monthlyBudget ? Math.max(min, Math.round(monthlyBudget * 0.3)) : min;
+      adsBudgetINR.push({ channel: 'LinkedIn Ads', budgetINR: fmt(pct), notes: 'ABM + Lead Gen Forms' });
+    }
+    if (includeWhatsApp) {
+      const cap = 5000; // up to 5k
+      const spend = monthlyBudget ? Math.min(cap, Math.round(monthlyBudget * 0.1)) : cap;
+      adsBudgetINR.push({ channel: 'WhatsApp (Broadcast/API)', budgetINR: fmt(spend), notes: 'Nurtures + reminders' });
+    }
+    if (includeGoogle) {
+      const min = 25000;
+      const pct = monthlyBudget ? Math.max(min, Math.round(monthlyBudget * 0.6)) : min; // 50-70%, pick 60%
+      adsBudgetINR.push({ channel: 'Google Ads (Search/PMAX)', budgetINR: fmt(pct), notes: 'High-intent capture' });
     }
 
     // Ensure arrays are unique and tidy
     const uniq = (arr: string[]) => Array.from(new Set(arr)).filter(Boolean);
+
+    // Build execution plan by platform (concise)
+    const executionPlanByPlatform: { platform: string; organic?: string[]; paid?: string[]; other?: string[] }[] = [];
+    const addExec = (p: string, o?: string[], pd?: string[], ot?: string[]) => executionPlanByPlatform.push({ platform: p, organic: o?.filter(Boolean), paid: pd?.filter(Boolean), other: ot?.filter(Boolean) });
+    addExec('Instagram', [
+      '3-4 Reels/week with benefit-first hooks',
+      'Stories polls/quiz; Highlights for social proof'
+    ], [
+      'Prospecting (broad + interests), Retargeting (viewers, engagers)'
+    ]);
+    addExec('Facebook', [
+      'Repurpose IG content; community groups engagement'
+    ], [
+      'Lookalikes; catalog/advantage placements if eCom'
+    ]);
+    addExec('LinkedIn', [
+      'Founder-led thought leadership 3x/week',
+      'ABM: connection + DM sequence (value-first)'
+    ], [
+      'Lead Gen Forms with case-study creatives'
+    ]);
+    addExec('WhatsApp', undefined, undefined, [
+      'Opt-in flows; broadcast nurtures; cart/lead follow-ups'
+    ]);
+    addExec('Google Ads', [
+      'SEO basics: titles/meta/internal links'
+    ], [
+      'Search (exact/phrase), PMAX (if product), retarget display'
+    ]);
 
     return {
       ourUnderstanding: uniq(ourUnderstanding),
@@ -547,7 +630,9 @@ export const AIPage: React.FC = () => {
         `${f.objective}: ${f.brandObjective}. ${f.brandName ? `For ${f.brandName}, focus on ${(preferredPlatforms.length ? preferredPlatforms : topPlatforms).slice(0,2).join(" & ") || "the most relevant channels"} given ${f.audienceSegment || "the audience"}.` : ""}`,
       ]),
       marketResearch: uniq(marketResearch),
+      marketResearchDetailed,
       platforms: topPlatforms,
+      platformsRecommended: topPlatforms,
       strategyByPlatforms: uniq(filteredStrategies.length ? filteredStrategies : pick(strategyByPlatforms, 5)),
       contentStrategy: uniq(contentStrategy.length ? contentStrategy : pick(contentStrategy, 6)),
       aidaFunnel: {
@@ -557,6 +642,7 @@ export const AIPage: React.FC = () => {
         action: uniq(aida.action),
       },
       executionPlan: uniq(executionPlan),
+      executionPlanByPlatform,
       importantParameters: uniq(importantParameters),
       elaboratedKPIs: uniq(elaboratedKPIs),
       adsBudgetINR,
@@ -882,21 +968,37 @@ export const AIPage: React.FC = () => {
           </div>
           
           {form.marketingApproach === 'Paid' && (
-            <div className="flex flex-col md:col-span-2">
-              <label htmlFor="leadGenBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
-                {form.objective.includes("Lead Generation") ? 'Lead Generation ' : ''}Budget (INR)
-              </label>
-              <input 
-                id="leadGenBudgetINR" 
-                name="leadGenBudgetINR" 
-                type="number" 
-                value={form.leadGenBudgetINR || ''} 
-                onChange={onChange} 
-                placeholder="E.G., 50000" 
-                className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" 
-                required
-              />
-            </div>
+            <>
+              <div className="flex flex-col md:col-span-2">
+                <label htmlFor="leadGenBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                  {form.objective.includes("Lead Generation") ? 'Lead Generation ' : ''}Budget (INR)
+                </label>
+                <input 
+                  id="leadGenBudgetINR" 
+                  name="leadGenBudgetINR" 
+                  type="number" 
+                  value={form.leadGenBudgetINR || ''} 
+                  onChange={onChange} 
+                  placeholder="E.G., 50000" 
+                  className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" 
+                  required
+                />
+              </div>
+              <div className="flex flex-col md:col-span-2">
+                <label htmlFor="overallBudgetINR" className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                  Monthly Ads Budget (INR) — optional (for precise allocations)
+                </label>
+                <input 
+                  id="overallBudgetINR" 
+                  name="overallBudgetINR" 
+                  type="number" 
+                  value={form.overallBudgetINR || ''} 
+                  onChange={onChange} 
+                  placeholder="E.G., 100000" 
+                  className="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#ffa500]" 
+                />
+              </div>
+            </>
           )}
 
           <div className="md:col-span-2 flex gap-4 mt-1 items-center">
@@ -921,30 +1023,98 @@ export const AIPage: React.FC = () => {
           </form>
 
           {recos && (
-            <section className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
-              <Card title="Our Understanding" items={recos.ourUnderstanding} />
-              <Card title="Objective" items={recos.objectiveElaborated} />
-              <Card title="Market Research" items={recos.marketResearch} />
+            <section className="mt-12 grid grid-cols-1 gap-7 md:gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
+                <Card title="Our Understanding" items={recos.ourUnderstanding} />
+                <Card title="Objective" items={recos.objectiveElaborated} />
+                <Card title="Market Research (Summary)" items={recos.marketResearch} />
+              </div>
 
-              <Card title="Preferable Platforms" items={recos.platforms} />
-              <Card title="Strategy By Platforms" items={recos.strategyByPlatforms} />
-              <Card title="Content Strategy" items={recos.contentStrategy} />
+              {recos.marketResearchDetailed && (
+                <div className="p-6 md:p-7 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow-sm">
+                  <h3 className="text-xl font-semibold mb-4 [font-family:'League_Spartan',Helvetica]">Market Research (AI)</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold mb-2 text-[#ffa500]">Potential Audience</h4>
+                      <ul className="list-disc pl-5 space-y-2.5 text-gray-700 dark:text-gray-300">
+                        {recos.marketResearchDetailed.potentialAudience.map((it, i) => <li key={i}>{it}</li>)}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2 text-[#ffa500]">Competition</h4>
+                      <ul className="list-disc pl-5 space-y-2.5 text-gray-700 dark:text-gray-300">
+                        {recos.marketResearchDetailed.competition.map((it, i) => <li key={i}>{it}</li>)}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2 text-[#ffa500]">Market Share</h4>
+                      <ul className="list-disc pl-5 space-y-2.5 text-gray-700 dark:text-gray-300">
+                        {recos.marketResearchDetailed.marketShare.map((it, i) => <li key={i}>{it}</li>)}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2 text-[#ffa500]">Opportunity</h4>
+                      <ul className="list-disc pl-5 space-y-2.5 text-gray-700 dark:text-gray-300">
+                        {recos.marketResearchDetailed.opportunity.map((it, i) => <li key={i}>{it}</li>)}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-              <GroupAIDA title="Funnel Plan (AIDA)" groups={[
-                { heading: 'Awareness', items: recos.aidaFunnel.awareness },
-                { heading: 'Interest', items: recos.aidaFunnel.interest },
-                { heading: 'Desire', items: recos.aidaFunnel.desire },
-                { heading: 'Action', items: recos.aidaFunnel.action },
-              ]} />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
+                <Card title="Selected Platforms" items={recos.platforms} />
+                {recos.platformsRecommended && <Card title="AI-Recommended Platforms" items={recos.platformsRecommended} />}
+                <Card title="Strategy By Platforms" items={recos.strategyByPlatforms} />
+              </div>
 
-              <Card title="Execution Plan" items={recos.executionPlan} />
-              <Card title="Important Parameters" items={recos.importantParameters} />
-              <Card title="Expected KPIs (Elaborated)" items={recos.elaboratedKPIs} />
+              {recos.executionPlanByPlatform && (
+                <div className="p-6 md:p-7 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow-sm">
+                  <h3 className="text-xl font-semibold mb-4 [font-family:'League_Spartan',Helvetica]">Execution Plan (By Platform)</h3>
+                  <div className="grid gap-5 md:gap-6 auto-rows-auto [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))]">
+                    {recos.executionPlanByPlatform.map((ep, i) => (
+                      <div key={i} className="h-auto">
+                        <h4 className="font-semibold mb-2 text-[#ffa500]">{ep.platform}</h4>
+                        {ep.organic && (
+                          <div className="mb-3">
+                            <div className="text-sm font-semibold mb-1">Organic</div>
+                            <ul className="list-disc pl-5 space-y-1.5 text-gray-700 dark:text-gray-300">
+                              {ep.organic.map((it, j) => <li key={j}>{it}</li>)}
+                            </ul>
+                          </div>
+                        )}
+                        {ep.paid && (
+                          <div className="mb-3">
+                            <div className="text-sm font-semibold mb-1">Paid</div>
+                            <ul className="list-disc pl-5 space-y-1.5 text-gray-700 dark:text-gray-300">
+                              {ep.paid.map((it, j) => <li key={j}>{it}</li>)}
+                            </ul>
+                          </div>
+                        )}
+                        {ep.other && (
+                          <div>
+                            <div className="text-sm font-semibold mb-1">Other</div>
+                            <ul className="list-disc pl-5 space-y-1.5 text-gray-700 dark:text-gray-300">
+                              {ep.other.map((it, j) => <li key={j}>{it}</li>)}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-              {recos.adsBudgetINR && <AdsBudget title="Ads Budget (INR)" rows={recos.adsBudgetINR} />}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
+                <Card title="Important Parameters" items={recos.importantParameters} />
+                {recos.adsBudgetINR && <AdsBudget title="Ads Budget (INR)" rows={recos.adsBudgetINR} />}
+                <Card title="Expected KPIs (Elaborated)" items={recos.elaboratedKPIs} />
+              </div>
 
-              <Card title="Alternatives" items={recos.alternatives} />
-              <Single title="What We Recommend" value={recos.recommendation} />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 md:gap-8">
+                <Card title="Execution (General)" items={recos.executionPlan} />
+                <Single title="What We Recommend" value={recos.recommendation} />
+              </div>
             </section>
           )}
         </div>
