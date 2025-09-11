@@ -325,8 +325,10 @@ export const generatePlan = async (form: FormState): Promise<Recommendations> =>
 };
 
 // Client-side helper to call the serverless function
-export async function generatePlanViaApi(form: FormState): Promise<Recommendations> {
-  const res = await fetch('/api/generate-plan', {
+export async function generatePlanViaApi(form: FormState): Promise<any> {
+  const base = (import.meta as any)?.env?.VITE_API_BASE_URL || '';
+  const url = base ? `${base.replace(/\/$/, '')}/api/generate-plan` : '/api/generate-plan';
+  const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(form),

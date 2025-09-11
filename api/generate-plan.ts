@@ -27,26 +27,24 @@ type FormState = {
     | "Sales/Revenue"
     | "Engagement"
   )[];
-  leadGenBudgetINR?: string;
+  marketingApproach?: 'Organic' | 'Paid';
+  overallBudgetINR?: string;
+  leadGenBudgetINR?: string; // legacy; may be undefined
 };
 
 function buildPrompt(form: FormState) {
-  return `You are a senior growth strategist. Based on the given inputs, generate a concise, actionable plan.
-Return ONLY valid JSON matching this TypeScript schema exactly (no extra commentary):
+  return `You are a senior growth strategist. Based on the given inputs, generate a detailed yet concise, actionable plan.
+Return ONLY valid JSON matching this exact TypeScript schema (no markdown, no extra commentary):
 {
   "ourUnderstanding": string[],
-  "objectiveElaborated": string[],
   "marketResearch": string[],
-  "platforms": string[],
-  "strategyByPlatforms": string[],
-  "contentStrategy": string[],
-  "aidaFunnel": {"awareness": string[], "interest": string[], "desire": string[], "action": string[]},
-  "executionPlan": string[],
+  "marketResearchDetailed": {"potentialAudience": string[], "competition": string[], "marketShare": string[], "opportunity": string[]},
+  "platformsSelected": string[],
+  "platformsRecommended": string[],
+  "executionPlanByPlatform": {"platform": string, "organic"?: string[], "paid"?: string[], "other"?: string[]}[],
   "importantParameters": string[],
   "elaboratedKPIs": string[],
-  "adsBudgetINR": {"channel": string, "budgetINR": string, "notes"?: string}[] | undefined,
-  "alternatives": string[],
-  "recommendation": string
+  "adsBudgetINR": {"channel": string, "budgetINR": string, "notes"?: string}[] | undefined
 }
 
 Inputs:
@@ -57,15 +55,17 @@ Offering: ${form.offering}
 Audience Segment: ${form.audienceSegment}
 Audience Nature: ${form.audienceNature}
 Age Group: ${form.ageGroup.join(", ")}
+Marketing Approach: ${form.marketingApproach || "-"}
 Primary Objective: ${form.objective.join(", ")}
-Lead Gen Budget (INR): ${form.leadGenBudgetINR || "-"}
+Monthly Ads Budget (INR): ${form.overallBudgetINR || "-"}
 
 Guidance:
-- Prefer India-specific INR budgets if suggesting paid ads.
-- Keep lists focused and non-redundant.
-- Ensure platforms and strategies align with inputs.
-- Do market reasearch yourself and provide relevant insights
-- Ads budget MUST be  as: Meta Ads = rs.10000 per campaign; Google Ads = 25000 INR per campaign.
+- Do the market research yourself and provide specific, relevant insights.
+- Platforms: fill "platformsSelected" from the user's likely choices given the inputs; also add "platformsRecommended" from your analysis.
+- Execution: structure under Instagram, Facebook, LinkedIn, WhatsApp, Google Ads (and SEO if relevant). Use Organic/Paid/Other as applicable.
+- Important Parameters: derive from the objectives/offering (e.g., CPL, CPA, CTR, Conversion Rate, LTV, etc.).
+- Ads Budget: If budget is provided, allocate per month using rules — Meta: min ₹10,000 or 20%; LinkedIn: min ₹15,000 or 30%; WhatsApp: up to ₹5,000 (~10% cap); Google: 50–70% band with min ₹25,000. If no budget provided, suggest reasonable monthly INR figures and include notes.
+- Return strings in plain text (no markdown headers like # or **).
 - Keep tone crisp and professional.
 `;
 }
@@ -113,14 +113,6 @@ export default async function handler(req: any, res: any) {
       if (match) parsed = tryParse(match[1]);
     }
     if (!parsed) return res.status(502).json({ error: "Unparseable response from model" });
-
-    // Enforce fixed ads budgets
-    try {
-      (parsed as any).adsBudgetINR = [
-        { channel: "Meta Ads", budgetINR: "10000", notes: "INR per campaign (fixed)" },
-        { channel: "Google Ads", budgetINR: "25000", notes: "INR per campaign (fixed)" },
-      ];
-    } catch {}
 
     return res.status(200).json(parsed);
   } catch (err: any) {
