@@ -186,7 +186,8 @@ export const AIPage: React.FC = () => {
       marketShare: string[];
       opportunity: string[];
     };
-    platforms: string[]; // Preferable Platforms
+    platforms: string[]; // Selected Platforms (from user)
+    platformsSelected?: string[];
     platformsRecommended?: string[];
     strategyByPlatforms: string[];
     contentStrategy: string[];
@@ -442,7 +443,7 @@ export const AIPage: React.FC = () => {
       contentStrategy.push("Topic clusters", "How-to/Comparison posts", "Answer People Also Ask");
     }
 
-    // Important parameters tailored to objective
+    // Important parameters — tailored to inputs (unique values applied later)
     add(
       importantParameters,
       (f.objective.includes("Lead Generation") || f.offering === "Service") && "Cost per Lead (CPL)",
@@ -656,7 +657,8 @@ export const AIPage: React.FC = () => {
       ]),
       marketResearch: uniq(marketResearch),
       marketResearchDetailed,
-      platforms: topPlatforms,
+      platforms: preferredPlatforms,
+      platformsSelected: preferredPlatforms,
       platformsRecommended: topPlatforms,
       strategyByPlatforms: uniq(filteredStrategies.length ? filteredStrategies : pick(strategyByPlatforms, 5)),
       contentStrategy: uniq(contentStrategy.length ? contentStrategy : pick(contentStrategy, 6)),
@@ -1063,8 +1065,6 @@ export const AIPage: React.FC = () => {
             <section className="mt-12 grid grid-cols-1 gap-7 md:gap-8">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
                 <Card title="Our Understanding" items={recos.ourUnderstanding} />
-                <Card title="Objective" items={recos.objectiveElaborated} />
-                <Card title="Market Research (Summary)" items={recos.marketResearch} />
               </div>
 
               {recos.marketResearchDetailed && (
@@ -1099,10 +1099,9 @@ export const AIPage: React.FC = () => {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
-                <Card title="Selected Platforms" items={recos.platforms} />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 md:gap-8">
+                <Card title="Selected Platforms" items={recos.platformsSelected || recos.platforms || []} />
                 {recos.platformsRecommended && <Card title="AI-Recommended Platforms" items={recos.platformsRecommended} />}
-                <Card title="Strategy By Platforms" items={recos.strategyByPlatforms} />
               </div>
 
               {recos.executionPlanByPlatform && (
@@ -1145,12 +1144,7 @@ export const AIPage: React.FC = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 md:gap-8">
                 <Card title="Important Parameters" items={recos.importantParameters} />
                 {recos.adsBudgetINR && <AdsBudget title="Ads Budget (INR)" rows={recos.adsBudgetINR} />}
-                <Card title="Expected KPIs (Elaborated)" items={recos.elaboratedKPIs} />
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 md:gap-8">
-                <Card title="Execution (General)" items={recos.executionPlan} />
-                <Single title="What We Recommend" value={recos.recommendation} />
+                <Card title="Expected KPIs" items={recos.elaboratedKPIs} />
               </div>
             </section>
           )}
@@ -1195,30 +1189,7 @@ const Card: React.FC<{ title: string; items: string[] }> = ({ title, items }) =>
   </div>
 );
 
-const Single: React.FC<{ title: string; value: string }> = ({ title, value }) => (
-  <div className="p-6 md:p-7 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow-sm">
-    <h3 className="text-xl font-semibold mb-3 [font-family:'League_Spartan',Helvetica]">{title}</h3>
-    <p className="text-gray-800 dark:text-gray-200 leading-relaxed">{value}</p>
-  </div>
-);
-
-const GroupAIDA: React.FC<{ title: string; groups: { heading: string; items: string[] }[] }> = ({ title, groups }) => (
-  <div className="w-full p-6 md:p-7 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow-sm">
-    <h3 className="text-xl font-semibold mb-4 [font-family:'League_Spartan',Helvetica]">{title}</h3>
-    <div className="grid gap-5 md:gap-6 auto-rows-auto [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
-      {groups.map((g, i) => (
-        <div key={i} className="h-auto">
-          <h4 className="font-semibold mb-2.5">{g.heading}</h4>
-          <ul className="list-disc pl-5 space-y-2.5 text-gray-700 dark:text-gray-300 break-words whitespace-normal leading-relaxed">
-            {g.items.map((it, idx) => (
-              <li key={idx}>{it}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+// removed unused components: Single, GroupAIDA
 
 const AdsBudget: React.FC<{ title: string; rows: { channel: string; budgetINR: string; notes?: string }[] }> = ({ title, rows }) => (
   <div className="p-6 md:p-7 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow-sm">
