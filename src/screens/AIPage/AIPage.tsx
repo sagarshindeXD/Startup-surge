@@ -707,4 +707,4 @@ const AIPage: React.FC = () => {
   );
 };
 
-export default AIPage;
+export { AIPage };
