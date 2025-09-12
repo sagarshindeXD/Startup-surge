@@ -6,7 +6,7 @@
 export interface FormState {
   brandName: string;
   brandObjective: string;
-  targetPlatform: string;
+  targetPlatform: string[];
   industry: string;
   industryType: ("B2C" | "B2B" | "D2C" | "Marketplace" | "Non-profit" | "SaaS")[];
   offering: "Product" | "Service" | "App" | "Content" | "Course" | "";
@@ -194,7 +194,9 @@ const computeBudgetAllocation = (platforms: string[], budgetStr?: string): strin
  */
 export const generatePlan = async (form: FormState): Promise<Recommendations> => {
   const isPaid = form.marketingApproach === 'Paid';
-  const platforms = form.targetPlatform ? [form.targetPlatform] : ['Instagram', 'Facebook', 'LinkedIn', 'Google', 'WhatsApp'];
+  const platforms = Array.isArray(form.targetPlatform) && form.targetPlatform.length
+    ? form.targetPlatform
+    : ['Instagram', 'Facebook', 'LinkedIn', 'Google', 'WhatsApp'];
 
   const platformStrategies = platforms.map(platform => {
     const strategy = generatePlatformStrategy(platform, isPaid, form.leadGenBudgetINR);

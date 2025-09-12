@@ -24,6 +24,7 @@ import {
   WebDesignPage,
 } from "./screens/ServicePages";
 import { PrivacyPolicyPage } from "./screens/PrivacyPolicyPage/PrivacyPolicyPage";
+import ChatAssistant from "./components/ChatAssistant";
 
 // AnimatedRoutes component to handle route transitions
 const AnimatedRoutes = () => {
@@ -60,6 +61,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <Router>
           <ScrollToTop />
           <AnimatedRoutes />
+          <ChatAssistant />
         </Router>
       </ThemeProvider>
     </HelmetProvider>

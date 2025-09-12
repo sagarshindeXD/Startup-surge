@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 type FormState = {
   brandName: string;
   brandObjective: string;
-  targetPlatform?: string;
+  targetPlatform?: string[];
   industry: string;
   industryType: ("B2C" | "B2B" | "D2C" | "Marketplace" | "Non-profit" | "SaaS")[];
   offering: "Product" | "Service" | "App" | "Content" | "Course" | "";
