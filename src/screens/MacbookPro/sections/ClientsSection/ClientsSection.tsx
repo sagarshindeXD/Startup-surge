@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface Client {
   name: string;
@@ -7,7 +7,6 @@ interface Client {
 }
 
 export const ClientsSection: React.FC = () => {
-  // All client logos located in public/Logos
   const logoPaths = [
     "/Logos/StartupSurge Clients-01.png",
     "/Logos/StartupSurge Clients-02.png",
@@ -40,49 +39,101 @@ export const ClientsSection: React.FC = () => {
     alt: `Client ${idx + 1} Logo`,
   }));
 
-  // Spotlight removed — simple logo wall retained
+  // Duplicate the clients array to create a seamless loop
+  const duplicatedClients = [...clients, ...clients, ...clients];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [logoWidth, setLogoWidth] = useState(200); // Default width, will be updated on mount
+
+  // Calculate logo width on mount and window resize
+  useEffect(() => {
+    const updateWidths = () => {
+      // Adjust logo width based on screen size
+      const width = window.innerWidth < 768 ? 150 : 200;
+      setLogoWidth(width);
+    };
+
+    updateWidths();
+    window.addEventListener('resize', updateWidths);
+    return () => window.removeEventListener('resize', updateWidths);
+  }, []);
 
   return (
-    <section className="w-full py-8 sm:py-16 md:py-20 lg:py-24 px-2 sm:px-4 md:px-8 lg:px-16 bg-transparent transition-colors duration-300">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10 sm:mb-16">
-          <h2 className="font-['League_Spartan',Helvetica] text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight">
-            <span className="text-gray-800 dark:text-white">Our </span>
-            <span className="font-semibold text-[#ffa500]">Clients</span>
-          </h2>
-          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400"></div>
-          <p className="font-['League_Spartan',Helvetica] text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-6 max-w-2xl mx-auto">
-            Trusted By Innovative Brands And Businesses
-          </p>
-        </div>
+    <section className="w-full py-8 sm:py-16 md:py-20 lg:py-24 bg-transparent transition-colors duration-300 overflow-hidden">
+      <div className="w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="font-['League_Spartan',Helvetica] text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight">
+              <span className="text-gray-800 dark:text-white">Our </span>
+              <span className="font-semibold text-[#ffa500]">Clients</span>
+            </h2>
+            <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-[#ffa500] to-orange-400"></div>
+            <p className="font-['League_Spartan',Helvetica] text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-6 max-w-2xl mx-auto">
+              Trusted By Innovative Brands And Businesses
+            </p>
+          </div>
 
-        {/* Stat strip + Hover logo wall */}
-        <div className="mb-14">
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 mb-8">
+          {/* Stat strip */}
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 mb-12">
             <StatChip label="Clients" value={`+${clients.length}`} />
             <StatChip label="Industries" value="6" />
             <StatChip label="Campaigns" value="120+" />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 sm:gap-12 items-center justify-items-center">
-            {clients.map((client, index) => (
-              <LogoTile key={`grid-${index}`} client={client} />
+        </div>
+
+        {/* Logo carousel - full width */}
+        <div 
+          className="relative w-full h-40 overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          ref={containerRef}
+        >
+          <div 
+            className={`flex items-center h-full ${isPaused ? 'paused' : 'animate-scroll'}`}
+            style={{
+              '--logo-width': `${logoWidth}px`,
+              '--animation-duration': `${duplicatedClients.length * 2}s`,
+            } as React.CSSProperties}
+          >
+            {duplicatedClients.map((client, index) => (
+              <LogoTile key={`logo-${index}`} client={client} />
             ))}
           </div>
+          {/* Gradient fade effect on sides */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent dark:from-[#121212] z-10"></div>
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent dark:from-[#121212] z-10"></div>
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-1 * var(--logo-width) * ${clients.length}));
+            }
+          }
+          .animate-scroll {
+            animation: scroll var(--animation-duration) linear infinite;
+          }
+          .paused {
+            animation-play-state: paused;
+          }
+        `
+      }} />
     </section>
   );
 };
 
-const LogoTile: React.FC<{ client: Client }> = ({ client }) => (
-  <div
-    className="w-full h-36 flex items-center justify-center p-4 transition-transform duration-300 hover:scale-110"
-  >
-    <div className="relative w-full h-full flex items-center justify-center">
+const LogoTile: React.FC<{ client: Client }> = React.memo(({ client }) => (
+  <div className="flex-shrink-0 px-4 h-full flex items-center justify-center transition-all duration-300 hover:scale-110" style={{ width: 'var(--logo-width)' }}>
+    <div className="relative w-full h-24 flex items-center justify-center">
       <img
         src={client.logo}
         alt={client.alt}
-        className="h-24 w-48 object-contain transition-all duration-300 hover:drop-shadow-[0_0_18px_rgba(255,165,0,0.45)]"
+        className="h-full w-full object-contain transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,165,0,0.6)]"
         loading="lazy"
         onError={(e) => {
           console.error(`Failed to load image: ${client.logo}`);
@@ -96,7 +147,9 @@ const LogoTile: React.FC<{ client: Client }> = ({ client }) => (
       />
     </div>
   </div>
-);
+));
+
+LogoTile.displayName = 'LogoTile';
 
 const StatChip: React.FC<{ label: string; value: string }> = ({ label, value }) => (
   <div className="px-4 py-2 rounded-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1b1b1b] shadow-sm flex items-center gap-2">
